@@ -5,15 +5,15 @@ import { FaBars } from "react-icons/fa";
 
 export default function MyNavbar() {
   return (
-    <header className="border p-6 font-semibold">
+    <header className="p-6 font-semibold">
       <div className="flex h-[34px] justify-between">
         <div className="flex">
-          <span className="flex items-center mr-12">
+          <span className="flex items-center mr-[70px]">
             <img src={logo} alt="logotipo" className="h-7 mr-2" />
             <label className="text-xl ">Ardental</label>
           </span>
           <ButtonLogo>
-            <FaBars/>
+            <FaBars />
           </ButtonLogo>
         </div>
         <div className="flex items-center">
