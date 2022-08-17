@@ -3,7 +3,7 @@ import logo from "../assets/imgs/logo.png";
 import ButtonLogo from "./ButtonLogo";
 import { FaBars } from "react-icons/fa";
 
-export default function MyNavbar() {
+export default function MyNavbar({swichShowNavbar}) {
   return (
     <header className="p-6 font-semibold">
       <div className="flex h-[34px] justify-between">
@@ -12,7 +12,7 @@ export default function MyNavbar() {
             <img src={logo} alt="logotipo" className="h-7 mr-2" />
             <label className="text-xl ">Ardental</label>
           </span>
-          <ButtonLogo>
+          <ButtonLogo onClick={swichShowNavbar}>
             <FaBars />
           </ButtonLogo>
         </div>
