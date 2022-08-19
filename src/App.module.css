@@ -13,3 +13,7 @@
   grid-area: pages;
   
 }
+
+.main{
+  width: calc(100% - 280px);
+}
