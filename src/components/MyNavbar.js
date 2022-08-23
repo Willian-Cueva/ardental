@@ -17,7 +17,8 @@ export default function MyNavbar({swichShowNavbar}) {
           </ButtonLogo>
         </div>
         <div className="flex items-center">
-          <div>sitch</div>
+          <div>Sw
+            itch</div>
           <div>Bienvenido, Willian Cueva</div>
         </div>
       </div>
