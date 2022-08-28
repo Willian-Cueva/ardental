@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../components/Input";
 import Main from "../components/Main";
+import RadioButtonsGroup from "../components/RadioButtonsGroup";
 import Switch from "../components/Switch";
 
 export default function Landing() {
@@ -29,7 +30,33 @@ export default function Landing() {
       <div className="mb-4"/>
       <Main title="Antecedentes Personales" subtitle={true}>
         <div className="grid grid-cols-10 gap-2">
+          <Input label="Transtornos sanguineos, coagulación y transfusiones" className="col-span-5"/>
+          <Input label="Presión Aterial" className="col-span-2" type="select" values={["Alta","Normal","Baja"]}/>
           <Switch label="Enfermedades Cardiacas" className="col-span-3"/>
+          <Input label="Medicación actual y crónica" className="col-span-6"/>
+          <Input label="Otras enfermedades" placeholder="Diabetes, Epilepcia, Cancer..." className="col-span-6"/>
+        </div>
+      </Main>
+      <div className="mb-4"/>
+      <Main title="Sintomatología Oral" subtitle={true}>
+        <div className="grid grid-cols-10 gap-2">
+          <Switch label="Halitosis" className="col-span-2"/>
+          <Switch label="Sangrado en las encias" className="col-span-2"/>
+          <Switch label="Xerostomia" className="col-span-2"/>
+          <Switch label="Bruxismo" className="col-span-2"/>
+          <RadioButtonsGroup className="col-span-4" label="Hipersensibilidad" values={["Frío","Calor","Dulce","Ácido","Tacto"]}/>
+        </div>
+      </Main>
+      <div className="mb-4"/>
+      <Main title="Motivo de la consulta" subtitle={true}>
+        <div className="grid grid-cols-10 gap-2">
+        <Input label="Motivo de la consulta" placeholder="La razón por la que el paciente solicitó una consulta fue..." className="col-span-6"/>
+        </div>
+      </Main>
+      <div className="mb-4"/>
+      <Main title="Examen Bucal" subtitle={true}>
+        <div className="grid grid-cols-10 gap-2">
+        <Input label="Motivo de la consulta" placeholder="La razón por la que el paciente solicitó una consulta fue..." className="col-span-6"/>
         </div>
       </Main>
     </Main>
