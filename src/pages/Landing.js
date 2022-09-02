@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../components/Input";
 import Main from "../components/Main";
+import Odontogram from "../components/Odontogram";
 import RadioButtonsGroup from "../components/RadioButtonsGroup";
 import Switch from "../components/Switch";
 
@@ -56,7 +57,7 @@ export default function Landing() {
       <div className="mb-4"/>
       <Main title="Examen Bucal" subtitle={true}>
         <div className="grid grid-cols-10 gap-2">
-        <Input label="Motivo de la consulta" placeholder="La razón por la que el paciente solicitó una consulta fue..." className="col-span-6"/>
+        <Odontogram/>
         </div>
       </Main>
     </Main>

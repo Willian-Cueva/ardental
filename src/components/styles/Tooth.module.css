@@ -1,0 +1,13 @@
+.general {
+  background-color: white;
+}
+
+.general:hover {
+  background-color: #b39ddb;
+}
+
+.bottom {
+  fill: #6ab150;
+  stroke: #003300;
+  stroke-width: 3;
+}
