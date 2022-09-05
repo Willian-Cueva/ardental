@@ -1,11 +1,11 @@
 
 export default function ToothOutline({color="white",className=""}) {
   return (
-    <div className={`${className}`}>
+    <div className={className}>
       <svg
         width="36"
         height="9.5"
-        viewBox="0 0 104 26"
+        viewBox="0 0 104 25"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >

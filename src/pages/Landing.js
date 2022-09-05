@@ -55,10 +55,8 @@ export default function Landing() {
         </div>
       </Main>
       <div className="mb-4"/>
-      <Main title="Examen Bucal" subtitle={true}>
-        <div className="grid grid-cols-10 gap-2">
+      <Main title="Odontograma" subtitle={true}>
         <Odontogram/>
-        </div>
       </Main>
     </Main>
   );
