@@ -4,6 +4,7 @@ import Main from "../components/Main";
 import Odontogram from "../components/Odontogram";
 import RadioButtonsGroup from "../components/RadioButtonsGroup";
 import Switch from "../components/Switch";
+import Table from "../components/TableClinicalSigns";
 
 export default function Landing() {
   return (
@@ -57,6 +58,10 @@ export default function Landing() {
       <div className="mb-4"/>
       <Main title="Odontograma" subtitle={true}>
         <Odontogram/>
+      </Main>
+      <div className="mb-4"/>
+      <Main title="Signos Clínicos" subtitle={true}>
+        <Table/>
       </Main>
     </Main>
   );

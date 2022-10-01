@@ -1,0 +1,47 @@
+table {
+  text-align: left;
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+}
+
+th,
+td {
+  padding: 12px;
+}
+
+thead {
+  background-color: #673ab7;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #ede7f6;
+}
+
+tr:hover td{
+  background-color: #b39ddb;
+  /* color: white; */
+}
+
+input,.textarea{
+    background-color: transparent;
+}
+
+.textarea[contenteditable]:empty::before {
+    content: "Placeholder still possible";
+    color: gray;
+  }
+
+.textarea{
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    resize: both;
+    min-height: 40px;
+    line-height: 20px;
+    border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1px 6px;
+}
