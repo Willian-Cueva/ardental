@@ -1,0 +1,13 @@
+.loader {
+    margin: 1rem auto;
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    animation: myanimation 2s infinite ease-in-out;
+  }
+  
+  @keyframes myanimation {
+    100% {
+      transform: rotate(1800deg);
+    }
+  }

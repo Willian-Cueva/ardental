@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Input from "../components/Input";
 import Main from "../components/Main";
 import Odontogram from "../components/Odontogram";
 import RadioButtonsGroup from "../components/RadioButtonsGroup";
 import Switch from "../components/Switch";
-import Table from "../components/TableClinicalSigns";
+import TableClinicalSigns from "../components/TableClinicalSigns";
+import TablePay from "../components/TablePay";
+import TableTreatment from "../components/TableTreatment";
 
 export default function Landing() {
+  function autosize(e) {
+    const el = e.target;
+    if(el.tagName==="INPUT")return;
+    setTimeout(function () {
+      // el.style.cssText = "height:auto; padding:0";
+      // for box-sizing other than "content-box" use:
+      // el.style.cssText = '-moz-box-sizing:content-box';
+      el.style.cssText = "height:" + el.scrollHeight + "px";
+    }, 0);
+  }
+    useEffect(() => {
+    let textarea = document;
+    textarea.addEventListener("keydown", autosize);
+    return () => {
+      textarea.removeEventListener("keydown", autosize);
+    };
+  }, []);
   return (
     <Main title="Registro de Pacientes">
       <Main title="Datos Personales" subtitle={true}>
@@ -61,8 +80,17 @@ export default function Landing() {
       </Main>
       <div className="mb-4"/>
       <Main title="Signos Clínicos" subtitle={true}>
-        <Table/>
+        <TableClinicalSigns/>
       </Main>
+      <div className="mb-4"/>
+      <Main title="Plan y Seguimiento de tratamiento" subtitle={true}>
+        <TableTreatment/>
+      </Main>
+      <div className="mb-4"/>
+      <Main title="Forma de Pago" subtitle={true}>
+        <TablePay/>
+      </Main>
+
     </Main>
   );
 }

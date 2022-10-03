@@ -7,22 +7,6 @@ export default function TableClinicalSigns() {
 
   const names = ["Nombre", "Signos Clínicos", "Observaciones"];
 
-  function autosize(e) {
-    const el = e.target;
-    setTimeout(function () {
-      el.style.cssText = "height:auto; padding:0";
-      // for box-sizing other than "content-box" use:
-      // el.style.cssText = '-moz-box-sizing:content-box';
-      el.style.cssText = "height:" + el.scrollHeight + "px";
-    }, 0);
-  }
-    useEffect(() => {
-    let textarea = document.querySelector(".textArea");
-    textarea.addEventListener("keydown", autosize);
-    return () => {
-      textarea.removeEventListener("keydown", autosize);
-    };
-  }, []);
   return (
     <div className="rounded-xl overflow-hidden textArea">
       <table>

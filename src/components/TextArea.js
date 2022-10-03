@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import styles from "./styles/TextArea.module.css";
-export default function TextArea({ placeholder = "placeholder" }) {
+export default function TextArea({ placeholder = "placeholder" ,value}) {
  
 
 //   useEffect(() => {
@@ -11,5 +10,5 @@ export default function TextArea({ placeholder = "placeholder" }) {
 //     };
 //   }, []);
 
-  return <textarea rows="1"></textarea>;
+  return <textarea rows="1" value={value}></textarea>;
 }
