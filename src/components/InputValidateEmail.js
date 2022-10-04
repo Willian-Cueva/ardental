@@ -45,7 +45,6 @@ export default function InputValidateEmail() {
           }}
           onKeyUp={(e) => {
             const value = e.target.value;
-            console.log(value);
             validarEmail(value);
           }}
         />

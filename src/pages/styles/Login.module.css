@@ -19,3 +19,43 @@
     font-size: 16px;
     text-align: inherit;
 }
+
+.forgotPassword{
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: Roboto, sans-serif;
+    line-height: 1.75;
+    color: rgb(103, 58, 183);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.styleButtonLogin{
+    font-family: Roboto, sans-serif;
+    line-height: 1.75;
+    text-transform: capitalize;
+}
+
+.hr{
+    height: 1px;
+    background-color: #EEEEEE;
+    width: 100%;
+}
+
+.dontHaveAccount{
+    margin: 0px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color:#212121e7;
+    font-family: Poppins, sans-serif;
+    line-height: 1.75;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.333s ease;
+}
+
+.dontHaveAccount:hover{
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: underline;
+}

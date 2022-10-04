@@ -8,12 +8,13 @@ export const useGlobalStateModel = () => {
   const [session, setSession] = useState(sessionStorage());
   const isSessionActive = () =>{
     // return session.rol !== "" && session.fullname !== "" && session.token !== "" && session.email !== "";
-    let chis = false;
+    let chis = true;
     return chis;
   }
 
   return {
     session,
+    
     setSession,
     isSessionActive
   };

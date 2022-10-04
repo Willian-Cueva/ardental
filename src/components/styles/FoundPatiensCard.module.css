@@ -1,0 +1,8 @@
+.panelEmpy{
+    width: 100%;
+    height: calc(100vh - 350px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}

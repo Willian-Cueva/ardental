@@ -8,6 +8,7 @@ import styles from "./App.module.css";
 import { useState } from "react";
 import GlobalStateContext from "./contexts/globalStateContext";
 import { useGlobalStateModel } from "./hooks/useGlobalState";
+import Patients from "./pages/Patients";
 function App() {
   const [showNavbar, setShowNavbar] = useState(true);
   const switchShowNavbar = () => {
@@ -42,7 +43,7 @@ function App() {
 
                 <Route exact path="/" element={<Landing />} />
                 <Route path="/register-patient" element={<Landing />} />
-                <Route path="/patients" element={<Landing />} />
+                <Route path="/patients" element={<Patients/>} />
 
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
