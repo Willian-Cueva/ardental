@@ -1,0 +1,1 @@
+export const INPUT_TABLE = "focus:outline-none focus:border-2 focus:border-[#4527a0] focus:rounded-[10px] focus:px-[10px] focus:py-[5px]";

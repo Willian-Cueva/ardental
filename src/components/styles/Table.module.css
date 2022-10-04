@@ -29,12 +29,12 @@ input,
   background-color: transparent;
 }
 
-input:focus {
+/* input:focus {
   outline: none;
   border: 2px solid #4527a0;
   border-radius: 10px;
   padding: 5px 10px;
-}
+} */
 
 .textarea[contenteditable]:empty::before {
   content: "Placeholder still possible";

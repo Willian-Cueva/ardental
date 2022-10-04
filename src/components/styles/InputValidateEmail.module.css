@@ -1,0 +1,17 @@
+.input:focus {
+  outline: none;
+}
+
+.parraf {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+}
+
+.alert {
+  font-size: 14px;
+  font-weight: 400;
+}

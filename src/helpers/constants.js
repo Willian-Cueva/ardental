@@ -1,0 +1,1 @@
+export const SESSION_STORAGE="ardental-session"
