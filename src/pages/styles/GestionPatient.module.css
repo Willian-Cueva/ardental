@@ -1,0 +1,28 @@
+.name{
+    font-size:xx-large;
+    font-weight: 600;
+    letter-spacing: 1.25px;
+}
+
+.title{
+    font-size: x-large;
+    font-weight: 600;
+}
+
+.info{
+    font-size: large;
+    font-weight: 600;
+}
+
+.general{
+    font-family: Roboto, sans-serif;
+}
+
+.main{
+    max-height: calc(100vh - 500px);
+}
+
+.area{
+    max-height: calc(100vh - 215px);
+    width: calc(100vw - 200px);
+}

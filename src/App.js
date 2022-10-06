@@ -9,13 +9,13 @@ import { useState } from "react";
 import GlobalStateContext from "./contexts/globalStateContext";
 import { useGlobalStateModel } from "./hooks/useGlobalState";
 import Patients from "./pages/Patients";
+import GestionPatient from "./pages/GestionPatient";
 function App() {
   const [showNavbar, setShowNavbar] = useState(true);
   const switchShowNavbar = () => {
     setShowNavbar(!showNavbar);
   };
   const value = useGlobalStateModel();
-  console.log(value);
 
   return (
     <GlobalStateContext.Provider value={value}>
@@ -47,6 +47,7 @@ function App() {
 
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/gestion-patient/:dni" element={<GestionPatient/>} />
               </Routes>
             </div>
           </div></>

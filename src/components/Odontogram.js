@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Absent from "../assets/svg/Absent";
 import ButtonColor from "../assets/svg/ButtonColor";
 import Crown from "../assets/svg/Crown";
@@ -8,44 +9,72 @@ import ButtonOdontogram from "./ButtonOdontogram";
 import Tooth from "./Tooth";
 
 export default function Odontogram() {
+
+  const click = (e) => {
+    console.log(e.target);
+  }
+
+  useEffect(() => {
+    
+    const d=document,$panel = d.getElementById("panel-odontogram");
+    $panel.addEventListener("click",click)
+  
+    return () => {
+      // second
+      $panel.removeEventListener("click",click);
+    }
+  }, [])
+  
   return (
-    <>
-      <div>
-        <span className="w-[69px]">Por Hacer</span>
-        <div className="flex flex-wrap gap-2 mb-2">
-          <ButtonOdontogram>
-            <ButtonColor />
-          </ButtonOdontogram>
-          <ButtonOdontogram>
-            <OdontogramComplete />
-          </ButtonOdontogram>
-          <ButtonOdontogram>
-            <Absent />
-          </ButtonOdontogram>
-          <ButtonOdontogram>
-            <Crown />
-          </ButtonOdontogram>
-          <ButtonOdontogram>
-            <FilteredOut />
-          </ButtonOdontogram>
-          <ButtonOdontogram>
-            <Fractured />
-          </ButtonOdontogram>
+    <div className="flex flex-col items-center" id="panel-odontogram">
+      <div className="flex gap-6">
+        <div>
+          <span className="w-[69px]">Por Hacer</span>
+          <div className="flex flex-wrap gap-2 mb-2">
+            <ButtonOdontogram>
+              <ButtonColor />
+            </ButtonOdontogram>
+            <ButtonOdontogram>
+              <OdontogramComplete />
+            </ButtonOdontogram>
+            <ButtonOdontogram>
+              <Absent />
+            </ButtonOdontogram>
+            <ButtonOdontogram>
+              <Crown />
+            </ButtonOdontogram>
+            <ButtonOdontogram>
+              <FilteredOut />
+            </ButtonOdontogram>
+            <ButtonOdontogram>
+              <Fractured />
+            </ButtonOdontogram>
+          </div>
         </div>
-        <span className="w-[69px]">Hecho</span>
-        <div className="flex flex-wrap gap-2 mb-2">
-          <ButtonOdontogram>
-            <ButtonColor color="red" />
-          </ButtonOdontogram>
-          <ButtonOdontogram>
-            <OdontogramComplete color="red" />
-          </ButtonOdontogram>
-          <ButtonOdontogram>
-            <Absent color="red" />
-          </ButtonOdontogram>
-          <ButtonOdontogram>
-            <Crown color="red" />
-          </ButtonOdontogram>
+        <div>
+          <span className="w-[69px]">Hecho</span>
+          <div className="flex flex-wrap gap-2 mb-2">
+            <ButtonOdontogram>
+              <ButtonColor color="red" />
+            </ButtonOdontogram>
+            <ButtonOdontogram>
+              <OdontogramComplete color="red" />
+            </ButtonOdontogram>
+            <ButtonOdontogram>
+              <Absent color="red" />
+            </ButtonOdontogram>
+            <ButtonOdontogram>
+              <Crown color="red" />
+            </ButtonOdontogram>
+          </div>
+        </div>
+        <div>
+          <span className="w-[69px]">Limpiar Todo</span>
+          <div className="flex flex-wrap gap-2 mb-2">
+            <ButtonOdontogram>
+              <OdontogramComplete color="white" />
+            </ButtonOdontogram>
+          </div>
         </div>
       </div>
       <div className="flex gap-6">
@@ -122,6 +151,6 @@ export default function Odontogram() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,0 +1,21 @@
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+.modalContainer{
+    /* position: relative; */
+}
+
+.modalContent{
+    /* position: relative; */
+    /* max-height: calc(100vh - 500px); */
+}

@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function OdontogramComplete({color="blue"}) {
-    const backgroundColor = color!=="red"?"#2196F3":"#F44336";
+    const backgroundColor = `${color!=="red"?color==="white"?"white":"#2196F3":"#F44336"}`;
   return (
     <div>
       <svg

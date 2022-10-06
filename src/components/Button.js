@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
-export default function Button({className,onclick=()=>{},children}) {
-  return (
-    <button className={className}>{children}</button>
-  )
+export default function Button({ className, children }) {
+  return <button className={className}>{children}</button>;
 }

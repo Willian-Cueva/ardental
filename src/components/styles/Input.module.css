@@ -1,3 +1,7 @@
 input:focus{
     outline:none;
 }
+
+.select option{
+    border-radius: 8px;
+}
