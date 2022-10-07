@@ -1,40 +1,7 @@
-table {
-  text-align: left;
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 12px;
-}
-
-th,
-td {
-  padding: 12px;
-}
-
-thead {
-  background-color: #673ab7;
-  color: white;
-}
-
-tr:nth-child(even) {
-  background-color: #ede7f6;
-}
-
-tr:hover td {
-  background-color: #b39ddb;
-  /* color: white; */
-}
-
 input,
 .textarea {
   background-color: transparent;
 }
-
-/* input:focus {
-  outline: none;
-  border: 2px solid #4527a0;
-  border-radius: 10px;
-  padding: 5px 10px;
-} */
 
 .textarea[contenteditable]:empty::before {
   content: "Placeholder still possible";

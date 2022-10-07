@@ -1,7 +1,5 @@
 export const SESSION_STORAGE="ardental-session"
-export const ODONTOGRAM_DATA = {
-    "18": [0,0,0,0,0,0]
-}
+// export let ODONTOGRAM_DATA = 
 export const TEST_USER = {
     PersonaData:{
         name: "Willian Cueva",

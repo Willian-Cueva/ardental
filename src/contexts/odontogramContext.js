@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const odontogramContext = createContext();
+const OdontogramContext = createContext();
 
-export default odontogramContext;
+export default OdontogramContext;

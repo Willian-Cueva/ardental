@@ -10,12 +10,3 @@
     justify-content: center;
     padding-top: 1rem;
 }
-
-.modalContainer{
-    /* position: relative; */
-}
-
-.modalContent{
-    /* position: relative; */
-    /* max-height: calc(100vh - 500px); */
-}

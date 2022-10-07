@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function Fractured() {
+export default function Fractured({width="46",height="5",viewBox="0 0 58 10"}) {
   return (
     <div>
       <svg
-        width="46"
-        height="5"
-        viewBox="0 0 58 10"
+        width={width}
+        height={height}
+        viewBox={viewBox}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >

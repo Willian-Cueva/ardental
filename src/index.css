@@ -14,3 +14,74 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+[data-title]:hover:after {
+  opacity: 1;
+  transition: all 0.1s ease 0.1s;
+  visibility: visible;
+}
+[data-title]:after {
+  content: attr(data-title);
+  background-color: #333;
+  color: #fff;
+  font-size: 14px;
+  font-family: Roboto,sans-serif;
+  position: absolute;
+  padding: 3px 20px;
+  bottom: -1.6em;
+  left: 100%;
+  white-space: nowrap;
+  box-shadow: 1px 1px 3px #222222;
+  opacity: 0;
+  border: 1px solid #111111;
+  z-index: 99999;
+  visibility: hidden;
+  border-radius: 6px;
+  
+}
+[data-title] {
+  position: relative;
+}
+/* Estilos para las tablas */
+
+table {
+  text-align: left;
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+}
+
+th,
+td {
+  padding: 12px;
+}
+
+thead {
+  background-color: #673ab7;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #ede7f6;
+}
+
+tr:hover td {
+  background-color: #b39ddb;
+}
+
+/* Estilos para los text areas */
+
+textarea {
+  overflow: hidden;
+  width: 100%;
+  display: block;
+  background-color: transparent;
+}
+
+textarea:focus{
+    outline: none;
+    border: 2px solid #4527A0;
+    border-radius: 10px;
+    padding: 5px 10px;
+}

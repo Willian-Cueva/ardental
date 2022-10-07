@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function Crown({color="blue"}) {
+export default function Crown({color="blue",width="29",height="29",viewBox="0 0 52 52"}) {
     const backgroundColor = color!=="red"?"#2196F3":"#F44336";
   return (
     <div>
       <svg
-        width="29"
-        height="29"
-        viewBox="0 0 52 52"
+        width={width}
+        height={height}
+        viewBox={viewBox}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >

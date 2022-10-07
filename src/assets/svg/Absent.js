@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function Absent({color="blue"}) {
+export default function Absent({color="blue",width="25",height="25",viewBox="0 0 50 50"}) {
     const backgroundColor = color!=="red"?"#2196F3":"#F44336";
   return (
     <div>
       <svg
-        width="25"
-        height="25"
-        viewBox="0 0 50 50"
+        width={width}
+        height={height}
+        viewBox={viewBox}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >

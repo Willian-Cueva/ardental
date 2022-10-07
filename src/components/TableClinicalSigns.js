@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import styles from "./styles/Table.module.css";
 import TextArea from "./TextArea";
 export default function TableClinicalSigns() {
 
