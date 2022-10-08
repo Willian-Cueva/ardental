@@ -108,11 +108,16 @@ export const useOdontogramModel = () => {
       for (let index = 0; index < getState[num].length; index++) {
         getState[num][index] = 0;
       }
-    } else {
+    } else if (optionSelect === 11) {
+      if (getState[num][5]!==0) {
+        getState[num][5]=0;
+      }else{
+        getState[num][possition]=0;
+      }
+    }else{
       getState[num][5] = decodButton(optionSelect);
     }
     setOdontogramData(getState);
-    // clickOnColorSelect(num);
   };
 
   return {

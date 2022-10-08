@@ -4,7 +4,6 @@ import useOdontogram from "../hooks/useOdontogram";
 import SymbolTooth from "./SymbolTooth";
 // import styles from "./styles/Tooth.module.css";
 export default function Tooth({ number = 18, data }) {
-  const { clickOnNotColorSelect } = useOdontogram();
   return (
     <div className="w-[35px]">
       <div className="text-center">{number}</div>

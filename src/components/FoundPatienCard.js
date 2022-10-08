@@ -16,7 +16,7 @@ export default function FoundPatienCard({ patient, index }) {
         ) : gener === 2 ? (
           <FaMars size={"27px"} color="#1E88E5" />
         ) : (
-          <FaQuestion size={"27px"} color="#616161" />
+          <FaQuestion size={"24px"} color="#616161" />
         )}
       </th>
       <th>

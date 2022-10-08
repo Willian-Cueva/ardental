@@ -58,7 +58,7 @@ export default function GestionPatient() {
     gener: 2,
   });
   return (
-    <div id="page_gestion_patient">
+    <div id="page_gestion_patient" className={`${styles.mainTotal}`}>
       <Main title="Datos informativos">
         <div className="flex w-full justify-between">
           <div className="flex gap-3 mb-4">
@@ -144,26 +144,27 @@ export default function GestionPatient() {
           />
         </section>
       </Main>
-      {showModal && (
-        <Modal>
-          <Main
+      <Modal show={showModal}>
+        <Main
           className={`${styles.main}`}
-            title={
-              <div className="flex justify-between w-full">
-                <div className="font-bold">Configurar</div>
-                <div
-                  className="text-red-600 cursor-pointer"
-                  onClick={() => {
-                    setShowModal(false);
-                  }}
-                >
-                  <FaWindowClose size={"35px"} />
-                </div>
+          title={
+            <div className="flex justify-between w-full">
+              <div className="font-bold">Configurar</div>
+              <div
+                className="text-red-600 cursor-pointer"
+                onClick={() => {
+                  setShowModal(false);
+                }}
+              >
+                <FaWindowClose size={"35px"} />
               </div>
-            }
+            </div>
+          }
+        >
+          <div
+            className={`${scrollStyles.scrollBar} ${styles.area} overflow-y-scroll`}
           >
-           <div className={`${scrollStyles.scrollBar} ${styles.area} overflow-y-scroll`}>
-           {component === 0 ? (
+            {component === 0 ? (
               <PersonalData />
             ) : component === 1 ? (
               <PersonalHistory />
@@ -188,27 +189,26 @@ export default function GestionPatient() {
             ) : (
               ""
             )}
-           </div>
-            <div className="w-full flex justify-between mt-4">
-              <div
-                onClick={() => {
-                  setShowModal(false);
-                }}
-              >
-                <ButtonIcon
-                  text="Cancelar"
-                  color={`bg-[#F44336] hover:bg-[#C62828] px-2`}
-                />
-              </div>
+          </div>
+          <div className="w-full flex justify-between mt-4">
+            <div
+              onClick={() => {
+                setShowModal(false);
+              }}
+            >
               <ButtonIcon
-                text="Guardar"
-                color={`bg-[#00C853] hover:bg-[#69F0AE] px-2`}
-                icon={<FaSave size={"22px"} />}
+                text="Cancelar"
+                color={`bg-[#F44336] hover:bg-[#C62828] px-2`}
               />
             </div>
-          </Main>
-        </Modal>
-      )}
+            <ButtonIcon
+              text="Guardar"
+              color={`bg-[#00C853] hover:bg-[#69F0AE] px-2`}
+              icon={<FaSave size={"22px"} />}
+            />
+          </div>
+        </Main>
+      </Modal>
     </div>
   );
 }
