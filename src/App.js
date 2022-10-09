@@ -1,7 +1,7 @@
 import { Routes, Route, HashRouter } from "react-router-dom";
 import Links from "./components/Links";
 import MyNavbar from "./components/MyNavbar";
-import Landing from "./pages/Landing";
+import RegisterPatients from "./pages/RegisterPatients";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import styles from "./App.module.css";
@@ -41,8 +41,8 @@ function App() {
               <Routes>
                 {/* <Route exact path="/" */}
 
-                <Route exact path="/" element={<Landing />} />
-                <Route path="/register-patient" element={<Landing />} />
+                <Route exact path="/" element={<RegisterPatients />} />
+                <Route path="/register-patient" element={<RegisterPatients />} />
                 <Route path="/patients" element={<Patients/>} />
 
                 <Route path="/register" element={<Register />} />
