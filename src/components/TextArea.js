@@ -1,4 +1,4 @@
-export default function TextArea({ placeholder = "placeholder" ,value}) {
+export default function TextArea({id, placeholder = "placeholder" ,value}) {
 
-  return <textarea rows="1" value={value}></textarea>;
+  return <textarea id={id} rows="1" value={value} name="name-txta"></textarea>;
 }

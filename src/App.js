@@ -5,7 +5,7 @@ import RegisterPatients from "./pages/RegisterPatients";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import styles from "./App.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GlobalStateContext from "./contexts/GlobalStateContext";
 import { useGlobalStateModel } from "./hooks/useGlobalState";
 import Patients from "./pages/Patients";
@@ -15,6 +15,25 @@ function App() {
   const switchShowNavbar = () => {
     setShowNavbar(!showNavbar);
   };
+
+  function autosize(e) {
+    const el = e.target;
+    if (el.tagName === "INPUT") return;
+    if (el.name !== "name-txta") return;
+    // setTimeout(function () {
+      el.style.cssText = "height:" + (el.scrollHeight*1+4) + "px";
+    // }, 0);
+  }
+  useEffect(() => {
+    let textarea = document;
+    textarea.addEventListener("keydown", autosize);
+    textarea.addEventListener("click", autosize);
+    return () => {
+      textarea.removeEventListener("keydown", autosize);
+      textarea.removeEventListener("click", autosize);
+    };
+  }, []);
+
   const value = useGlobalStateModel();
 
   return (

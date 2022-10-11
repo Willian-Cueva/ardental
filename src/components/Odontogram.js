@@ -12,6 +12,7 @@ import img from "../assets/imgs/logo.png";
 
 export default function Odontogram() {
   const { odontogramData, optionSelect } = useOdontogram();
+  
   console.log("renderizando odontogram");
   const estilos = {
     cursor: `url(${img}),auto`,
@@ -22,6 +23,7 @@ export default function Odontogram() {
       style={estilos}
       id="panel-odontogram"
     >
+      <div id="id-div-odontogram-data" className="hidden">{JSON.stringify(odontogramData)}</div>
       <div className="flex gap-6">
         <div>
           <span className="w-[69px]">Por Hacer</span>

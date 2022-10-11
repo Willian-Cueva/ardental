@@ -1,17 +1,22 @@
 .scrollBar::-webkit-scrollbar {
-    width: 1rem;
+  width: 1rem;
 }
 
 .scrollBar::-webkit-scrollbar-track {
-    background: #E0E0E0; 
-    border-radius: 12px;
+  background: #e0e0e0;
+  border-radius: 12px;
 }
 
 .scrollBar::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 12px;
+  background: #888;
+  border-radius: 12px;
 }
 
 .scrollBar::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+  background: #555;
+}
+
+.area {
+  max-height: calc(100vh - 215px);
+  width: calc(100vw - 200px);
+}

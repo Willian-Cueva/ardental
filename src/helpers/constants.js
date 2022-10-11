@@ -3,7 +3,19 @@ export const SERVER = "localhost:3001",
   API = `${URL}/api/`,
   ALL_PATIENTS = `${API}/all-patients`,
   NEW_PATIENT = `${API}/new-patient`;
-  
+
+export const METHOD_FETCH = ({method,body={}}) => {
+  return {
+    method,
+    headers: {
+      'Accept' : 'application/json',
+      'Content-Type' : 'application/json'
+    }, 
+    body: JSON.stringify(body),
+    mode: 'cors'
+  };
+};
+
 export const SESSION_STORAGE = "ardental-session";
 export const PATIENT_MODEL = {
   PersonaData: {
@@ -41,7 +53,7 @@ export const PATIENT_MODEL = {
     },
   },
 
-  Odontogram: {
+  Odontogram: {data:{
     18: [0, 0, 0, 0, 0, 0],
     17: [0, 0, 0, 0, 0, 0],
     16: [0, 0, 0, 0, 0, 0],
@@ -94,7 +106,7 @@ export const PATIENT_MODEL = {
     36: [0, 0, 0, 0, 0, 0],
     37: [0, 0, 0, 0, 0, 0],
     38: [0, 0, 0, 0, 0, 0],
-  },
+  }},
   ClinicalSygns: {
     lips: {
       clinicalSigns: "",

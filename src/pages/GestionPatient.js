@@ -20,11 +20,12 @@ import {
 import Modal from "../components/Modal";
 import PersonalHistory from "../components/PersonalHistory";
 import OralSymp from "../components/OralSymp";
-import ReasonConsult from "../components/ReasonConsult";
 import Odontogram from "../components/Odontogram";
 import ClinicalSigns from "../components/ClinicalSigns";
 import TablePay from "../components/TablePay";
 import TableTreatment from "../components/TableTreatment";
+import OdontogramContext from "../contexts/OdontogramContext";
+import { useOdontogramModel } from "../hooks/useOdontogram";
 
 export default function GestionPatient() {
   const [component, setComponent] = useState(-1);
@@ -57,6 +58,7 @@ export default function GestionPatient() {
     profession: "Ingeniero en Computación",
     gener: 2,
   });
+  const value = useOdontogramModel();
   return (
     <div id="page_gestion_patient" className={`${styles.mainTotal}`}>
       <Main title="Datos informativos">
@@ -98,14 +100,6 @@ export default function GestionPatient() {
           <ButtonIcon
             text="Sintomatologia Oral"
             num={2}
-            onclick={selectComponentForShow}
-            className="col-span-5"
-            color="bg-[#5E35B1] hover:bg-[#4527A0]"
-            icon={<FaTeethOpen size={"22px"} />}
-          />
-          <ButtonIcon
-            text="Motivo de la consulta"
-            num={3}
             onclick={selectComponentForShow}
             className="col-span-5"
             color="bg-[#5E35B1] hover:bg-[#4527A0]"
@@ -170,11 +164,11 @@ export default function GestionPatient() {
               <PersonalHistory />
             ) : component === 2 ? (
               <OralSymp />
-            ) : component === 3 ? (
-              <ReasonConsult />
             ) : component === 4 ? (
               <Main title="Odontograma" subtitle={true}>
-                <Odontogram />
+                <OdontogramContext.Provider value={value}>
+                  <Odontogram />
+                </OdontogramContext.Provider>
               </Main>
             ) : component === 5 ? (
               <ClinicalSigns />
