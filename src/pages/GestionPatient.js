@@ -22,7 +22,6 @@ import PersonalHistory from "../components/PersonalHistory";
 import OralSymp from "../components/OralSymp";
 import Odontogram from "../components/Odontogram";
 import ClinicalSigns from "../components/ClinicalSigns";
-import TablePay from "../components/TablePay";
 import TableTreatment from "../components/TableTreatment";
 import OdontogramContext from "../contexts/OdontogramContext";
 import { useOdontogramModel } from "../hooks/useOdontogram";
@@ -178,7 +177,7 @@ export default function GestionPatient() {
               </Main>
             ) : component === 6 ? (
               <Main title="Forma de Pago" subtitle={true}>
-                <TablePay />
+                
               </Main>
             ) : (
               ""

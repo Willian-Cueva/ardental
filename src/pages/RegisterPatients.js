@@ -10,7 +10,7 @@ import { useState } from "react";
 import { PATIENT_MODEL } from "../helpers/constants";
 import Odontogram from "../components/Odontogram";
 import TableTreatment from "../components/TableTreatment";
-import TablePay from "../components/TablePay";
+import WayPay from "../components/WayPay";
 
 export default function RegisterPatients() {
   const [patient, setPatient] = useState(PATIENT_MODEL);
@@ -113,7 +113,9 @@ export default function RegisterPatients() {
 
 
     getPatient.Treatments.data = JSON.parse(d.getElementById("id-div-treatments").textContent);
-    console.log(getPatient.Treatments.data);
+
+    getPatient.WayPay.data = JSON.parse(d.getElementById("id-div-pays").textContent)
+    console.log(getPatient.WayPay.data);
   };
 
   
@@ -141,7 +143,7 @@ export default function RegisterPatients() {
       </Main>
       <div className="mb-4" />
       <Main title="Forma de Pago" subtitle={true}>
-        <TablePay/>
+        <WayPay/>
       </Main>
       <div className="mt-4 w-full flex justify-between">
         <button
