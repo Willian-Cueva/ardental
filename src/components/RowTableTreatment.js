@@ -14,6 +14,7 @@ export default function RowTableTreatment({ treatment ,edit,deleted,index}) {
           id=""
           value={treatment.date}
           className={INPUT_TABLE}
+          disabled
         />
       </td>
       <td>

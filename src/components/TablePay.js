@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { FaPlusCircle, FaUndoAlt, FaWindowClose } from "react-icons/fa";
 import swal from "sweetalert";
-import ButtonIcon from "./ButtonIcon";
 import Input from "./Input";
 import Loader from "./Loader";
 import Main from "./Main";
@@ -24,6 +23,7 @@ export default function TablePay({ editMode = false }) {
   const [showModal, setShowModal] = useState(false);
   const [editOnePay, setEditOnePay] = useState(false);
   const [indexEdit, setIndexEdit] = useState(-1);
+
   useEffect(() => {
     const datos = [];
     setPays(datos);
@@ -36,51 +36,51 @@ export default function TablePay({ editMode = false }) {
     cleanPanel();
   };
 
-  const cleanPanel = ()=>{
+  const cleanPanel = () => {
     const d = document,
       $date = d.getElementById("id-inp-pay-date"),
-      $part = d.getElementById("id-inp-pay-pass"),
-      $diagnostic = d.getElementById("id-inp-pay-balance"),
-      $treatment = d.getElementById("id-inp-pay-observations");
-      $date.value = "";
-    $part.value = "";
-    $diagnostic.value = "";
-    $treatment.value = "";
-  }
+      $pass = d.getElementById("id-inp-pay-pass"),
+      $balance = d.getElementById("id-inp-pay-balance"),
+      $observations = d.getElementById("id-inp-pay-observations");
+    $date.value = "";
+    $pass.value = "";
+    $balance.value = "";
+    $observations.value = "";
+  };
 
-  const newTreatment = () => {
+  const newPay = () => {
     const d = document,
       $date = d.getElementById("id-inp-pay-date"),
-      $part = d.getElementById("id-inp-pay-pass"),
-      $diagnostic = d.getElementById("id-inp-pay-balance"),
-      $treatment = d.getElementById("id-inp-pay-observations");
-      if (editOnePay) {
-        setPays(pays.map((el,id)=>{
-          if(id===indexEdit){
+      $pass = d.getElementById("id-inp-pay-pass"),
+      $balance = d.getElementById("id-inp-pay-balance"),
+      $observations = d.getElementById("id-inp-pay-observations");
+    if (editOnePay) {
+      setPays(
+        pays.map((el, id) => {
+          if (id === indexEdit) {
             setEditOnePay(false);
-              return {
-                date: $date.value,
-                part: $part.value,
-                diagnostic: $diagnostic.value,
-                treatment: $treatment.value,
-              }
-          }else{
+            return {
+              date: $date.value,
+              pass: $pass.value,
+              balance: $balance.value,
+              observations: $observations.value,
+            };
+          } else {
             return el;
           }
-        }))
-      } else {
-        setPays([
-          {
-            date: $date.value,
-            part: $part.value,
-            diagnostic: $diagnostic.value,
-            treatment: $treatment.value,
-          },
-          ...pays,
-        ]);    
-      }
-    
-    
+        })
+      );
+    } else {
+      setPays([
+        {
+          date: $date.value,
+          pass: $pass.value,
+          balance: $balance.value,
+          observations: $observations.value,
+        },
+        ...pays,
+      ]);
+    }
 
     closeModal();
   };
@@ -100,14 +100,16 @@ export default function TablePay({ editMode = false }) {
   const editPay = (index) => {
     const d = document,
       $date = d.getElementById("id-inp-pay-date"),
-      $part = d.getElementById("id-inp-pay-pass"),
-      $diagnostic = d.getElementById("id-inp-pay-balance"),
-      $treatment = d.getElementById("id-inp-pay-observations");
+      $pass = d.getElementById("id-inp-pay-pass"),
+      $balance = d.getElementById("id-inp-pay-balance"),
+      $observations = d.getElementById("id-inp-pay-observations");
 
     $date.value = pays[index].date;
-    $part.value = pays[index].part;
-    $diagnostic.value = pays[index].diagnostic;
-    $treatment.value = pays[index].treatment;
+    $pass.textContent = pays[index].part;
+    $balance.textContent = pays[index].diagnostic;
+    $observations.textContent = pays[index].treatment;
+
+    console.log(index,pays);
 
     setEditOnePay(true);
     setIndexEdit(index);
@@ -121,7 +123,7 @@ export default function TablePay({ editMode = false }) {
           title={
             <div className="flex justify-between w-full">
               <div className="font-bold">
-                Añadir un Plan y Seguimiento de Tratamiento
+                Añadir una Forma de Pago
               </div>
               <div
                 className="text-red-600 cursor-pointer"
@@ -150,7 +152,7 @@ export default function TablePay({ editMode = false }) {
                 type="number"
                 className="col-span-3"
                 placeholder="00.0"
-                />
+              />
               <Input
                 id={"id-inp-pay-balance"}
                 label="Saldo"
@@ -168,31 +170,33 @@ export default function TablePay({ editMode = false }) {
           </div>
           <div className="w-full flex justify-between mt-4">
             <div
+              className={`cursor-pointer bg-[#F44336] hover:bg-[#C62828] px-2 min-h-[46px] rounded-xl text-white flex flex-wrap justify-center items-center gap-2 py-1`}
               onClick={() => {
                 setShowModal(false);
               }}
             >
-              <ButtonIcon
-                text="Cancelar"
-                color={`bg-[#F44336] hover:bg-[#C62828] px-2`}
-              />
+              <div className="font-semibold text-lg">Cancelar</div>
             </div>
             <div
+              className={`cursor-pointer bg-[#00C853] hover:bg-[#69F0AE] px-2 min-h-[46px] rounded-xl text-white flex flex-wrap justify-center items-center gap-2 py-1`}
               onClick={() => {
-                newTreatment();
+                newPay(false);
               }}
             >
-              <ButtonIcon
-                text={editOnePay?"Actualizar":"Añadir"}
-                color={`bg-[#00C853] hover:bg-[#69F0AE] px-2`}
-                icon={editOnePay?<FaUndoAlt size={"22px"}/>:<FaPlusCircle size={"22px"} />}
-              />
+              <div className="font-semibold text-lg">{editMode?"Actualizar":"Guardar"}</div>
+              {editOnePay ? (
+                <FaUndoAlt size={"22px"} />
+              ) : (
+                <FaPlusCircle size={"22px"} />
+              )}
             </div>
           </div>
         </Main>
       </Modal>
       <div className="w-full flex justify-end">
-        <div id="id-div-pays" className="hidden">{JSON.stringify(pays)}</div>
+        <div id="id-div-pays" className="">
+          {JSON.stringify(pays)}
+        </div>
         <button
           onClick={() => {
             setShowModal(true);
@@ -214,7 +218,13 @@ export default function TablePay({ editMode = false }) {
           </thead>
           {ready ? (
             pays.map((pay, index) => (
-             <RowTablePay pay={pay} index={index} edit={editPay} deleted={deletedPay}/>
+              <RowTablePay
+              key={`pay-${index}`}
+                pay={pay}
+                index={index}
+                edit={editPay}
+                deleted={deletedPay}
+              />
             ))
           ) : (
             <Loader />

@@ -36,17 +36,17 @@ export default function TableTreatment({ editMode = false }) {
     cleanPanel();
   };
 
-  const cleanPanel = ()=>{
+  const cleanPanel = () => {
     const d = document,
       $date = d.getElementById("id-inp-treat-date"),
       $part = d.getElementById("id-inp-treat-part"),
       $diagnostic = d.getElementById("id-inp-treat-diagnostic"),
       $treatment = d.getElementById("id-inp-treat-treatment");
-      $date.value = "";
+    $date.value = "";
     $part.value = "";
     $diagnostic.value = "";
     $treatment.value = "";
-  }
+  };
 
   const newTreatment = () => {
     const d = document,
@@ -54,33 +54,33 @@ export default function TableTreatment({ editMode = false }) {
       $part = d.getElementById("id-inp-treat-part"),
       $diagnostic = d.getElementById("id-inp-treat-diagnostic"),
       $treatment = d.getElementById("id-inp-treat-treatment");
-      if (editOneTreatment) {
-        setTreatments(treatments.map((el,id)=>{
-          if(id===indexEdit){
+    if (editOneTreatment) {
+      setTreatments(
+        treatments.map((el, id) => {
+          if (id === indexEdit) {
             setEditOneTreatment(false);
-              return {
-                date: $date.value,
-                part: $part.value,
-                diagnostic: $diagnostic.value,
-                treatment: $treatment.value,
-              }
-          }else{
+            return {
+              date: $date.value,
+              part: $part.value,
+              diagnostic: $diagnostic.value,
+              treatment: $treatment.value,
+            };
+          } else {
             return el;
           }
-        }))
-      } else {
-        setTreatments([
-          {
-            date: $date.value,
-            part: $part.value,
-            diagnostic: $diagnostic.value,
-            treatment: $treatment.value,
-          },
-          ...treatments,
-        ]);    
-      }
-    
-    
+        })
+      );
+    } else {
+      setTreatments([
+        {
+          date: $date.value,
+          part: $part.value,
+          diagnostic: $diagnostic.value,
+          treatment: $treatment.value,
+        },
+        ...treatments,
+      ]);
+    }
 
     closeModal();
   };
@@ -182,16 +182,24 @@ export default function TableTreatment({ editMode = false }) {
               }}
             >
               <ButtonIcon
-                text={editOneTreatment?"Actualizar":"Añadir"}
+                text={editOneTreatment ? "Actualizar" : "Añadir"}
                 color={`bg-[#00C853] hover:bg-[#69F0AE] px-2`}
-                icon={editOneTreatment?<FaUndoAlt size={"22px"}/>:<FaPlusCircle size={"22px"} />}
+                icon={
+                  editOneTreatment ? (
+                    <FaUndoAlt size={"22px"} />
+                  ) : (
+                    <FaPlusCircle size={"22px"} />
+                  )
+                }
               />
             </div>
           </div>
         </Main>
       </Modal>
       <div className="w-full flex justify-end">
-        <div id="id-div-treatments" className="hidden">{JSON.stringify(treatments)}</div>
+        <div id="id-div-treatments" className="hidden">
+          {JSON.stringify(treatments)}
+        </div>
         <button
           onClick={() => {
             setShowModal(true);
@@ -214,6 +222,7 @@ export default function TableTreatment({ editMode = false }) {
           {ready ? (
             treatments.map((treatment, index) => (
               <RowTableTreatment
+                key={`${index}-treatment`}
                 treatment={treatment}
                 edit={editTreatment}
                 deleted={deleteTreatment}
