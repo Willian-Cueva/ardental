@@ -3,8 +3,19 @@ import Main from "../components/Main";
 import { FaSearch } from "react-icons/fa";
 import FoundPatients from "../components/FoundPatients";
 import ButtonIcon from "../components/ButtonIcon";
+import { useState } from "react";
+import { useEffect } from "react";
+import Loader from "../components/Loader";
+import { allPatients } from "../services/RegisterPatient.service";
 
 export default function Patients() {
+  const [patients, setPatients] = useState([]);
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    allPatients().then(data=>setPatients(data.data))
+    setReady(true);
+  }, [])
+  
   return (
     <Main title="Todos los Pacientes">
       <div className="grid grid-cols-10 gap-2 mb-4">
@@ -17,38 +28,16 @@ export default function Patients() {
         <Input
           label="Por:"
           type="select"
-          values={["name", "Cédula", "Teléfono"]}
+          values={["Nombre", "Cédula", "Teléfono"]}
           className="col-span-2"
         />
         <div className="flex items-end w-full col-span-2">
           <ButtonIcon text="Buscar" icon={<FaSearch size={"20px"}/>}/>
         </div>
       </div>
-      <FoundPatients
-        patients={[
-          {
-            name: "Willian Cueva",
-            years: 20,
-            dni: "1150579124",
-            phone: "0995711578",
-            gener: 2,
-          },
-          {
-            name: "Katty Sanmartin",
-            years: 21,
-            dni: "1150754236",
-            phone: "0996324875",
-            gener: 1,
-          },
-          {
-            name: "Boster Fernando",
-            years: 5,
-            dni: "115074284",
-            phone: "0941753965",
-            gener: 3,
-          },
-        ]}
-      />
+      {ready?<FoundPatients
+        patients={patients}
+      />:<Loader logo={false} width="150px" height="150px"/>}
     </Main>
   );
 }

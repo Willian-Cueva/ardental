@@ -18,7 +18,7 @@ export default function ButtonIcon({
       }}
     >
       <Button
-        className={`${color} w-full min-h-[46px] rounded-xl text-${textColor} flex flex-wrap justify-center items-center gap-2 py-1 px-1`}
+        className={`${color} w-full min-h-[46px] rounded-xl text-${textColor} flex flex-wrap justify-center items-center gap-2 py-1 px-2`}
       >
         <div className="font-semibold text-lg">{text}</div>
         {icon}

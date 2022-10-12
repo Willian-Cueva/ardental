@@ -46,7 +46,6 @@ export default function WayPay() {
   };
 
   const saveEditPays = () => {
-    console.log("-------------------------------------------");
     const pay = {
       date: $date.value,
       pass: $pass.value,

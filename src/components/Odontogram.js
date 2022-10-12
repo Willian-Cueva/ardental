@@ -13,7 +13,6 @@ import img from "../assets/imgs/logo.png";
 export default function Odontogram() {
   const { odontogramData, optionSelect } = useOdontogram();
   
-  console.log("renderizando odontogram");
   const estilos = {
     cursor: `url(${img}),auto`,
   };

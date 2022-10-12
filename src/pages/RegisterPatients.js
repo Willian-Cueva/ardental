@@ -11,24 +11,31 @@ import { PATIENT_MODEL } from "../helpers/constants";
 import Odontogram from "../components/Odontogram";
 import TableTreatment from "../components/TableTreatment";
 import WayPay from "../components/WayPay";
+import { newPatient } from "../services/RegisterPatient.service";
+import swal from "sweetalert";
+import Modal from "../components/Modal";
+import Loader from "../components/Loader";
 
 export default function RegisterPatients() {
   const [patient, setPatient] = useState(PATIENT_MODEL);
+  const [showModal, setShowModal] = useState(false);
 
-  const newPatientInputs = () => {
+  const newPatientInputs = async () => {
+    setShowModal(true);
     const getPatient = JSON.parse(JSON.stringify(patient)),
       d = document;
     getPatient.PersonaData.names = d.getElementById("id-inp-name").value;
+    getPatient.PersonaData.direction = d.getElementById("id-inp-direction").value;
     getPatient.PersonaData.profession =
-      d.getElementById("id-inp-proffesion").value;
+      d.getElementById("id-inp-profession").value;
     getPatient.PersonaData.dni = d.getElementById("id-inp-dni").value;
     getPatient.PersonaData.phone = d.getElementById("id-inp-phone").value;
     getPatient.PersonaData.maritalStatus =
       d.getElementById("id-inp-maritalState").value * 1;
     getPatient.PersonaData.sex = d.getElementById("id-inp-sex").value * 1;
     getPatient.PersonaData.dateBorn = d.getElementById("id-inp-dateBorn").value;
-    getPatient.PersonaData.reasonConsult =
-      d.getElementById("id-inp-dateBorn").value;
+    getPatient.PersonaData.reason =
+      d.getElementById("id-inp-reason").value;
 
     getPatient.PersonalHistory.disorders =
       d.getElementById("id-inp-disorders").value;
@@ -108,21 +115,58 @@ export default function RegisterPatients() {
       "id-txta-salivaryGlands-obs"
     ).value;
 
+    getPatient.Odontogram.data = JSON.parse(
+      d.getElementById("id-div-odontogram-data").textContent
+    );
 
-    getPatient.Odontogram.data = JSON.parse(d.getElementById("id-div-odontogram-data").textContent);
+    getPatient.Treatments.data = JSON.parse(
+      d.getElementById("id-div-treatments").textContent
+    );
 
+    getPatient.WayPay.data = JSON.parse(
+      d.getElementById("id-div-pays").textContent
+    );
 
-    getPatient.Treatments.data = JSON.parse(d.getElementById("id-div-treatments").textContent);
-
-    getPatient.WayPay.data = JSON.parse(d.getElementById("id-div-pays").textContent)
-    console.log(getPatient.WayPay.data);
+    await newPatient(getPatient)
+      .then((res) => {
+        if (res.status === "ok") {
+          swal({
+            title: "Excelente",
+            text: "Se ha guardado el paciente correctamente",
+            icon: "success",
+            timer: "6000",
+          });
+          window.location.replace("");
+        } else {
+          swal({
+            title: "Parametros no válidos",
+            text: res.status,
+            icon: "info",
+            timer: "6000",
+          });
+        }
+      })
+      .catch((err) => {
+        swal({
+          title: "Upps",
+          text: "Ha ocurrido un error, contactate con tu servicio técnico",
+          icon: "error",
+          timer: "6000",
+        });
+      });
+    setShowModal(false);
+    
   };
 
-  
   const value = useOdontogramModel();
 
   return (
     <Main title="Registro de Pacientes">
+      <Modal show={showModal}>
+        <div>
+          <Loader logo={false} />
+        </div>
+      </Modal>
       <PersonalData />
       <div className="mb-4" />
       <PersonalHistory />
@@ -139,11 +183,11 @@ export default function RegisterPatients() {
       </Main>
       <div className="mb-4" />
       <Main title="Plan y Seguimiento de tratamiento" subtitle={true}>
-        <TableTreatment/>
+        <TableTreatment />
       </Main>
       <div className="mb-4" />
       <Main title="Forma de Pago" subtitle={true}>
-        <WayPay/>
+        <WayPay />
       </Main>
       <div className="mt-4 w-full flex justify-between">
         <button

@@ -91,11 +91,9 @@ export const useOdontogramModel = () => {
 
   const handleOptionSelect = (num) => {
     setOptionSelect(num);
-    console.log("si nos estamos ejecutando y el num es", num);
   };
 
   const clickOnColorSelect = (num, possition) => {
-    console.log("==>", num, possition);
     const getState = JSON.parse(JSON.stringify(odontogramData));
     if (optionSelect === 0 || optionSelect === 6) {
       getState[num][possition] = decodButtonSelect(optionSelect);
@@ -104,7 +102,6 @@ export const useOdontogramModel = () => {
         getState[num][index] = optionSelect === 1 ? 1 : 2;
       }
     } else if (optionSelect === 10) {
-      console.log("holi");
       for (let index = 0; index < getState[num].length; index++) {
         getState[num][index] = 0;
       }

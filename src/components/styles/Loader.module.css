@@ -1,12 +1,24 @@
 .loader {
     margin: 1rem auto;
     display: block;
-    width: 4rem;
-    height: 4rem;
     animation: myanimation 2s infinite ease-in-out;
+  }
+
+  .loading {
+    /* border-radius: 9999px;
+    background-color: rgba(0, 0, 0, 0.164); */
+    margin: 1rem auto;
+    display: block;
+    animation: myanimation 4s infinite linear;
   }
   
   @keyframes myanimation {
+    100% {
+      transform: rotate(1800deg);
+    }
+  }
+
+  @keyframes myanimation2 {
     100% {
       transform: rotate(1800deg);
     }
