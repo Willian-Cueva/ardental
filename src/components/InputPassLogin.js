@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {FaRegEye,FaRegEyeSlash } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import styles from "./styles/InputValidateEmail.module.css";
 
-export default function InputPassLogin({text="Contraseña"}) {
+export default function InputPassLogin({ text = "Contraseña", id }) {
   const [isFocus, setIsFocus] = useState(false);
   const [showPass, setShowPass] = useState(false);
   return (
@@ -22,7 +22,8 @@ export default function InputPassLogin({text="Contraseña"}) {
             {text}
           </p>
           <input
-            type={showPass?"text":"password"}
+            id={id}
+            type={showPass ? "text" : "password"}
             className={`${styles.input} w-full`}
             placeholder="*******************"
             onFocus={() => {
@@ -33,9 +34,18 @@ export default function InputPassLogin({text="Contraseña"}) {
             }}
           />
         </div>
-        <div className="rounded-full hover:bg-[#EEEEEE] h-9 w-9 flex justify-center items-center cursor-pointer" onClick={()=>{
-            setShowPass(!showPass)
-        }}>{showPass?<FaRegEye size={"25px"}/>:<FaRegEyeSlash size={"25px"}/>}</div>
+        <div
+          className="rounded-full hover:bg-[#EEEEEE] h-9 w-9 flex justify-center items-center cursor-pointer"
+          onClick={() => {
+            setShowPass(!showPass);
+          }}
+        >
+          {showPass ? (
+            <FaRegEye size={"25px"} />
+          ) : (
+            <FaRegEyeSlash size={"25px"} />
+          )}
+        </div>
       </div>
     </div>
   );

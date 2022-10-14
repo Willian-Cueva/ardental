@@ -2,10 +2,25 @@ export const SERVER = "localhost:3001",
   URL = `http://${SERVER}`,
   API = `${URL}/api`,
   PATIENTS = `${API}/patients`,
+  USERS = `${API}/users`,
   ALL_PATIENTS = `${PATIENTS}/all-patients`,
   NEW_PATIENT = `${PATIENTS}/new-patient`,
   ONE_PATIENT = `${PATIENTS}/one-patient/`,
-  UPDATE_PATIENT = `${PATIENTS}/update-personal-data-patient`;
+  UPDATE_PATIENT = `${PATIENTS}/update-personal-data-patient`,
+  PERSONAL_HISTORY=`${PATIENTS}/personal-history-patient/`,
+  UPDATE_PERSONAL_HISTORY = `${PATIENTS}/update-personal-history-patient`,
+  ORAL_SYMP=`${PATIENTS}/oral-symp-patient/`,
+  UPDATE_ORAL_SYMP = `${PATIENTS}/update-oral-symp-patient`,
+  ODONTOGRAM=`${PATIENTS}/odontogram-patient/`,
+  UPDATE_ODONTOGRAM = `${PATIENTS}/update-odontogram-patient`,
+  CLINICAL_SIGNS=`${PATIENTS}/clinical-signs/`,
+  UPDATE_CLINICAL_SIGNS = `${PATIENTS}/update-clinical-signs`,
+  TREATMENTS = `${PATIENTS}/treatments/`,
+  UPDATE_TREATMENTS = `${PATIENTS}/update-treatments`,
+  WAY_PAY = `${PATIENTS}/way-pay/`,
+  UPDATE_WAY_PAY = `${PATIENTS}/update-way-pay`,
+  LOGIN_USER = `${USERS}/login`,
+  REGISTER_USER = `${USERS}/register`;
 
 export function yearsPatient(date){
   const birth = new Date(date),toDay=new Date();

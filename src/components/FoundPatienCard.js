@@ -26,7 +26,7 @@ export default function FoundPatienCard({ patient, index }) {
       <th>
         <Link to={`/gestion-patient/${dni}`}>
           <div className="bg-[#00C853] border p-2 rounded-xl w-12 flex justify-center">
-            <FaTeethOpen color="white" />
+            <FaTeethOpen size={"22px"} color="white" />
           </div>
         </Link>
       </th>

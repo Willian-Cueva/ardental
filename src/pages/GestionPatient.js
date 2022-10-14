@@ -25,10 +25,20 @@ import ClinicalSigns from "../components/ClinicalSigns";
 import TableTreatment from "../components/TableTreatment";
 import OdontogramContext from "../contexts/OdontogramContext";
 import { useOdontogramModel } from "../hooks/useOdontogram";
-import { onePatient, updatePatient } from "../services/RegisterPatient.service";
+import {
+  onePatient,
+  updateClinicalSygnsPatient,
+  updateOdontogramPatient,
+  updateOralSympPatient,
+  updatePatient,
+  updatePersonalHystoryPatient,
+  updateTreatmentsPatient,
+  updateWayPayPatient,
+} from "../services/RegisterPatient.service";
 import Loader from "../components/Loader";
 import { yearsPatient } from "../helpers/constants";
 import swal from "sweetalert";
+import WayPay from "../components/WayPay";
 
 export default function GestionPatient() {
   const [component, setComponent] = useState(-1);
@@ -39,9 +49,15 @@ export default function GestionPatient() {
 
   const paramans = useParams();
 
-  useEffect(() => {
-    onePatient(paramans.dni).then((data) => setPatient(data.data));
+  const loadPatient = () => {
+    onePatient(paramans.dni).then((data) => {
+      setPatient(data.data);
+    });
     setReady(true);
+  };
+
+  useEffect(() => {
+    loadPatient();
   }, []);
 
   const selectComponentForShow = (num) => {
@@ -51,10 +67,10 @@ export default function GestionPatient() {
 
   const saveChanges = () => {
     setShowModalUpdate(true);
+    const d = document;
     switch (component) {
       case 0:
-        let PersonaData = {},
-          d = document;
+        let PersonaData = {};
         PersonaData._id = patient._id;
         PersonaData.names = d.getElementById("id-inp-name").value;
         PersonaData.direction = d.getElementById("id-inp-direction").value;
@@ -67,13 +83,12 @@ export default function GestionPatient() {
         PersonaData.dateBorn = d.getElementById("id-inp-dateBorn").value;
         PersonaData.reason = d.getElementById("id-inp-reason").value;
 
-        console.log(PersonaData);
-
         setShowModal(false);
 
         updatePatient(PersonaData)
           .then((data) => {
             if (data.status === "ok") {
+              loadPatient();
               swal({
                 title: "Actualización Exitosa",
                 text: "Se han actualizado los datos personales del paciente satisfactoriamente",
@@ -90,7 +105,7 @@ export default function GestionPatient() {
             }
           })
           .catch((err) => {
-            console.log(err);
+            console.error(err);
             swal({
               title: "Error",
               text: "Ha ocurrido un inconveniente, notifica a tu servicio técnico",
@@ -101,22 +116,302 @@ export default function GestionPatient() {
 
         break;
       case 1:
+        let PersonalHistory = {};
+        PersonalHistory._id = patient._id;
+        PersonalHistory.disorders = d.getElementById("id-inp-disorders").value;
+        PersonalHistory.bloodPressure =
+          d.getElementById("id-inp-bloodPressure").value * 1;
+        PersonalHistory.heartDiseases =
+          d.getElementById("id-swt-heartDiseases").value === "true";
+        PersonalHistory.medication =
+          d.getElementById("id-inp-medication").value;
+        PersonalHistory.otherDiseases = d.getElementById(
+          "id-inp-otherDiseases"
+        ).value;
+
+        updatePersonalHystoryPatient(PersonalHistory)
+          .then((res) => {
+            if (res.status === "ok") {
+              swal({
+                title: "Actualización Exitosa",
+                text: "Se han actualizado los antecedentes personales del paciente satisfactoriamente",
+                icon: "success",
+                timer: "6000",
+              });
+            } else {
+              swal({
+                title: "Error",
+                text: res.status,
+                icon: "error",
+                timer: "6000",
+              });
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            swal({
+              title: "Error",
+              text: "Ha ocurrido un inconveniente, notifica a tu servicio técnico",
+              icon: "error",
+              timer: "6000",
+            });
+          });
+
         break;
       case 2:
+        let OralSymp = {};
+        OralSymp._id = patient._id;
+        OralSymp.halitosis =
+          d.getElementById("id-swt-halitosis").value === "true";
+        OralSymp.BleedingGums =
+          d.getElementById("id-swt-BleedingGums").value === "true";
+        OralSymp.xerostomia =
+          d.getElementById("id-swt-xerostomia").value === "true";
+        OralSymp.bruxismo =
+          d.getElementById("id-swt-bruxismo").value === "true";
+
+        OralSymp.hypersensitivity = {
+          cool: false,
+          hot: false,
+          sweet: false,
+          acid: false,
+          touch: false,
+        };
+
+        OralSymp.hypersensitivity.cool =
+          d.getElementById("id-rdb-hypersensitivity-1").value === "true";
+        OralSymp.hypersensitivity.hot =
+          d.getElementById("id-rdb-hypersensitivity-2").value === "true";
+        OralSymp.hypersensitivity.sweet =
+          d.getElementById("id-rdb-hypersensitivity-3").value === "true";
+        OralSymp.hypersensitivity.acid =
+          d.getElementById("id-rdb-hypersensitivity-4").value === "true";
+        OralSymp.hypersensitivity.touch =
+          d.getElementById("id-rdb-hypersensitivity-5").value === "true";
+        updateOralSympPatient(OralSymp)
+          .then((res) => {
+            if (res.status === "ok") {
+              swal({
+                title: "Actualización Exitosa",
+                text: "Se ha actualizado la sintomatología oral del paciente satisfactoriamente",
+                icon: "success",
+                timer: "6000",
+              });
+            } else {
+              swal({
+                title: "Error",
+                text: res.status,
+                icon: "error",
+                timer: "6000",
+              });
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            swal({
+              title: "Error",
+              text: "Ha ocurrido un inconveniente, notifica a tu servicio técnico",
+              icon: "error",
+              timer: "6000",
+            });
+          });
         break;
       case 4:
+        let Odontogram = {};
+        Odontogram._id = patient._id;
+        Odontogram.data = JSON.parse(
+          d.getElementById("id-div-odontogram-data").textContent
+        );
+        updateOdontogramPatient(Odontogram)
+          .then((res) => {
+            if (res.status === "ok") {
+              swal({
+                title: "Actualización Exitosa",
+                text: "Se ha actualizado el odontograma del paciente satisfactoriamente",
+                icon: "success",
+                timer: "6000",
+              });
+            } else {
+              swal({
+                title: "Error",
+                text: res.status,
+                icon: "error",
+                timer: "6000",
+              });
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            swal({
+              title: "Error",
+              text: "Ha ocurrido un inconveniente, notifica a tu servicio técnico",
+              icon: "error",
+              timer: "6000",
+            });
+          });
         break;
       case 5:
+        let ClinicalSygns = {};
+        console.log("--------------------------------------------------");
+        ClinicalSygns._id = patient._id;
+        ClinicalSygns.lips = { clinicalSigns: "", observations: "" };
+        ClinicalSygns.lips.clinicalSigns =
+          d.getElementById("id-txta-lips-cli").value;
+        ClinicalSygns.lips.observations =
+          d.getElementById("id-txta-lips-obs").value;
+        ClinicalSygns.cheeks = { clinicalSigns: "", observations: "" };
+        ClinicalSygns.cheeks.clinicalSigns =
+          d.getElementById("id-txta-cheeks-cli").value;
+        ClinicalSygns.cheeks.observations =
+          d.getElementById("id-txta-cheeks-obs").value;
+        ClinicalSygns.floorMouth = { clinicalSigns: "", observations: "" };
+        ClinicalSygns.floorMouth.clinicalSigns = d.getElementById(
+          "id-txta-floorMouth-cli"
+        ).value;
+        ClinicalSygns.floorMouth.observations = d.getElementById(
+          "id-txta-floorMouth-obs"
+        ).value;
+        ClinicalSygns.tongue = { clinicalSigns: "", observations: "" };
+        ClinicalSygns.tongue.clinicalSigns =
+          d.getElementById("id-txta-tongue-cli").value;
+        ClinicalSygns.tongue.observations =
+          d.getElementById("id-txta-tongue-obs").value;
+        ClinicalSygns.saliva = { clinicalSigns: "", observations: "" };
+        ClinicalSygns.saliva.clinicalSigns =
+          d.getElementById("id-txta-saliva-cli").value;
+        ClinicalSygns.saliva.observations =
+          d.getElementById("id-txta-saliva-obs").value;
+        ClinicalSygns.gums = { clinicalSigns: "", observations: "" };
+        ClinicalSygns.gums.clinicalSigns =
+          d.getElementById("id-txta-gums-cli").value;
+        ClinicalSygns.gums.observations =
+          d.getElementById("id-txta-gums-obs").value;
+        ClinicalSygns.tonsils = { clinicalSigns: "", observations: "" };
+        ClinicalSygns.tonsils.clinicalSigns = d.getElementById(
+          "id-txta-tonsils-cli"
+        ).value;
+        ClinicalSygns.tonsils.observations = d.getElementById(
+          "id-txta-tonsils-obs"
+        ).value;
+        ClinicalSygns.ATM = { clinicalSigns: "", observations: "" };
+        ClinicalSygns.ATM.clinicalSigns =
+          d.getElementById("id-txta-ATM-cli").value;
+        ClinicalSygns.ATM.observations =
+          d.getElementById("id-txta-ATM-obs").value;
+        ClinicalSygns.nodes = { clinicalSigns: "", observations: "" };
+        ClinicalSygns.nodes.clinicalSigns =
+          d.getElementById("id-txta-nodes-cli").value;
+        ClinicalSygns.nodes.observations =
+          d.getElementById("id-txta-nodes-obs").value;
+        ClinicalSygns.salivaryGlands = { clinicalSigns: "", observations: "" };
+        ClinicalSygns.salivaryGlands.clinicalSigns = d.getElementById(
+          "id-txta-salivaryGlands-cli"
+        ).value;
+        ClinicalSygns.salivaryGlands.observations = d.getElementById(
+          "id-txta-salivaryGlands-obs"
+        ).value;
+
+        updateClinicalSygnsPatient(ClinicalSygns)
+          .then((res) => {
+            if (res.status === "ok") {
+              swal({
+                title: "Actualización Exitosa",
+                text: "Se ha actualizado los signos clínicos del paciente satisfactoriamente",
+                icon: "success",
+                timer: "6000",
+              });
+            } else {
+              swal({
+                title: "Error",
+                text: res.status,
+                icon: "error",
+                timer: "6000",
+              });
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            swal({
+              title: "Error",
+              text: "Ha ocurrido un inconveniente, notifica a tu servicio técnico",
+              icon: "error",
+              timer: "6000",
+            });
+          });
+
         break;
       case 6:
+        let Treatments = {}
+        Treatments._id=patient._id
+        Treatments.data = JSON.parse(
+          d.getElementById("id-div-treatments").textContent
+        );
+        updateTreatmentsPatient(Treatments).then((res) => {
+          if (res.status === "ok") {
+            swal({
+              title: "Actualización Exitosa",
+              text: "Se ha actualizado el plan y seguimiento de tratamiento del paciente satisfactoriamente",
+              icon: "success",
+              timer: "6000",
+            });
+          } else {
+            swal({
+              title: "Error",
+              text: res.status,
+              icon: "error",
+              timer: "6000",
+            });
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          swal({
+            title: "Error",
+            text: "Ha ocurrido un inconveniente, notifica a tu servicio técnico",
+            icon: "error",
+            timer: "6000",
+          });
+        });
         break;
       case 7:
+        let WayPay = {}
+        WayPay._id=patient._id;
+        WayPay.data = JSON.parse(
+          d.getElementById("id-div-pays").textContent
+        );
+        updateWayPayPatient(WayPay).then((res) => {
+          if (res.status === "ok") {
+            swal({
+              title: "Actualización Exitosa",
+              text: "Se ha actualizado la forma de pago del paciente satisfactoriamente",
+              icon: "success",
+              timer: "6000",
+            });
+          } else {
+            swal({
+              title: "Error",
+              text: res.status,
+              icon: "error",
+              timer: "6000",
+            });
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          swal({
+            title: "Error",
+            text: "Ha ocurrido un inconveniente, notifica a tu servicio técnico",
+            icon: "error",
+            timer: "6000",
+          });
+        });
         break;
 
       default:
         break;
     }
     setShowModalUpdate(false);
+    setShowModal(false);
   };
 
   const value = useOdontogramModel();
@@ -228,23 +523,25 @@ export default function GestionPatient() {
             {component === 0 ? (
               <PersonalData editMode={true} patientData={patient} />
             ) : component === 1 ? (
-              <PersonalHistory />
+              <PersonalHistory editMode={true} search={patient._id} />
             ) : component === 2 ? (
-              <OralSymp />
+              <OralSymp editMode={true} search={patient._id} />
             ) : component === 4 ? (
               <Main title="Odontograma" subtitle={true}>
                 <OdontogramContext.Provider value={value}>
-                  <Odontogram />
+                  <Odontogram editMode={true} search={patient._id} />
                 </OdontogramContext.Provider>
               </Main>
             ) : component === 5 ? (
-              <ClinicalSigns />
+              <ClinicalSigns editMode={true} search={patient._id}/>
             ) : component === 6 ? (
               <Main title="Plan y Seguimiento de tratamiento" subtitle={true}>
-                <TableTreatment />
+                <TableTreatment editMode={true} search={patient._id}/>
               </Main>
             ) : component === 7 ? (
-              <Main title="Forma de Pago" subtitle={true}></Main>
+              <Main title="Forma de Pago" subtitle={true}>
+                <WayPay editMode={true} search={patient._id}/>
+              </Main>
             ) : (
               ""
             )}

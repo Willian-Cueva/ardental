@@ -9,13 +9,24 @@ import ButtonOdontogram from "./ButtonOdontogram";
 import { FaEraser } from "react-icons/fa";
 import Tooth from "./Tooth";
 import img from "../assets/imgs/logo.png";
+import { useEffect } from "react";
+import { odontogramPatient } from "../services/RegisterPatient.service";
 
-export default function Odontogram() {
-  const { odontogramData, optionSelect } = useOdontogram();
+export default function Odontogram({editMode=false,search}) {
+  const { odontogramData, optionSelect,setOdontogramData } = useOdontogram();
   
   const estilos = {
     cursor: `url(${img}),auto`,
   };
+
+  useEffect(() => {
+    if(editMode)odontogramPatient(search).then(data=>{
+      setOdontogramData(data.data.data)
+    })
+  }, [])
+  
+
+
   return (
     <div
       className={`flex flex-col items-center`}

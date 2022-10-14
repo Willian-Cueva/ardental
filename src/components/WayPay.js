@@ -14,8 +14,9 @@ import Modal from "./Modal";
 import Input from "./Input";
 import swal from "sweetalert";
 import { INPUT_TABLE } from "../helpers/styles";
+import { wayPayPatient } from "../services/RegisterPatient.service";
 
-export default function WayPay() {
+export default function WayPay({editMode=false,search}) {
   const [pays, setPays] = useState([]);
   const [ready, setReady] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -29,8 +30,7 @@ export default function WayPay() {
     $obs = d.getElementById("id-inp-pay-obs");
 
   useEffect(() => {
-    const data = [];
-    setPays(data);
+    if(editMode)wayPayPatient(search).then((wp)=>setPays(wp))
     setReady(true);
   }, []);
 

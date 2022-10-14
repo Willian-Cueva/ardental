@@ -6,17 +6,66 @@ import { SESSION_STORAGE } from "../helpers/constants";
 
 export const useGlobalStateModel = () => {
   const [session, setSession] = useState(sessionStorage());
-  const isSessionActive = () =>{
-    // return session.rol !== "" && session.fullname !== "" && session.token !== "" && session.email !== "";
-    let chis = true;
-    return chis;
+
+  const havePermision = () => {
+   return session.rol !== "not-authorized"
   }
+
+  const isSessionActive = () => {
+    let chis =session.rol !== "" &&
+    session.fullname !== "" &&
+    session.token !== "" &&
+    session.email !== ""
+    return chis
+  };
+
+  const isSuperAdministrer = () => {
+    return session.rol === "super-administrer" 
+  };
+
+  const getAhutorization = () => {
+    let ahorization = "Bearer ";
+    ahorization += session.token;
+    return ahorization;
+  };
+
+  const login = (data) => {
+    let chis = true;
+    if (data.token) {
+      if (data.fullname) {
+        if (data.email) {
+          if (data.rol) {
+            setSessionStorage(data);
+            setSession(sessionStorage());
+          } else {
+            chis = false;
+          }
+        } else {
+          chis = false;
+        }
+      } else {
+        chis = false;
+      }
+    } else {
+      chis = false;
+    }
+    return chis;
+  };
+
+  const logout = () => {
+    resetStorage();
+    setSession(sessionStorage());
+  };
 
   return {
     session,
-    
     setSession,
-    isSessionActive
+    isSessionActive,
+    logout,
+    login,
+    getAhutorization,
+    havePermision,
+    isSuperAdministrer
   };
 };
 
@@ -28,7 +77,7 @@ function resetStorage() {
 }
 
 function setSessionStorage(model) {
-    localStorage.setItem(SESSION_STORAGE, JSON.stringify(model));
+  localStorage.setItem(SESSION_STORAGE, JSON.stringify(model));
 }
 
 function sessionStorage() {
@@ -38,7 +87,7 @@ function sessionStorage() {
     }
     return JSON.parse(localStorage.getItem(SESSION_STORAGE));
   } catch (error) {
-    console.log("Error-->", error);
+    console.error("Error-->", error);
   }
 }
 

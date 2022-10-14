@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { FaPlusCircle, FaUndoAlt, FaWindowClose } from "react-icons/fa";
 import swal from "sweetalert";
+import { treatmentsPatient } from "../services/RegisterPatient.service";
 import ButtonIcon from "./ButtonIcon";
 import Input from "./Input";
 import Loader from "./Loader";
@@ -10,7 +11,7 @@ import Modal from "./Modal";
 import RowTableTreatment from "./RowTableTreatment";
 import scrollBarStyles from "./styles/ScrollBar.module.css";
 
-export default function TableTreatment({ editMode = false }) {
+export default function TableTreatment({ editMode = false,search }) {
   const names = [
     "Fecha",
     "Pieza",
@@ -25,8 +26,7 @@ export default function TableTreatment({ editMode = false }) {
   const [editOneTreatment, setEditOneTreatment] = useState(false);
   const [indexEdit, setIndexEdit] = useState(-1);
   useEffect(() => {
-    const datos = [];
-    setTreatments(datos);
+    if(editMode)treatmentsPatient(search).then((patientsData)=>setTreatments(patientsData))
     setReady(true);
   }, []);
 

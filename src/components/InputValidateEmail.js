@@ -2,7 +2,7 @@ import { useState } from "react";
 import { EMAIL_REGEX } from "../helpers/regex";
 import styles from "./styles/InputValidateEmail.module.css";
 
-export default function InputValidateEmail() {
+export default function InputValidateEmail({ id }) {
   const [isFocus, setIsFocus] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
@@ -34,6 +34,7 @@ export default function InputValidateEmail() {
           Correo
         </p>
         <input
+          id={id}
           type="email"
           className={`${styles.input}`}
           placeholder="example@gmail.com"

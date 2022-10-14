@@ -178,7 +178,7 @@ export default function RegisterPatients() {
       <div className="mb-4" />
       <Main title="Odontograma" subtitle={true}>
         <OdontogramContext.Provider value={value}>
-          <Odontogram />
+          <Odontogram/>
         </OdontogramContext.Provider>
       </Main>
       <div className="mb-4" />

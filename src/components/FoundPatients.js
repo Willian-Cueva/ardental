@@ -26,7 +26,9 @@ export default function FoundPatients({ patients = [] }) {
             <th>Administrar</th>
           </tr>
         </thead>
-        {patients.map((patient,index)=><FoundPatienCard patient={patient} index={index}/>)}
+        {patients.map((patient, index) => (
+          <FoundPatienCard patient={patient} index={index} />
+        ))}
       </table>
     </div>
   );
