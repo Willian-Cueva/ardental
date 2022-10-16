@@ -12,6 +12,9 @@ import Patients from "./pages/Patients";
 import GestionPatient from "./pages/GestionPatient";
 import swal from "sweetalert";
 import GestionUsers from "./pages/GestionUsers";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResqPassword from "./pages/ResqPassword";
+import MyProfile from "./pages/MyProfile";
 function App() {
   const [showNavbar, setShowNavbar] = useState(true);
   const switchShowNavbar = () => {
@@ -36,6 +39,7 @@ function App() {
     // }, 0);
   }
   const value = useGlobalStateModel();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if(value.isSessionActive()){
@@ -45,10 +49,11 @@ function App() {
           text: "Hasta no obtener el debido permiso usted no podrá acceder al sistema",
           icon: "info",
           timer: "6000"
-        }).then(res=>{
-          value.logout();
+        }
+       ).then(res=>{
+         value.logout();
+        //  navigate("/login")
         })
-
       }
     }
   }, )
@@ -99,10 +104,13 @@ function App() {
                     path="/register-patient"
                     element={<RegisterPatients />}
                   />
+
+                  
                   <Route path="/patients" element={<Patients />} />
                   <Route path="/gestion-users" element={<GestionUsers />} />
 
                   <Route path="/register" element={<Register />} />
+                  <Route path="/my-profile" element={<MyProfile />} />
                   <Route path="/login" element={<Login />} />
                   <Route
                     path="/gestion-patient/:dni"
@@ -114,6 +122,8 @@ function App() {
           </>
         ) : (
           <Routes>
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/resq/:email" element={<ResqPassword />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<Login />} />

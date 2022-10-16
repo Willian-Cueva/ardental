@@ -30,7 +30,8 @@ export default function PersonalHistory({ editMode = false, search }) {
       <div className="grid grid-cols-10 gap-2">
         <Input
           id={"id-inp-disorders"}
-          label="Transtornos sanguineos, coagulación y transfusiones"
+          label="Transtornos"
+          placeholder="Sanguineos, coagulación y transfusiones"
           className="col-span-5"
         />
         <Input
@@ -47,7 +48,8 @@ export default function PersonalHistory({ editMode = false, search }) {
         />
         <Input
           id={"id-inp-medication"}
-          label="Medicación actual y crónica"
+          label="Medicación"
+          placeholder="Actual y crónica"
           className="col-span-6"
         />
         <Input

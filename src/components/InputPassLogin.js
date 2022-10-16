@@ -24,6 +24,7 @@ export default function InputPassLogin({ text = "Contraseña", id }) {
           <input
             id={id}
             type={showPass ? "text" : "password"}
+            name="password"
             className={`${styles.input} w-full`}
             placeholder="*******************"
             onFocus={() => {

@@ -36,6 +36,7 @@ export default function InputValidateEmail({ id }) {
         <input
           id={id}
           type="email"
+          name="email"
           className={`${styles.input}`}
           placeholder="example@gmail.com"
           onFocus={() => {

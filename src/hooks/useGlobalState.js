@@ -16,6 +16,7 @@ export const useGlobalStateModel = () => {
     session.fullname !== "" &&
     session.token !== "" &&
     session.email !== ""
+    // if(!chis)logout();
     return chis
   };
 

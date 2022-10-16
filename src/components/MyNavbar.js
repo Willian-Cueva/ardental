@@ -4,13 +4,23 @@ import { FaBars, FaSignOutAlt } from "react-icons/fa";
 import Logo from "./Logo";
 import useGlobalState from "../hooks/useGlobalState";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 export default function MyNavbar({ swichShowNavbar }) {
   const navigate = useNavigate();
   const { session, logout } = useGlobalState();
   const closeSession = () => {
-    logout();
-    navigate("/");
+    swal({
+      title: "Salir",
+      text: "¿Está seguro que desea salir del sistema?",
+      icon: "info",
+      buttons: ["No", "Sí"],
+    }).then((res) => {
+      if (res) {
+        logout();
+        navigate("/");
+      }
+    });
   };
   return (
     <header className="p-6 font-semibold">
@@ -24,8 +34,12 @@ export default function MyNavbar({ swichShowNavbar }) {
         <div className="flex items-center">
           <div>Switch|</div>
           <div>Bienvenido, {session.fullname}</div>
-          <ButtonLogo className="ml-4" onClick={closeSession} title="Cerrar Sesion">
-            <FaSignOutAlt/>
+          <ButtonLogo
+            className="ml-4"
+            onClick={closeSession}
+            title="Cerrar Sesion"
+          >
+            <FaSignOutAlt />
           </ButtonLogo>
         </div>
       </div>

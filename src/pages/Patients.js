@@ -58,7 +58,7 @@ export default function Patients() {
           label="Buscar"
           type="search"
           placeholder="Busqueda"
-          className="col-span-6"
+          className="col-span-8"
           value={inputSearch}
           onChange={inputHandle}
         />
@@ -69,9 +69,6 @@ export default function Patients() {
           className="col-span-2"
           onChange={comboHandle}
         />
-        <div className="flex items-end w-full col-span-2">
-          <ButtonIcon text="Buscar" icon={<FaSearch size={"20px"}/>}/>
-        </div>
       </div>
       {ready?<FoundPatients
         patients={patientsLocal}

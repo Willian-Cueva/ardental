@@ -7,25 +7,38 @@ export const SERVER = "localhost:3001",
   NEW_PATIENT = `${PATIENTS}/new-patient`,
   ONE_PATIENT = `${PATIENTS}/one-patient/`,
   UPDATE_PATIENT = `${PATIENTS}/update-personal-data-patient`,
-  PERSONAL_HISTORY=`${PATIENTS}/personal-history-patient/`,
+  PERSONAL_HISTORY = `${PATIENTS}/personal-history-patient/`,
   UPDATE_PERSONAL_HISTORY = `${PATIENTS}/update-personal-history-patient`,
-  ORAL_SYMP=`${PATIENTS}/oral-symp-patient/`,
+  ORAL_SYMP = `${PATIENTS}/oral-symp-patient/`,
   UPDATE_ORAL_SYMP = `${PATIENTS}/update-oral-symp-patient`,
-  ODONTOGRAM=`${PATIENTS}/odontogram-patient/`,
+  ODONTOGRAM = `${PATIENTS}/odontogram-patient/`,
   UPDATE_ODONTOGRAM = `${PATIENTS}/update-odontogram-patient`,
-  CLINICAL_SIGNS=`${PATIENTS}/clinical-signs/`,
+  CLINICAL_SIGNS = `${PATIENTS}/clinical-signs/`,
   UPDATE_CLINICAL_SIGNS = `${PATIENTS}/update-clinical-signs`,
   TREATMENTS = `${PATIENTS}/treatments/`,
   UPDATE_TREATMENTS = `${PATIENTS}/update-treatments`,
   WAY_PAY = `${PATIENTS}/way-pay/`,
   UPDATE_WAY_PAY = `${PATIENTS}/update-way-pay`,
   LOGIN_USER = `${USERS}/login`,
-  REGISTER_USER = `${USERS}/register`;
+  REGISTER_USER = `${USERS}/register`,
+  ALL_USERS = `${USERS}/all-users`,
+  TOOGLE_PERMITION_USER = `${USERS}/toggle-permition`,
+  RESQ_PASSWORD = `${USERS}/resque-password`,
+  CHANGE_PASSWORD = `${USERS}/change-password`,
+  CHANGE_PASS = `${USERS}/change-pass`,
+  UPDATE_USER = `${USERS}/update-user`,
+  USER = `${USERS}/get-user/`;
 
-export function yearsPatient(date){
-  const birth = new Date(date),toDay=new Date();
-  const years = toDay.getFullYear()-birth.getFullYear();
-  return years
+export function yearsPatient(date) {
+  const birth = new Date(date),
+    toDay = new Date();
+  const years = toDay.getFullYear() - birth.getFullYear();
+  return years;
+}
+export function emailValidate(email) {
+  const rx =
+    /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
+  return rx.test(email);
 }
 
 export const METHOD_FETCH = ({ method, body = {} }) => {
