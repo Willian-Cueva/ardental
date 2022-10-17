@@ -1,5 +1,7 @@
-export const SERVER = "localhost:3001",
-  URL = `http://${SERVER}`,
+// https://ardental-backend.herokuapp.com/
+// export const SERVER = "localhost:3001",
+export const SERVER = "ardental-backend.herokuapp.com",
+  URL = `https://${SERVER}`,
   API = `${URL}/api`,
   PATIENTS = `${API}/patients`,
   USERS = `${API}/users`,
@@ -54,6 +56,7 @@ export const METHOD_FETCH = ({ method, body = {} }) => {
 };
 
 export const SESSION_STORAGE = "ardental-session";
+export const THEME_STORAGE = "ardental-theme";
 export const PATIENT_MODEL = {
   PersonaData: {
     names: "",

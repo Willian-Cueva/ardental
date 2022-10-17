@@ -2,10 +2,15 @@ import globalStateContext from "../contexts/GlobalStateContext";
 
 import { useContext } from "react";
 import { useState } from "react";
-import { SESSION_STORAGE } from "../helpers/constants";
+import { SESSION_STORAGE, THEME_STORAGE } from "../helpers/constants";
 
 export const useGlobalStateModel = () => {
   const [session, setSession] = useState(sessionStorage());
+  const [themeColor, setThemeColor] = useState(themeMode());
+
+  const changeTheme = () => {
+    
+  }
 
   const havePermision = () => {
    return session.rol !== "not-authorized"
@@ -16,7 +21,6 @@ export const useGlobalStateModel = () => {
     session.fullname !== "" &&
     session.token !== "" &&
     session.email !== ""
-    // if(!chis)logout();
     return chis
   };
 
@@ -89,6 +93,18 @@ function sessionStorage() {
     return JSON.parse(localStorage.getItem(SESSION_STORAGE));
   } catch (error) {
     console.error("Error-->", error);
+  }
+}
+
+function themeMode(){
+  try {
+    if (!JSON.parse(localStorage.getItem(THEME_STORAGE))) {
+      localStorage.setItem(SESSION_STORAGE, JSON.stringify({theme: "white"}));
+    } 
+    return JSON.parse(localStorage.getItem(THEME_STORAGE));
+  } catch (error) {
+    console.log(error);
+    return false;
   }
 }
 
