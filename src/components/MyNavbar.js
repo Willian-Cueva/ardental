@@ -5,10 +5,12 @@ import Logo from "./Logo";
 import useGlobalState from "../hooks/useGlobalState";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { BG_DARK, TEXT_DARK } from "../helpers/constants";
+import ToogleTheme from "./ToogleTheme";
 
 export default function MyNavbar({ swichShowNavbar }) {
   const navigate = useNavigate();
-  const { session, logout } = useGlobalState();
+  const { session, logout,themeColor } = useGlobalState();
   const closeSession = () => {
     swal({
       title: "Salir",
@@ -23,7 +25,7 @@ export default function MyNavbar({ swichShowNavbar }) {
     });
   };
   return (
-    <header className="p-6 font-semibold">
+    <header className={`p-6 font-semibold ${themeColor.theme==="dark"&&`${BG_DARK} ${TEXT_DARK}`}`}>
       <div className="flex h-[34px] justify-between">
         <div className="flex">
           <Logo className={`mr-[70px]`} />
@@ -31,8 +33,8 @@ export default function MyNavbar({ swichShowNavbar }) {
             <FaBars />
           </ButtonLogo>
         </div>
-        <div className="flex items-center">
-          <div>Switch|</div>
+        <div className="flex justify-center items-center">
+          <div><ToogleTheme/></div>
           <div>Bienvenido, {session.fullname}</div>
           <ButtonLogo
             className="ml-4"

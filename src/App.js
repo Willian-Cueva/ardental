@@ -15,6 +15,7 @@ import GestionUsers from "./pages/GestionUsers";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResqPassword from "./pages/ResqPassword";
 import MyProfile from "./pages/MyProfile";
+import { BG_DARK } from "./helpers/constants";
 function App() {
   const [showNavbar, setShowNavbar] = useState(true);
   const switchShowNavbar = () => {
@@ -47,6 +48,17 @@ function App() {
   }
   const value = useGlobalStateModel();
 
+  const heigthContainer = () => {
+    const d = document,
+      $container = d.getElementById("id-container"),
+      $content = d.getElementById("id-content");
+    if ($content.clientHeight > window.screen.height) {
+      $container.style.height = `${$content.clientHeight}px`;
+    } else {
+      $container.style.height = `91vh`;
+    }
+  };
+
   useEffect(() => {
     if (value.isSessionActive()) {
       if (!value.havePermision()) {
@@ -67,6 +79,7 @@ function App() {
     textarea.addEventListener("keydown", autosize);
     textarea.addEventListener("click", autosize);
     textarea.addEventListener("click", inputLimit);
+    heigthContainer();
 
     return () => {
       textarea.removeEventListener("keydown", autosize);
@@ -81,15 +94,26 @@ function App() {
         {value.isSessionActive() ? (
           <>
             <MyNavbar swichShowNavbar={switchShowNavbar} />
-            <div className={`flex relative`}>
+            <div
+              id="id-container"
+              className={`flex ${
+                value.themeColor.theme === "dark" && `${BG_DARK}`
+              }`}
+            >
               <div
+                onClick={() => {
+                  setTimeout(() => {
+                    heigthContainer();
+                  }, [100]);
+                }}
                 className={`absolute duration-700 ease-in-out ${
-                  showNavbar ? "left-[0px]" : "left-[-260px]"
-                }`}
+                  value.themeColor.theme === "dark" && `${BG_DARK}`
+                } ${showNavbar ? "left-[0px]" : "left-[-260px]"}`}
               >
                 <Links />
               </div>
               <div
+                id="id-content"
                 className={`absolute duration-700 ease-in-out ${
                   showNavbar ? styles.main : "ml-5 w-[calc(100vw-57px)]"
                 } bg-[#E3F2FD] rounded-xl p-5 ${

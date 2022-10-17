@@ -11,7 +11,7 @@ export const useGlobalStateModel = () => {
   const changeTheme = () => {
     const theme = JSON.parse(localStorage.getItem(THEME_STORAGE));
     if (theme.theme === "white") {
-      localStorage.setItem(THEME_STORAGE, JSON.stringify({theme: "black"}));
+      localStorage.setItem(THEME_STORAGE, JSON.stringify({theme: "dark"}));
     } else{
       localStorage.setItem(THEME_STORAGE, JSON.stringify({theme: "white"}));
     }
