@@ -27,7 +27,7 @@ export default function PersonalHistory({ editMode = false, search }) {
 
   return (
     <Main title="Antecedentes Personales" subtitle={true}>
-      <div className="grid grid-cols-10 gap-2">
+      <div className="md:grid md:grid-cols-10 md:gap-2">
         <Input
           id={"id-inp-disorders"}
           label="Transtornos"

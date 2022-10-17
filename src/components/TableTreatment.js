@@ -137,7 +137,7 @@ export default function TableTreatment({ editMode = false,search }) {
           <div
             className={`${scrollBarStyles.scrollBar} ${scrollBarStyles.area}`}
           >
-            <div className="grid grid-cols-10 gap-4">
+            <div className="md:grid md:grid-cols-10 md:gap-4">
               <Input
                 id={"id-inp-treat-date"}
                 label="Fecha"

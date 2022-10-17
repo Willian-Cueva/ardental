@@ -17,9 +17,11 @@ import ResqPassword from "./pages/ResqPassword";
 import MyProfile from "./pages/MyProfile";
 import { BG_DARK } from "./helpers/constants";
 function App() {
-  const [showNavbar, setShowNavbar] = useState(true);
+  
+  
   const switchShowNavbar = () => {
-    setShowNavbar(!showNavbar);
+    value.setShowNavbar(!value.showNavbar);
+
   };
 
   function inputLimit(e) {
@@ -95,7 +97,7 @@ function App() {
     <GlobalStateContext.Provider value={value}>
       <HashRouter>
         {value.isSessionActive() ? (
-          <>
+          <div className="">
             <MyNavbar swichShowNavbar={switchShowNavbar} />
             <div
               id="id-container"
@@ -111,17 +113,17 @@ function App() {
                 }}
                 className={`absolute duration-700 ease-in-out ${
                   value.themeColor.theme === "dark" && `${BG_DARK}`
-                } ${showNavbar ? "left-[0px]" : "left-[-260px]"}`}
+                } ${value.showNavbar ? "left-[0px]" : "left-[-260px]"}`}
               >
                 <Links />
               </div>
               <div
                 id="id-content"
-                className={`absolute duration-700 ease-in-out ${
-                  showNavbar ? styles.main : "ml-5 w-[calc(100vw-57px)]"
+                className={`${(value.smartphone&value.showNavbar)&&"hidden"} absolute duration-700 ease-in-out ${
+                  value.showNavbar ? !value.smartphone&&(styles.main) : "ml-5 w-[calc(100vw-57px)]"
                 } bg-[#E3F2FD] rounded-xl p-5 ${
-                  showNavbar ? "ml-[260px]" : ""
-                } left-[${showNavbar ? "260px" : "0px"}]`}
+                  value.showNavbar ? "ml-[260px]" : ""
+                } left-[${value.showNavbar ? "260px" : "0px"}]`}
               >
                 <Routes>
                   {/* <Route exact path="/" */}
@@ -145,7 +147,7 @@ function App() {
                 </Routes>
               </div>
             </div>
-          </>
+          </div>
         ) : (
           <Routes>
             <Route path="/forgot-password" element={<ForgotPassword />} />

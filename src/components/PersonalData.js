@@ -24,7 +24,7 @@ export default function PersonalData({ editMode = false, patientData }) {
 
   return (
     <Main title="Datos Personales" subtitle={true}>
-      <div className="grid grid-cols-10 gap-2">
+      <div className="md:grid md:grid-cols-10 md:gap-2">
         <Input
           id={"id-inp-name"}
           label="Nombre"

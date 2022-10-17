@@ -34,7 +34,7 @@ export default function Odontogram({editMode=false,search}) {
       id="panel-odontogram"
     >
       <div id="id-div-odontogram-data" className="hidden">{JSON.stringify(odontogramData)}</div>
-      <div className="flex gap-6">
+      <div className="flex flex-col md:flex-row gap-6">
         <div>
           <span className="w-[69px]">Por Hacer</span>
           <div className="flex flex-wrap gap-2 mb-2">
@@ -92,7 +92,7 @@ export default function Odontogram({editMode=false,search}) {
           </div>
         </div>
       </div>
-      <div className="flex gap-6">
+      <div className="flex flex-col md:flex-row gap-6">
         <div className="w-[366px]">
           <div className="flex gap-3">
             <Tooth number={18} data={odontogramData[18]} />

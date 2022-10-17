@@ -7,6 +7,8 @@ import { SESSION_STORAGE, THEME_STORAGE } from "../helpers/constants";
 export const useGlobalStateModel = () => {
   const [session, setSession] = useState(sessionStorage());
   const [themeColor, setThemeColor] = useState(themeMode());
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [smartphone] = useState(window.screen.width<=640);
 
   const changeTheme = () => {
     const theme = JSON.parse(localStorage.getItem(THEME_STORAGE));
@@ -72,6 +74,8 @@ export const useGlobalStateModel = () => {
   return {
     session,
     themeColor,
+    showNavbar,
+    smartphone,
     setSession,
     isSessionActive,
     logout,
@@ -79,7 +83,8 @@ export const useGlobalStateModel = () => {
     getAhutorization,
     havePermision,
     isSuperAdministrer,
-    changeTheme
+    changeTheme,
+    setShowNavbar
   };
 };
 

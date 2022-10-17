@@ -98,7 +98,7 @@ export default function WayPay({editMode=false,search}) {
           title={
             <div className="flex justify-between w-full">
               <div className="font-bold">
-                Añadir un Plan y Seguimiento de Tratamiento
+                Añadir una Forma de Pago
               </div>
               <div
                 className="text-red-600 cursor-pointer"
@@ -114,7 +114,7 @@ export default function WayPay({editMode=false,search}) {
           <div
             className={`${scrollBarStyles.scrollbar} ${scrollBarStyles.area}`}
           >
-            <div className="grid grid-cols-10 gap-4">
+            <div className="md:grid md:grid-cols-10 md:gap-4">
               <Input
                 id={"id-inp-pay-date"}
                 label="Fecha"

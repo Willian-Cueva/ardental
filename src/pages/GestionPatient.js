@@ -425,8 +425,8 @@ export default function GestionPatient() {
         </div>
       </Modal>
       <Main title="Datos informativos">
-        <div className="flex w-full justify-between">
-          <div className="flex gap-3 mb-4">
+        <div className="flex flex-col w-full justify-between mb-4 md:flex-row">
+          <div className="flex flex-col md:flex-row gap-3 mb-4">
             <img
               src={avatar}
               alt=""

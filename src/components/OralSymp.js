@@ -43,7 +43,7 @@ export default function OralSymp({ editMode = false, search }) {
 
   return (
     <Main title="Sintomatología Oral" subtitle={true}>
-      <div className="grid grid-cols-10 gap-2">
+      <div className="md:grid md:grid-cols-10 md:gap-2">
         <Switch
           id={"id-swt-halitosis"}
           label="Halitosis"
