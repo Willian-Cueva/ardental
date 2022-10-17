@@ -60,6 +60,9 @@ function App() {
   };
 
   useEffect(() => {
+    setTimeout(() => {
+      heigthContainer();
+    }, 200);
     if (value.isSessionActive()) {
       if (!value.havePermision()) {
         swal({
@@ -79,7 +82,7 @@ function App() {
     textarea.addEventListener("keydown", autosize);
     textarea.addEventListener("click", autosize);
     textarea.addEventListener("click", inputLimit);
-    heigthContainer();
+    
 
     return () => {
       textarea.removeEventListener("keydown", autosize);
