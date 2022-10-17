@@ -7,17 +7,20 @@ import {Link, useNavigate} from "react-router-dom"
 import { loginUser } from "../services/Users.service";
 import swal from "sweetalert";
 import useGlobalState from "../hooks/useGlobalState";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Modal from "../components/Modal"
+import Loader from "../components/Loader"
 
 export default function Login() {
   const {login} = useGlobalState();
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
-  const loginLocal = () => {
+  const loginLocal =async () => {
+    setShowModal(true);
     const d = document, $email = d.getElementById("id-inp-email-login"),$password = d.getElementById("id-inp-password-login");
     const user = {email:$email.value,password: $password.value}
-    loginUser(user).then( (data) => {
-      console.log(data);
+    await loginUser(user).then( (data) => {
       if (data.status !== "ok") {
         swal({
           text: data.status,
@@ -38,6 +41,7 @@ export default function Login() {
         timer: "6000",
       });
     });
+    setShowModal(false);
   }
 
   useEffect(() => {
@@ -55,6 +59,9 @@ export default function Login() {
 
   return (
     <main className={` w-full bg-[#E3F2FD] ${styles.main} p-8`} id="id-login">
+      <Modal show={showModal}>
+        <Loader logo={false}/>
+      </Modal>
       <section className="max-w-[473px] bg-white rounded-xl border border-[#90caf983] ml-auto mr-auto p-[24px] flex flex-col items-center justify-center">
         <Logo className={`mb-10 font-bold uppercase`} />
         <div className={`${styles.title} mb-4`}>Hola, Bienvenid@</div>

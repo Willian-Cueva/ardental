@@ -8,7 +8,6 @@ export default function ClinicalSigns({ editMode = false, search }) {
     if (editMode)
       clinicalSygnsPatient(search).then((ClinicalSygns) => {
         const d = document;
-        console.log("Clinical signos xd",ClinicalSygns);
         d.getElementById("id-txta-lips-cli").value =
           ClinicalSygns.lips.clinicalSigns;
         d.getElementById("id-txta-lips-obs").value =

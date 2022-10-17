@@ -21,7 +21,7 @@ export default function ResqPassword() {
     $email.value = email;
   }, []);
 
-  const changePass = () => {
+  const changePass =async () => {
     setShowModal(true)
     
     const d = document,
@@ -33,9 +33,8 @@ export default function ResqPassword() {
       password: $password.value,
       repeatPassword: $repeatPass.value,
     };
-    changePassword(user)
+    await changePassword(user)
       .then(async (data) => {
-        console.log(data);
         if (data.status !== "ok") {
           swal({
             text: data.status,

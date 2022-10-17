@@ -1,7 +1,7 @@
 // https://ardental-backend.herokuapp.com/
-// export const SERVER = "localhost:3001",
-export const SERVER = "ardental-backend.herokuapp.com",
-  URL = `https://${SERVER}`,
+export const SERVER = "localhost:3001",
+// export const SERVER = "ardental-backend.herokuapp.com",
+  URL = `http://${SERVER}`,
   API = `${URL}/api`,
   PATIENTS = `${API}/patients`,
   USERS = `${API}/users`,

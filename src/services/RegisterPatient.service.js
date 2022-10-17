@@ -1,11 +1,12 @@
 import { ALL_PATIENTS, CLINICAL_SIGNS, NEW_PATIENT, ODONTOGRAM, ONE_PATIENT, ORAL_SYMP, PERSONAL_HISTORY, TREATMENTS, UPDATE_CLINICAL_SIGNS, UPDATE_ODONTOGRAM, UPDATE_ORAL_SYMP, UPDATE_PATIENT, UPDATE_PERSONAL_HISTORY, UPDATE_TREATMENTS, UPDATE_WAY_PAY, WAY_PAY } from "../helpers/constants";
 
-export function updateWayPayPatient(data){
+export function updateWayPayPatient(data,autorization){
   return new Promise((resolve) => {
     try {
       fetch(UPDATE_WAY_PAY, {
         method: "PUT",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -40,12 +41,13 @@ export function wayPayPatient(_id){
     }
   });
 }
-export function updateTreatmentsPatient(data){
+export function updateTreatmentsPatient(data,autorization){
   return new Promise((resolve) => {
     try {
       fetch(UPDATE_TREATMENTS, {
         method: "PUT",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -81,12 +83,13 @@ export function treatmentsPatient(_id){
   });
 }
 
-export function updateClinicalSygnsPatient(data){
+export function updateClinicalSygnsPatient(data,autorization){
   return new Promise((resolve) => {
     try {
       fetch(UPDATE_CLINICAL_SIGNS, {
         method: "PUT",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -122,12 +125,13 @@ export function clinicalSygnsPatient(_id){
   });
 }
 
-export function updateOdontogramPatient(data){
+export function updateOdontogramPatient(data,autorization){
   return new Promise((resolve) => {
     try {
       fetch(UPDATE_ODONTOGRAM, {
         method: "PUT",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -163,12 +167,13 @@ export function odontogramPatient(_id){
   });
 }
 
-export function updateOralSympPatient(data){
+export function updateOralSympPatient(data,autorization){
   return new Promise((resolve) => {
     try {
       fetch(UPDATE_ORAL_SYMP, {
         method: "PUT",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -204,12 +209,13 @@ export function oralSympPatient(_id){
   });
 }
 
-export function updatePersonalHystoryPatient(data){
+export function updatePersonalHystoryPatient(data,autorization){
   return new Promise((resolve) => {
     try {
       fetch(UPDATE_PERSONAL_HISTORY, {
         method: "PUT",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -245,12 +251,13 @@ export function personalHistoryPatient(_id){
   });
 }
 
-export function updatePatient(patient){
+export function updatePatient(patient,autorization){
   return new Promise((resolve) => {
     try {
       fetch(UPDATE_PATIENT, {
         method: "PUT",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -306,12 +313,13 @@ export function allPatients() {
   });
 }
 
-export function newPatient(patient) {
+export function newPatient(patient,autorization) {
   return new Promise((resolve) => {
     try {
       fetch(NEW_PATIENT, {
         method: "POST",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },

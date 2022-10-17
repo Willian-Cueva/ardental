@@ -23,9 +23,16 @@ function App() {
 
   function inputLimit(e) {
     const el = e.target;
-    const validate = el.tagName === "INPUT" && el.type === "date" && el.name ==="inputComponent";
+    const validate =
+      el.tagName === "INPUT" &&
+      el.type === "date" &&
+      el.name === "inputComponent";
     if (!validate) return;
-    const toDay = new Date(),year = toDay.getFullYear(),month = toDay.getMonth(),day= toDay.getDate(),maxDate = `${year}-${month+1}-${day}`;
+    const toDay = new Date(),
+      year = toDay.getFullYear(),
+      month = toDay.getMonth(),
+      day = toDay.getDate(),
+      maxDate = `${year}-${month + 1}-${day}`;
     // if(el.value === "") el.value = maxDate;
     el.max = maxDate;
   }
@@ -39,41 +46,34 @@ function App() {
     // }, 0);
   }
   const value = useGlobalStateModel();
-  // const navigate = useNavigate();
 
   useEffect(() => {
-    if(value.isSessionActive()){
-      if(!value.havePermision()){
-       swal({
+    if (value.isSessionActive()) {
+      if (!value.havePermision()) {
+        swal({
           title: "Debe solicitar permiso para ingresar al sistema",
           text: "Hasta no obtener el debido permiso usted no podrá acceder al sistema",
           icon: "info",
-          timer: "6000"
-        }
-       ).then(res=>{
-         value.logout();
-        //  navigate("/login")
-        })
+          timer: "6000",
+        }).then((res) => {
+          value.logout();
+        });
       }
     }
-  }, )
-  
+  });
 
   useEffect(() => {
     let textarea = document;
     textarea.addEventListener("keydown", autosize);
     textarea.addEventListener("click", autosize);
     textarea.addEventListener("click", inputLimit);
-    
+
     return () => {
       textarea.removeEventListener("keydown", autosize);
       textarea.removeEventListener("click", autosize);
       textarea.removeEventListener("click", inputLimit);
     };
   }, []);
-
-
-
 
   return (
     <GlobalStateContext.Provider value={value}>
@@ -105,7 +105,6 @@ function App() {
                     element={<RegisterPatients />}
                   />
 
-                  
                   <Route path="/patients" element={<Patients />} />
                   <Route path="/gestion-users" element={<GestionUsers />} />
 

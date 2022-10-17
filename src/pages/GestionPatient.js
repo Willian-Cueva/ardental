@@ -39,6 +39,7 @@ import Loader from "../components/Loader";
 import { yearsPatient } from "../helpers/constants";
 import swal from "sweetalert";
 import WayPay from "../components/WayPay";
+import useGlobalState from "../hooks/useGlobalState";
 
 export default function GestionPatient() {
   const [component, setComponent] = useState(-1);
@@ -64,6 +65,7 @@ export default function GestionPatient() {
     setComponent(num);
     setShowModal(true);
   };
+  const {getAhutorization} = useGlobalState()
 
   const saveChanges = () => {
     setShowModalUpdate(true);
@@ -85,7 +87,7 @@ export default function GestionPatient() {
 
         setShowModal(false);
 
-        updatePatient(PersonaData)
+        updatePatient(PersonaData,getAhutorization)
           .then((data) => {
             if (data.status === "ok") {
               loadPatient();
@@ -129,7 +131,7 @@ export default function GestionPatient() {
           "id-inp-otherDiseases"
         ).value;
 
-        updatePersonalHystoryPatient(PersonalHistory)
+        updatePersonalHystoryPatient(PersonalHistory,getAhutorization)
           .then((res) => {
             if (res.status === "ok") {
               swal({
@@ -188,7 +190,7 @@ export default function GestionPatient() {
           d.getElementById("id-rdb-hypersensitivity-4").value === "true";
         OralSymp.hypersensitivity.touch =
           d.getElementById("id-rdb-hypersensitivity-5").value === "true";
-        updateOralSympPatient(OralSymp)
+        updateOralSympPatient(OralSymp,getAhutorization)
           .then((res) => {
             if (res.status === "ok") {
               swal({
@@ -222,7 +224,7 @@ export default function GestionPatient() {
         Odontogram.data = JSON.parse(
           d.getElementById("id-div-odontogram-data").textContent
         );
-        updateOdontogramPatient(Odontogram)
+        updateOdontogramPatient(Odontogram,getAhutorization)
           .then((res) => {
             if (res.status === "ok") {
               swal({
@@ -252,7 +254,6 @@ export default function GestionPatient() {
         break;
       case 5:
         let ClinicalSygns = {};
-        console.log("--------------------------------------------------");
         ClinicalSygns._id = patient._id;
         ClinicalSygns.lips = { clinicalSigns: "", observations: "" };
         ClinicalSygns.lips.clinicalSigns =
@@ -311,7 +312,7 @@ export default function GestionPatient() {
           "id-txta-salivaryGlands-obs"
         ).value;
 
-        updateClinicalSygnsPatient(ClinicalSygns)
+        updateClinicalSygnsPatient(ClinicalSygns,getAhutorization)
           .then((res) => {
             if (res.status === "ok") {
               swal({
@@ -346,7 +347,7 @@ export default function GestionPatient() {
         Treatments.data = JSON.parse(
           d.getElementById("id-div-treatments").textContent
         );
-        updateTreatmentsPatient(Treatments).then((res) => {
+        updateTreatmentsPatient(Treatments,getAhutorization).then((res) => {
           if (res.status === "ok") {
             swal({
               title: "Actualización Exitosa",
@@ -379,7 +380,7 @@ export default function GestionPatient() {
         WayPay.data = JSON.parse(
           d.getElementById("id-div-pays").textContent
         );
-        updateWayPayPatient(WayPay).then((res) => {
+        updateWayPayPatient(WayPay,getAhutorization).then((res) => {
           if (res.status === "ok") {
             swal({
               title: "Actualización Exitosa",

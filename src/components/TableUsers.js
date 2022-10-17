@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import swal from "sweetalert";
+import useGlobalState from "../hooks/useGlobalState";
 import { allUsers, togglePermitionUser } from "../services/Users.service";
 import Loader from "./Loader";
 import Modal from "./Modal";
@@ -8,10 +9,10 @@ import Modal from "./Modal";
 export default function TableUsers() {
   const [ready, setReady] = useState(false);
   const [users, setUsers] = useState([]);
+  const {getAhutorization} = useGlobalState()
 
 const downUsers = () =>{
-    allUsers().then((res) => {
-        console.log("res",res);
+    allUsers(getAhutorization).then((res) => {
         setUsers(res.data)
     }).catch(err=>console.log(err));
 }
@@ -20,10 +21,11 @@ const downUsers = () =>{
     downUsers()
     setReady(true);
   }, []);
+  
 
   const permit = (dni) =>{
     const request = {dni};
-    togglePermitionUser(request).then(res=>{
+    togglePermitionUser(request,getAhutorization).then(res=>{
         if (res.status === "ok") {
             downUsers();
             swal({

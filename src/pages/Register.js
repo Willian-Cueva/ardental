@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles/Login.module.css";
 import Logo from "../components/Logo";
 import InputValidateEmail from "../components/InputValidateEmail";
@@ -8,10 +8,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import swal from "sweetalert";
 import { registerUser } from "../services/Users.service";
+import Modal from "../components/Modal";
+import Loader from "../components/Loader";
 
 export default function Register() {
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
-  const sendUserRegister = () => {
+  const sendUserRegister =async () => {
+    setShowModal(true);
     const d = document,
       $name = d.getElementById("id-inp-name-register"),
       $lastname = d.getElementById("id-inp-lastname-register"),
@@ -34,7 +38,7 @@ export default function Register() {
     };
     
     
-    registerUser(user)
+    await registerUser(user)
       .then(async (data) => {
         if (data.status === "ok") {
           await swal({
@@ -62,10 +66,14 @@ export default function Register() {
           timer: "6000",
         });
       });
+      setShowModal(false);
   };
 
   return (
     <main className={` w-full bg-[#E3F2FD] ${styles.main} p-8`}>
+      <Modal show={showModal}>
+        <Loader logo={false}/>
+      </Modal>
       <section className="max-w-[473px] bg-white rounded-xl border border-[#90caf983] ml-auto mr-auto p-[24px] flex flex-col items-center justify-center">
         <Logo className={`mb-10 font-bold uppercase`} />
         <div className={`${styles.title} mb-4`}>Registro</div>

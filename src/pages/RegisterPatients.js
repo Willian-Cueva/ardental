@@ -15,11 +15,12 @@ import { newPatient } from "../services/RegisterPatient.service";
 import swal from "sweetalert";
 import Modal from "../components/Modal";
 import Loader from "../components/Loader";
+import useGlobalState from "../hooks/useGlobalState";
 
 export default function RegisterPatients() {
-  const [patient, setPatient] = useState(PATIENT_MODEL);
+  const [patient] = useState(PATIENT_MODEL);
   const [showModal, setShowModal] = useState(false);
-
+  const {getAhutorization} = useGlobalState();
   const newPatientInputs = async () => {
     setShowModal(true);
     const getPatient = JSON.parse(JSON.stringify(patient)),
@@ -127,7 +128,7 @@ export default function RegisterPatients() {
       d.getElementById("id-div-pays").textContent
     );
 
-    await newPatient(getPatient)
+    await newPatient(getPatient,getAhutorization)
       .then((res) => {
         if (res.status === "ok") {
           swal({

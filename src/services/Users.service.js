@@ -1,11 +1,12 @@
 import { ALL_USERS, CHANGE_PASS, CHANGE_PASSWORD, LOGIN_USER, REGISTER_USER, RESQ_PASSWORD, TOOGLE_PERMITION_USER, UPDATE_USER, USER } from "../helpers/constants";
 
-export function updateUser(data){
+export function updateUser(data,autorization){
   return new Promise((resolve) => {
     try {
       fetch(UPDATE_USER, {
         method: "PUT",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -21,12 +22,13 @@ export function updateUser(data){
   });
 }
 
-export function getUser(email){
+export function getUser(email,autorization){
   return new Promise((resolve) => {
     try {
       fetch(`${USER}${email}`, {
         method: "GET",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -41,12 +43,13 @@ export function getUser(email){
   });
 }
 
-export function changePass(data){
+export function changePass(data,autorization){
   return new Promise((resolve) => {
     try {
       fetch(CHANGE_PASS, {
         method: "PUT",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -102,12 +105,13 @@ export function sendEmailUser(data){
   });
 }
 
-export function allUsers(){
+export function allUsers(autorization){
   return new Promise((resolve) => {
     try {
       fetch(ALL_USERS, {
         method: "GET",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -122,12 +126,13 @@ export function allUsers(){
   });
 }
 
-export function togglePermitionUser(data){
+export function togglePermitionUser(data,autorization){
   return new Promise((resolve) => {
     try {
       fetch(TOOGLE_PERMITION_USER, {
         method: "POST",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },

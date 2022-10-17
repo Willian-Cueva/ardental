@@ -9,7 +9,13 @@ export const useGlobalStateModel = () => {
   const [themeColor, setThemeColor] = useState(themeMode());
 
   const changeTheme = () => {
-    
+    const theme = JSON.parse(localStorage.getItem(THEME_STORAGE));
+    if (theme.theme === "white") {
+      localStorage.setItem(THEME_STORAGE, JSON.stringify({theme: "black"}));
+    } else{
+      localStorage.setItem(THEME_STORAGE, JSON.stringify({theme: "white"}));
+    }
+    setThemeColor(JSON.parse(localStorage.getItem(THEME_STORAGE)));
   }
 
   const havePermision = () => {
@@ -17,6 +23,7 @@ export const useGlobalStateModel = () => {
   }
 
   const isSessionActive = () => {
+    if(session===undefined || session===null)return false;
     let chis =session.rol !== "" &&
     session.fullname !== "" &&
     session.token !== "" &&
@@ -64,13 +71,15 @@ export const useGlobalStateModel = () => {
 
   return {
     session,
+    themeColor,
     setSession,
     isSessionActive,
     logout,
     login,
     getAhutorization,
     havePermision,
-    isSuperAdministrer
+    isSuperAdministrer,
+    changeTheme
   };
 };
 
@@ -99,7 +108,7 @@ function sessionStorage() {
 function themeMode(){
   try {
     if (!JSON.parse(localStorage.getItem(THEME_STORAGE))) {
-      localStorage.setItem(SESSION_STORAGE, JSON.stringify({theme: "white"}));
+      localStorage.setItem(THEME_STORAGE, JSON.stringify({theme: "white"}));
     } 
     return JSON.parse(localStorage.getItem(THEME_STORAGE));
   } catch (error) {
