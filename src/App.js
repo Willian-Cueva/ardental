@@ -5,7 +5,7 @@ import RegisterPatients from "./pages/RegisterPatients";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import styles from "./App.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import GlobalStateContext from "./contexts/GlobalStateContext";
 import { useGlobalStateModel } from "./hooks/useGlobalState";
 import Patients from "./pages/Patients";

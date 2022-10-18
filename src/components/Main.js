@@ -4,7 +4,7 @@ export default function Main({className, title = "Title", subtitle = false, chil
   const {themeColor}=useGlobalState()
   return (
     <div className={className}>
-      <main className={`w-full ${themeColor.theme === "dark"?"bg-[#F5F5F5]":"bg-white"} rounded-xl border border-[#90caf983]`}>
+      <main className={`w-full ${themeColor.theme === "dark"?"bg-[#E3F2FD]":"bg-white"} rounded-xl border border-[#90caf983]`}>
         <div className={`p-5 font-medium ${subtitle ? "text-sm" : "text-lg"}`}>
           {title}
         </div>

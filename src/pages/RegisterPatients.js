@@ -190,7 +190,8 @@ export default function RegisterPatients() {
       <Main title="Forma de Pago" subtitle={true}>
         <WayPay />
       </Main>
-      <div className="mt-4 w-full flex justify-between">
+      <div className="mt-8 w-full gap-4 flex flex-col-reverse justify-center items-center">
+        <div className="w-[400px] flex flex-col-reverse gap-2">
         <button
           onClick={() => {
             window.location.replace("");
@@ -206,9 +207,10 @@ export default function RegisterPatients() {
           }}
           className={`bg-[#00C853] hover:bg-[#69F0AE] min-h-[46px] rounded-xl text-white flex flex-wrap justify-center items-center gap-2 py-1 px-3`}
         >
-          <div className="font-semibold text-lg">Guardar</div>
+          <div className="font-semibold text-lg">Guardar informacion  del paciente</div>
           <FaSave size={"22px"} />
         </button>
+        </div>
       </div>
     </Main>
   );

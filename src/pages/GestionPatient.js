@@ -447,6 +447,7 @@ export default function GestionPatient() {
               text="Datos Personales"
               num={0}
               onclick={selectComponentForShow}
+              color="bg-[#90CAF9] hover:bg-[#D84315]"
               icon={<FaEdit size={"22px"} id="holi" />}
             />
           </div>
@@ -457,7 +458,7 @@ export default function GestionPatient() {
             num={1}
             onclick={selectComponentForShow}
             className="col-span-5"
-            color="bg-[#D84315] hover:bg-[#D84315]"
+            color="bg-[#FFAB91] hover:bg-[#D84315]"
             icon={<FaRegIdCard size={"22px"} />}
           />
           <ButtonIcon
@@ -465,13 +466,14 @@ export default function GestionPatient() {
             num={2}
             onclick={selectComponentForShow}
             className="col-span-5"
-            color="bg-[#5E35B1] hover:bg-[#4527A0]"
+            color="bg-[#B39DDB] hover:bg-[#4527A0]"
             icon={<FaTeethOpen size={"22px"} />}
-          />
+            />
           <ButtonIcon
             text="Odontograma"
             num={4}
             onclick={selectComponentForShow}
+            color="bg-[#90CAF9] hover:bg-[#4527A0]"
             className="col-span-5"
             icon={<FaTooth size={"22px"} />}
           />
@@ -480,7 +482,7 @@ export default function GestionPatient() {
             num={5}
             onclick={selectComponentForShow}
             className="col-span-5"
-            color="bg-[#FFC107] hover:bg-[#FFE57F]  hover:text-[#616161]"
+            color="bg-[#FFE57F] hover:bg-[#FFE57F]  hover:text-[#616161]"
             icon={<FaBriefcaseMedical size={"22px"} />}
           />
           <ButtonIcon
@@ -496,7 +498,7 @@ export default function GestionPatient() {
             num={7}
             onclick={selectComponentForShow}
             className="col-span-5"
-            color="bg-[#00C853] hover:bg-[#69F0AE]"
+            color="bg-[#69F0AE] hover:bg-[#69F0AE]"
             icon={<FaHandHoldingUsd size={"22px"} />}
           />
         </section>
