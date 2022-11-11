@@ -6,7 +6,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import styles from "./App.module.css";
 import { useEffect } from "react";
-import GlobalStateContext from "./contexts/GlobalStateContext";
+import GlobalStateContext from "./contexts/globalStateContext";
 import { useGlobalStateModel } from "./hooks/useGlobalState";
 import Patients from "./pages/Patients";
 import GestionPatient from "./pages/GestionPatient";
@@ -15,10 +15,11 @@ import GestionUsers from "./pages/GestionUsers";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResqPassword from "./pages/ResqPassword";
 import MyProfile from "./pages/MyProfile";
-import { BG_DARK } from "./helpers/constants";
+import { BG_DARK, dateToday } from "./helpers/constants";
+
 function App() {
-  
-  
+
+
   const switchShowNavbar = () => {
     value.setShowNavbar(!value.showNavbar);
 
@@ -31,12 +32,7 @@ function App() {
       el.type === "date" &&
       el.name === "inputComponent";
     if (!validate) return;
-    const toDay = new Date(),
-      year = toDay.getFullYear(),
-      month = toDay.getMonth(),
-      day = toDay.getDate(),
-      maxDate = `${year}-${month + 1}-${day}`;
-    // if(el.value === "") el.value = maxDate;
+    const maxDate = dateToday();
     el.max = maxDate;
   }
 
@@ -44,9 +40,7 @@ function App() {
     const el = e.target;
     if (el.tagName === "INPUT") return;
     if (el.name !== "name-txta") return;
-    // setTimeout(function () {
     el.style.cssText = "height:" + (el.scrollHeight * 1 + 4) + "px";
-    // }, 0);
   }
   const value = useGlobalStateModel();
 
@@ -84,7 +78,7 @@ function App() {
     textarea.addEventListener("keydown", autosize);
     textarea.addEventListener("click", autosize);
     textarea.addEventListener("click", inputLimit);
-    
+
 
     return () => {
       textarea.removeEventListener("keydown", autosize);
@@ -101,9 +95,8 @@ function App() {
             <MyNavbar swichShowNavbar={switchShowNavbar} />
             <div
               id="id-container"
-              className={`flex ${
-                value.themeColor.theme === "dark" && `${BG_DARK}`
-              }`}
+              className={`flex ${value.themeColor.theme === "dark" && `${BG_DARK}`
+                }`}
             >
               <div
                 onClick={() => {
@@ -111,19 +104,16 @@ function App() {
                     heigthContainer();
                   }, [100]);
                 }}
-                className={`absolute duration-700 ease-in-out ${
-                  value.themeColor.theme === "dark" && `${BG_DARK}`
-                } ${value.showNavbar ? "left-[0px]" : "left-[-260px]"}`}
+                className={`absolute duration-700 ease-in-out ${value.themeColor.theme === "dark" && `${BG_DARK}`
+                  } ${value.showNavbar ? "left-[0px]" : "left-[-260px]"}`}
               >
                 <Links />
               </div>
               <div
                 id="id-content"
-                className={`${(value.smartphone&value.showNavbar)&&"hidden"} absolute duration-700 ease-in-out ${
-                  value.showNavbar ? !value.smartphone&&(styles.main) : "ml-5 w-[calc(100vw-57px)]"
-                } bg-[#E3F2FD] rounded-xl p-5 ${
-                  value.showNavbar ? "ml-[260px]" : ""
-                } left-[${value.showNavbar ? "260px" : "0px"}]`}
+                className={`${(value.smartphone & value.showNavbar) && "hidden"} absolute duration-700 ease-in-out ${value.showNavbar ? !value.smartphone && (styles.main) : "ml-5 w-[calc(100vw-57px)]"
+                  } bg-[#E3F2FD] rounded-xl p-5 ${value.showNavbar ? "ml-[260px]" : ""
+                  } left-[${value.showNavbar ? "260px" : "0px"}]`}
               >
                 <Routes>
                   {/* <Route exact path="/" */}

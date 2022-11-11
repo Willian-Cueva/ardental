@@ -1,17 +1,18 @@
 .name{
     font-size:xx-large;
-    font-weight: 600;
+    /* font-weight: 600; */
+    font-weight:bolder;
     letter-spacing: 1.25px;
 }
 
 .title{
     font-size: x-large;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .info{
     font-size: large;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .general{

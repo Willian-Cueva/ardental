@@ -3,7 +3,7 @@ import Main from "../components/Main";
 import OralSymp from "../components/OralSymp";
 import PersonalData from "../components/PersonalData";
 import PersonalHistory from "../components/PersonalHistory";
-import OdontogramContext from "../contexts/OdontogramContext";
+import OdontogramContext from "../contexts/odontogramContext";
 import { useOdontogramModel } from "../hooks/useOdontogram";
 import { FaSave, FaTrashAlt } from "react-icons/fa";
 import { useState } from "react";

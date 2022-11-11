@@ -1,3 +1,4 @@
+import { dateToday } from "../helpers/constants";
 import styles from "./styles/Input.module.css";
 export default function Input({
   id,
@@ -47,7 +48,7 @@ export default function Input({
             id={id}
             name = "inputComponent"
             value={value}
-            defaultValue={type==="date"? `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`:""}
+            defaultValue={type==="date"?dateToday():""}
             type={type}
             className={STYLES}
             placeholder={placeholder}

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import { useState } from "react";
-import OdontogramContext from "../contexts/OdontogramContext";
+import OdontogramContext from "../contexts/odontogramContext";
 
 export const useOdontogramModel = () => {
   const [odontogramData, setOdontogramData] = useState({

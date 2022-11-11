@@ -1,9 +1,22 @@
+export const dateToday = () => {
+  const toDay = new Date(),
+    year = toDay.getFullYear(),
+    month = toDay.getMonth(),
+    day = toDay.getDate();
+
+  let dayPresent = `${day}`;
+
+  if (dayPresent.length === 1) {
+    dayPresent = `0${dayPresent}`;
+  }
+  return `${year}-${month + 1}-${dayPresent}`
+}
 export const BG_DARK = "bg-[#192345]"
 export const TEXT_DARK = "text-[#E2E8F0]"
 // https://ardental-backend.herokuapp.com/
-// export const SERVER = "localhost:3001",
-export const SERVER = "ardental-backend.herokuapp.com",
-  URL = `https://${SERVER}`,
+export const SERVER = "localhost:3001",
+  // export const SERVER = "ardental-backend.herokuapp.com",
+  URL = `http://${SERVER}`,
   API = `${URL}/api`,
   PATIENTS = `${API}/patients`,
   USERS = `${API}/users`,
@@ -31,7 +44,8 @@ export const SERVER = "ardental-backend.herokuapp.com",
   CHANGE_PASSWORD = `${USERS}/change-password`,
   CHANGE_PASS = `${USERS}/change-pass`,
   UPDATE_USER = `${USERS}/update-user`,
-  USER = `${USERS}/get-user/`;
+  USER = `${USERS}/get-user/`,
+  USER_PERMITIONS = `${USERS}/get-user-permitions/`;
 
 export function yearsPatient(date) {
   const birth = new Date(date),

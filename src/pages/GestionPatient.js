@@ -23,7 +23,7 @@ import OralSymp from "../components/OralSymp";
 import Odontogram from "../components/Odontogram";
 import ClinicalSigns from "../components/ClinicalSigns";
 import TableTreatment from "../components/TableTreatment";
-import OdontogramContext from "../contexts/OdontogramContext";
+import OdontogramContext from "../contexts/odontogramContext";
 import { useOdontogramModel } from "../hooks/useOdontogram";
 import {
   onePatient,
@@ -434,11 +434,12 @@ export default function GestionPatient() {
             />
             <div className={`${styles.general}`}>
               <p className={`${styles.name}`}>
-                {patient.names} - {years} años
+                {patient.names}
               </p>
               <p className={`${styles.title}`}>{patient.profession}</p>
               <p className={`${styles.info}`}>
                 {patient.phone} - {patient.dni}
+              <p>{years} años de edad</p>
               </p>
             </div>
           </div>
@@ -447,7 +448,7 @@ export default function GestionPatient() {
               text="Datos Personales"
               num={0}
               onclick={selectComponentForShow}
-              color="bg-[#90CAF9] hover:bg-[#D84315]"
+              color="bg-[#90CAF9] hover:bg-[#2196F3]"
               icon={<FaEdit size={"22px"} id="holi" />}
             />
           </div>
@@ -473,7 +474,7 @@ export default function GestionPatient() {
             text="Odontograma"
             num={4}
             onclick={selectComponentForShow}
-            color="bg-[#90CAF9] hover:bg-[#4527A0]"
+            color="bg-[#90CAF9] hover:bg-[#2196F3]"
             className="col-span-5"
             icon={<FaTooth size={"22px"} />}
           />
@@ -482,7 +483,7 @@ export default function GestionPatient() {
             num={5}
             onclick={selectComponentForShow}
             className="col-span-5"
-            color="bg-[#FFE57F] hover:bg-[#FFE57F]  hover:text-[#616161]"
+            color="bg-[#FFE57F] hover:bg-[#FFC107]  "
             icon={<FaBriefcaseMedical size={"22px"} />}
           />
           <ButtonIcon
@@ -498,7 +499,7 @@ export default function GestionPatient() {
             num={7}
             onclick={selectComponentForShow}
             className="col-span-5"
-            color="bg-[#69F0AE] hover:bg-[#69F0AE]"
+            color="bg-[#69F0AE] hover:bg-[#00C853]"
             icon={<FaHandHoldingUsd size={"22px"} />}
           />
         </section>

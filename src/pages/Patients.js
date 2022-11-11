@@ -1,8 +1,6 @@
 import Input from "../components/Input";
 import Main from "../components/Main";
-import { FaSearch } from "react-icons/fa";
 import FoundPatients from "../components/FoundPatients";
-import ButtonIcon from "../components/ButtonIcon";
 import { useState } from "react";
 import { useEffect } from "react";
 import Loader from "../components/Loader";
@@ -19,7 +17,7 @@ export default function Patients() {
     setReady(false);
     switch (select) {
       case 0:
-        setPatientsLocal(patients.filter((pat)=>pat.names.includes(inputSearch)))
+        setPatientsLocal(patients.filter((pat)=>pat.names.toLowerCase().includes(inputSearch.toLowerCase())))
         break;
       case 1:
         setPatientsLocal(patients.filter((pat)=>pat.dni.includes(inputSearch)))
