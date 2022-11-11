@@ -10,7 +10,7 @@ import ToogleTheme from "./ToogleTheme";
 
 export default function MyNavbar({ swichShowNavbar }) {
   const navigate = useNavigate();
-  const { session, logout,themeColor } = useGlobalState();
+  const { session, logout,themeColor,getGreetingUser } = useGlobalState();
   const closeSession = () => {
     swal({
       title: "Salir",
@@ -35,7 +35,7 @@ export default function MyNavbar({ swichShowNavbar }) {
         </div>
         <div className="flex justify-center items-center">
           <div className="ml-2"><ToogleTheme/></div>
-          <div className="hidden md:inline-block">Bienvenido, {session.fullname}</div>
+          <div className="hidden md:inline-block">{getGreetingUser()} {session.fullname}</div>
           <ButtonLogo
             className="ml-4"
             onClick={closeSession}

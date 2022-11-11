@@ -8,33 +8,44 @@ export const useGlobalStateModel = () => {
   const [session, setSession] = useState(sessionStorage());
   const [themeColor, setThemeColor] = useState(themeMode());
   const [showNavbar, setShowNavbar] = useState(true);
-  const [smartphone] = useState(window.screen.width<=640);
+  const [smartphone] = useState(window.screen.width <= 640);
+
+  const getGreetingUser = () => {
+    switch (session.sex) {
+      case 1:
+        return "Bienvenido,"
+      case 2:
+        return "Bienvenida,"
+      default:
+        return ""
+    }
+  }
 
   const changeTheme = () => {
     const theme = JSON.parse(localStorage.getItem(THEME_STORAGE));
     if (theme.theme === "white") {
-      localStorage.setItem(THEME_STORAGE, JSON.stringify({theme: "dark"}));
-    } else{
-      localStorage.setItem(THEME_STORAGE, JSON.stringify({theme: "white"}));
+      localStorage.setItem(THEME_STORAGE, JSON.stringify({ theme: "dark" }));
+    } else {
+      localStorage.setItem(THEME_STORAGE, JSON.stringify({ theme: "white" }));
     }
     setThemeColor(JSON.parse(localStorage.getItem(THEME_STORAGE)));
   }
 
   const havePermision = () => {
-   return session.rol !== "not-authorized"
+    return session.rol !== "not-authorized"
   }
 
   const isSessionActive = () => {
-    if(session===undefined || session===null)return false;
-    let chis =session.rol !== "" &&
-    session.fullname !== "" &&
-    session.token !== "" &&
-    session.email !== ""
+    if (session === undefined || session === null) return false;
+    let chis = session.rol !== "" &&
+      session.fullname !== "" &&
+      session.token !== "" &&
+      session.email !== ""
     return chis
   };
 
   const isSuperAdministrer = () => {
-    return session.rol === "super-administrer" 
+    return session.rol === "super-administrer"
   };
 
   const getAhutorization = () => {
@@ -84,11 +95,12 @@ export const useGlobalStateModel = () => {
     havePermision,
     isSuperAdministrer,
     changeTheme,
-    setShowNavbar
+    setShowNavbar,
+    getGreetingUser
   };
 };
 
-const userModel = { token: "", fullname: "", rol: "", email: "" };
+const userModel = { token: "", fullname: "", rol: "", email: "", sex: 3 };
 // const userModel = { token: "564654654644df4s4vdsvvcsvhj", fullname: "Willian Cueva", rol: "Administrador", email: "enriquewillian2@gmail.com" };
 
 function resetStorage() {
@@ -110,11 +122,11 @@ function sessionStorage() {
   }
 }
 
-function themeMode(){
+function themeMode() {
   try {
     if (!JSON.parse(localStorage.getItem(THEME_STORAGE))) {
-      localStorage.setItem(THEME_STORAGE, JSON.stringify({theme: "white"}));
-    } 
+      localStorage.setItem(THEME_STORAGE, JSON.stringify({ theme: "white" }));
+    }
     return JSON.parse(localStorage.getItem(THEME_STORAGE));
   } catch (error) {
     console.log(error);

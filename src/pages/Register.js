@@ -20,6 +20,7 @@ export default function Register() {
       $name = d.getElementById("id-inp-name-register"),
       $lastname = d.getElementById("id-inp-lastname-register"),
       $dni = d.getElementById("id-inp-dni-register"),
+      $sex = d.getElementById("id-inp-sex-register"),
       $dateBorn = d.getElementById("id-inp-dateBorn-register"),
       $phone = d.getElementById("id-inp-phone-register"),
       $email = d.getElementById("id-inp-email-register"),
@@ -30,6 +31,7 @@ export default function Register() {
       name: $name.value,
       lastname: $lastname.value,
       dni: $dni.value,
+      sex: $sex.value,
       dateBorn: $dateBorn.value,
       phone: $phone.value,
       email: $email.value,
@@ -99,6 +101,13 @@ export default function Register() {
             className="col-span-5"
             id={"id-inp-dni-register"}
           />
+          <Input
+          id={"id-inp-sex-register"}
+          label="Sexo"
+          type="select"
+          className="col-span-5"
+          values={["Masculino", "Femenino", "Otro"]}
+        />
           <Input
             label="Nacimiento"
             placeholder="1150999999"

@@ -54,6 +54,7 @@ export default function MyProfile() {
       lastname: d.getElementById("id-inp-lastname").value,
       dateBorn: d.getElementById("id-inp-dateBorn").value,
       dni: d.getElementById("id-inp-dni").value,
+      sex: d.getElementById("id-inp-sex").value,
       phone: d.getElementById("id-inp-phone").value,
     };
     updateUser(userSend, getAhutorization)
@@ -90,6 +91,7 @@ export default function MyProfile() {
       d.getElementById("id-inp-lastname").value = res.lastname;
       d.getElementById("id-inp-dateBorn").value = "" + res.dateBorn + "";
       d.getElementById("id-inp-dni").value = res.dni;
+      d.getElementById("id-inp-sex").value = res.sex;
       d.getElementById("id-inp-dni").disabled = "on";
       d.getElementById("id-inp-phone").value = res.phone;
     });
@@ -183,6 +185,13 @@ export default function MyProfile() {
           placeholder="1150******"
         />
         <Input
+          id={"id-inp-sex"}
+          label="Sexo"
+          type="select"
+          className="col-span-2"
+          values={["Masculino", "Femenino", "Otro"]}
+        />
+        <Input
           id={"id-inp-phone"}
           label="Celular"
           className="col-span-2"
@@ -190,19 +199,18 @@ export default function MyProfile() {
         />
       </section>
 
-      <div className="w-full col-span-10 flex justify-end mb-2">
+      <div className="w-full col-span-10 flex justify-end mb-2 mt-4">
         <button
           onClick={() => {
             setShowChangePass(true);
           }}
-          className="bg-[#2196F3] hover:bg-[#1E88E5] text-white py-1 px-2 flex items-center gap-2 min-h-[50px] rounded-xl font-bold"
+          className="w-[260px] text-center bg-[#2196F3] hover:bg-[#1E88E5] text-white py-1 px-2 flex items-center gap-3 min-h-[50px] rounded-xl font-bold"
         >
           <>
             Cambiar Contraseña
             <FaUndo size={"22px"} />
           </>
         </button>
-      </div>
       <div className="w-full col-span-10 flex justify-end">
         <button
           onClick={() => {
@@ -215,6 +223,7 @@ export default function MyProfile() {
             <FaSave size={"22px"} />
           </>
         </button>
+      </div>
       </div>
     </Main>
   );
