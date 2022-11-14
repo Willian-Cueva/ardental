@@ -3,8 +3,8 @@ import loaderImg from "../assets/imgs/loading.png";
 import styles from "./styles/Loader.module.css";
 export default function Loader({
   logo = true,
-  width = "4rem",
-  height = "4rem",
+  width = "300px",
+  height = "300px",
   text
 }) {
   return (

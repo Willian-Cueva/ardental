@@ -11,36 +11,35 @@ export default function DragAndDropImages({ dni }) {
   const [loading, setLoading] = useState(false);
   const { getAhutorization } = useGlobalState();
 
-  const uploadFile = async (file, index) => {
+  const uploadFile = async (file) => {
     const formData = new FormData();
     formData.append("dni", dni);
     formData.append("image", file);
     uploadImage(formData, dni, getAhutorization)
       .then((data) => {
-        console.log("Lo que tiene el data",data);
-        setLoading(false);
+        console.log("Lo que tiene el data", data);
         if (data.status === "ok") {
           swal({
             title: "Imágenes subidas exitosamente",
             text: "Las imágenes fueron subidas satisfactoriamente",
             icon: "success",
             timer: "6000",
-          })
-        }else{
+          });
+        } else {
           swal({
             title: "No se pudo subir la imagen",
             text: data.status,
             icon: "error",
             timer: "6000",
-          })
+          });
         }
-        })
+      })
       .catch((err) => {
         console.log("Mensaje de error", err);
-      });
+      }).finally(()=>setLoading(false));
   };
 
-  const processFile = (file, index) => {
+  const processFile = (file) => {
     const fileType = file.type;
     const validExtensions = [
       "image/jpeg",
@@ -49,7 +48,7 @@ export default function DragAndDropImages({ dni }) {
       "image/gif",
     ];
     if (validExtensions.includes(fileType)) {
-      return uploadFile(file, index);
+      return uploadFile(file);
     } else {
       alert("El archivo subido no corresponde a una imagen");
       return 0;
@@ -57,20 +56,14 @@ export default function DragAndDropImages({ dni }) {
   };
 
   const showFiles = async (files) => {
+    console.log(files);
     if (files.length !== undefined) {
       console.log("Files", files);
-      let messages = 0;
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-
-        messages += await processFile(file, i);
+        processFile(file);
       }
-      console.log("El resultado de los contadores es", messages);
     }
-  };
-
-  const onChangeInput = () => {
-    showFiles();
   };
 
   const onDragOver = (e) => {
@@ -90,18 +83,22 @@ export default function DragAndDropImages({ dni }) {
     resetStyles();
   };
 
+  const drop = (files) => {
+    
+    setLoading(true);
+    showFiles(files);
+    resetStyles();
+  };
+
   const onDrop = (e) => {
     e.preventDefault();
-    setLoading(true);
-    showFiles(e.dataTransfer.files);
-    resetStyles();
-    // setLoading(false);
+    drop(e.dataTransfer.files);
   };
 
   return (
     <div className="w-full flex items-start justify-center p-2 gap-2">
       <Modal show={loading}>
-        <Loader />
+        <Loader width="200px" height="200px" />
       </Modal>
       <div
         onDrop={(e) => {
@@ -129,14 +126,17 @@ export default function DragAndDropImages({ dni }) {
               onDragOverAwns && "pointer-events-none"
             } cursor-pointer`}
             onClick={() => {
-              console.log("presiuonando click xdxd");
+              const $btn = document.getElementById("id-images");
+              $btn.click();
             }}
           >
             Selecciona tus archivos
           </button>
           <input
-            onChange={() => {
-              onChangeInput();
+            onChange={(e) => {
+              // console.log(e.target.files);
+
+              drop(e.target.files);
             }}
             type="file"
             id="id-images"
