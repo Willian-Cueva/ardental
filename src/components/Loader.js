@@ -8,8 +8,9 @@ export default function Loader({
   text
 }) {
   return (
-    <div className={`w-[${width}] h-[${height}] `}>
+    <div>
       <img
+      width={width} height={height}
         src={logo ? img : loaderImg}
         alt="Cargando..."
         className={`${

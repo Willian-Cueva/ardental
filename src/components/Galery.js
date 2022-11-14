@@ -28,7 +28,7 @@ export default function Galery({ dni }) {
         setImagesPatient(res.data);
         setReady(true);
       }
-    });
+    }).finally(()=>setReady(true));
   };
 
   const showScreenImage = (url) => {
@@ -158,7 +158,7 @@ export default function Galery({ dni }) {
             </CoverImage>
           ))
         ) : (
-          <Loader width="50px" height="50px" />
+          <div className="ml-4"><Loader width="100px" height="100px" /></div>
         )}
       </div>
     </Main>

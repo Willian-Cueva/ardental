@@ -5,13 +5,11 @@ import Loader from "./Loader";
 import { uploadImage } from "../services/Users.service";
 import useGlobalState from "../hooks/useGlobalState";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
 
 export default function DragAndDropImages({ dni }) {
   const [onDragOverAwns, setonDragOverAwns] = useState(false);
   const [loading, setLoading] = useState(false);
   const { getAhutorization } = useGlobalState();
-  const navigate = useNavigate();
 
   const uploadFile = async (file, index) => {
     const formData = new FormData();
