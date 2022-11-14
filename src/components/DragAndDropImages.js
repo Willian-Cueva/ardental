@@ -16,12 +16,11 @@ export default function DragAndDropImages({ dni }) {
     formData.append("dni", dni);
     formData.append("image", file);
     uploadImage(formData, dni, getAhutorization)
-      .then( async(data) => {
+      .then((data) => {
         console.log("Lo que tiene el data",data);
         setLoading(false);
         if (data.status === "ok") {
-          window.location.replace(`/#/gestion-patient/${dni}`)
-          await swal({
+          swal({
             title: "Imágenes subidas exitosamente",
             text: "Las imágenes fueron subidas satisfactoriamente",
             icon: "success",
