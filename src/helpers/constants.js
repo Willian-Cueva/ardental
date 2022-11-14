@@ -17,6 +17,7 @@ export const TEXT_DARK = "text-[#E2E8F0]"
 // export const SERVER = "localhost:3001",
   export const SERVER = "ardental-backend.herokuapp.com",
   URL = `http://${SERVER}`,
+  // URL = `https://${SERVER}`,
   API = `${URL}/api`,
   PATIENTS = `${API}/patients`,
   USERS = `${API}/users`,
@@ -45,7 +46,10 @@ export const TEXT_DARK = "text-[#E2E8F0]"
   CHANGE_PASS = `${USERS}/change-pass`,
   UPDATE_USER = `${USERS}/update-user`,
   USER = `${USERS}/get-user/`,
-  USER_PERMITIONS = `${USERS}/get-user-permitions/`;
+  USER_PERMITIONS = `${USERS}/get-user-permitions/`,
+  USER_UPLOAD_IMAGE = `${PATIENTS}/upload-image/`,
+  PATIENT_IMAGES=`${PATIENTS}/images-patient/`,
+  PATIENT_DELETE_IMAGE=`${PATIENTS}/delete-image`;
 
 export function yearsPatient(date) {
   const birth = new Date(date),

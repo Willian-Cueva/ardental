@@ -1,4 +1,47 @@
-import { ALL_PATIENTS, CLINICAL_SIGNS, NEW_PATIENT, ODONTOGRAM, ONE_PATIENT, ORAL_SYMP, PERSONAL_HISTORY, TREATMENTS, UPDATE_CLINICAL_SIGNS, UPDATE_ODONTOGRAM, UPDATE_ORAL_SYMP, UPDATE_PATIENT, UPDATE_PERSONAL_HISTORY, UPDATE_TREATMENTS, UPDATE_WAY_PAY, WAY_PAY } from "../helpers/constants";
+import { ALL_PATIENTS, CLINICAL_SIGNS, NEW_PATIENT, ODONTOGRAM, ONE_PATIENT, ORAL_SYMP, PATIENT_DELETE_IMAGE, PATIENT_IMAGES, PERSONAL_HISTORY, TREATMENTS, UPDATE_CLINICAL_SIGNS, UPDATE_ODONTOGRAM, UPDATE_ORAL_SYMP, UPDATE_PATIENT, UPDATE_PERSONAL_HISTORY, UPDATE_TREATMENTS, UPDATE_WAY_PAY, WAY_PAY } from "../helpers/constants";
+
+export function deleteImagePatient(data,autorization){
+  return new Promise((resolve) => {
+    try {
+      fetch(PATIENT_DELETE_IMAGE, {
+        method: "DELETE",
+        headers: {
+          Authorization: autorization(),
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body:JSON.stringify(data),
+        mode: "cors",
+      })
+        .then((res) => res.json())
+        .then((data) => resolve(data))
+        .catch((err) => resolve(err));
+    } catch (error) {
+      Promise.reject(error);
+    }
+  });
+}
+
+export function getImages(dni,autorization){
+  return new Promise((resolve) => {
+    try {
+      fetch(`${PATIENT_IMAGES}${dni}`, {
+        method: "GET",
+        headers: {
+          Authorization: autorization(),
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+      })
+        .then((res) => res.json())
+        .then((data) => resolve(data))
+        .catch((err) => resolve(err));
+    } catch (error) {
+      Promise.reject(error);
+    }
+  });
+}
 
 export function updateWayPayPatient(data,autorization){
   return new Promise((resolve) => {
