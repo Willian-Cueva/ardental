@@ -14,10 +14,10 @@ export const dateToday = () => {
 export const BG_DARK = "bg-[#192345]"
 export const TEXT_DARK = "text-[#E2E8F0]"
 // https://ardental-backend.herokuapp.com/
-export const SERVER = "localhost:3001",
-  // export const SERVER = "ardental-backend.herokuapp.com",
-  URL = `http://${SERVER}`,
-  // URL = `https://${SERVER}`,
+// export const SERVER = "localhost:3001",
+  export const SERVER = "ardental-backend.herokuapp.com",
+  // URL = `http://${SERVER}`,
+  URL = `https://${SERVER}`,
   API = `${URL}/api`,
   PATIENTS = `${API}/patients`,
   USERS = `${API}/users`,
