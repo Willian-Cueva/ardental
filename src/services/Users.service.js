@@ -1,4 +1,24 @@
-import { ALL_USERS, CHANGE_PASS, CHANGE_PASSWORD, LOGIN_USER, REGISTER_USER, RESQ_PASSWORD, TOOGLE_PERMITION_USER, UPDATE_USER, USER } from "../helpers/constants";
+  import { ALL_USERS, CHANGE_PASS, CHANGE_PASSWORD, LOGIN_USER, REGISTER_USER, RESQ_PASSWORD, TOOGLE_PERMITION_USER, UPDATE_USER, USER, USER_UPLOAD_IMAGE} from "../helpers/constants";
+
+export function uploadImage(body,dni,autorization){
+  return new Promise((resolve) => {
+    try {
+      fetch(`${USER_UPLOAD_IMAGE}${dni}`, {
+        method: "POST",
+        headers: {
+          Authorization: autorization(),
+        },
+        body: body,
+        mode: "cors",
+      })
+        .then((res) => res.json())
+        .then((data) => resolve(data))
+        .catch((err) => resolve(err));
+    } catch (error) {
+      Promise.reject(error);
+    }
+  });
+}
 
 export function updateUser(data,autorization){
   return new Promise((resolve) => {

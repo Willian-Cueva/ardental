@@ -1,0 +1,27 @@
+.drag_area {
+  border: 5px dashed #ddd;
+  background-color: #64748b;
+  height: 400px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 600px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  border: 9px dashed #ddd;
+  background-color:rgb(148 163 184);
+  height: 400px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 600px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

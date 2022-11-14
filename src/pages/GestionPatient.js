@@ -16,6 +16,7 @@ import {
   FaTeethOpen,
   FaWindowClose,
   FaSave,
+  FaImages,
 } from "react-icons/fa";
 import Modal from "../components/Modal";
 import PersonalHistory from "../components/PersonalHistory";
@@ -40,6 +41,7 @@ import { yearsPatient } from "../helpers/constants";
 import swal from "sweetalert";
 import WayPay from "../components/WayPay";
 import useGlobalState from "../hooks/useGlobalState";
+import Galery from "../components/Galery";
 
 export default function GestionPatient() {
   const [component, setComponent] = useState(-1);
@@ -449,7 +451,7 @@ export default function GestionPatient() {
               num={0}
               onclick={selectComponentForShow}
               color="bg-[#90CAF9] hover:bg-[#2196F3]"
-              icon={<FaEdit size={"22px"} id="holi" />}
+              icon={<FaEdit size={"27px"} id="holi" />}
             />
           </div>
         </div>
@@ -460,7 +462,7 @@ export default function GestionPatient() {
             onclick={selectComponentForShow}
             className="col-span-5"
             color="bg-[#FFAB91] hover:bg-[#D84315]"
-            icon={<FaRegIdCard size={"22px"} />}
+            icon={<FaRegIdCard size={"27px"} />}
           />
           <ButtonIcon
             text="Sintomatologia Oral"
@@ -468,7 +470,7 @@ export default function GestionPatient() {
             onclick={selectComponentForShow}
             className="col-span-5"
             color="bg-[#B39DDB] hover:bg-[#4527A0]"
-            icon={<FaTeethOpen size={"22px"} />}
+            icon={<FaTeethOpen size={"27px"} />}
             />
           <ButtonIcon
             text="Odontograma"
@@ -476,7 +478,7 @@ export default function GestionPatient() {
             onclick={selectComponentForShow}
             color="bg-[#90CAF9] hover:bg-[#2196F3]"
             className="col-span-5"
-            icon={<FaTooth size={"22px"} />}
+            icon={<FaTooth size={"27px"} />}
           />
           <ButtonIcon
             text="Signos Clínicos"
@@ -484,7 +486,7 @@ export default function GestionPatient() {
             onclick={selectComponentForShow}
             className="col-span-5"
             color="bg-[#FFE57F] hover:bg-[#FFC107]  "
-            icon={<FaBriefcaseMedical size={"22px"} />}
+            icon={<FaBriefcaseMedical size={"27px"} />}
           />
           <ButtonIcon
             text="Plan y Seguimiento de Tratamiento"
@@ -492,7 +494,7 @@ export default function GestionPatient() {
             onclick={selectComponentForShow}
             className="col-span-5"
             color="bg-[#B39DDB] hover:bg-[#673AB7]"
-            icon={<FaTeeth size={"22px"} />}
+            icon={<FaTeeth size={"27px"} />}
           />
           <ButtonIcon
             text="Forma de Pago"
@@ -500,7 +502,15 @@ export default function GestionPatient() {
             onclick={selectComponentForShow}
             className="col-span-5"
             color="bg-[#69F0AE] hover:bg-[#00C853]"
-            icon={<FaHandHoldingUsd size={"22px"} />}
+            icon={<FaHandHoldingUsd size={"27px"} />}
+          />
+          <ButtonIcon
+            text="Galería de Sonrisas"
+            num={8}
+            onclick={selectComponentForShow}
+            className="col-span-5"
+            color="bg-[#FFAB91] hover:bg-[#D84315]"
+            icon={<FaImages size={"27px"} />}
           />
         </section>
       </Main>
@@ -546,11 +556,11 @@ export default function GestionPatient() {
               <Main title="Forma de Pago" subtitle={true}>
                 <WayPay editMode={true} search={patient._id}/>
               </Main>
-            ) : (
-              ""
-            )}
+            ) : component === 8 ?
+            <Galery dni={paramans.dni}/> : "" 
+          }
           </div>
-          <div className="w-full flex justify-between mt-4">
+          <div className={`w-full flex justify-between mt-4 ${component===8 && "hidden"}`}>
             <button
               onClick={() => {
                 setShowModal(false);
