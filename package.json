@@ -1,7 +1,7 @@
 {
   "homepage": "https://Willian-Cueva.github.io/ardental",
   "name": "ardental",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "dependencies": {
     "@material-tailwind/react": "^1.0.8",

@@ -49,7 +49,7 @@ export default function Galery({ dni }) {
         deleteImagePatient({url:urlImageTMP},getAhutorization).then(
            data=>{
             if (data.status === "ok") {
-              window.location.replace(`/#/gestion-patient/${dni}`)
+              //debes estar pendiente en esta linea para la version de producción
               swal({
                 title: "Imagen eliminada exitosamente",
                 text: "La imagen fue eliminada satisfactoriamente",
@@ -145,8 +145,8 @@ export default function Galery({ dni }) {
           </div>
         </CoverImage>
         {ready ? (
-          imagesPatient.map((image) => (
-            <CoverImage>
+          imagesPatient.map((image,index) => (
+            <CoverImage key={`${index}-image`}>
               <img
                 onClick={() => {
                   showScreenImage(image.url);
