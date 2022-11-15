@@ -14,7 +14,6 @@ export default function Patients() {
   const [select, setSelect] = useState(0);
 
   useEffect(() => {
-    setReady(false);
     switch (select) {
       case 0:
         setPatientsLocal(patients.filter((pat)=>pat.names.toLowerCase().includes(inputSearch.toLowerCase())))
@@ -29,7 +28,6 @@ export default function Patients() {
       default:
         break;
     }
-    setReady(true);
   }, [inputSearch])
   
 
@@ -45,8 +43,7 @@ export default function Patients() {
     allPatients().then(data=>{
       setPatients(data.data);
       setPatientsLocal(data.data)
-    })
-    setReady(true);
+    }).finally(()=>setReady(true))
   }, [])
   
   return (
@@ -70,7 +67,7 @@ export default function Patients() {
       </div>
       {ready?<FoundPatients
         patients={patientsLocal}
-      />:<Loader logo={false} width="150px" height="150px"/>}
+      />:<Loader text={"Cargando pacientes por favor espere...!"} logo={true} width="150px" height="150px"/>}
     </Main>
   );
 }

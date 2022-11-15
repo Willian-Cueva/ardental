@@ -98,7 +98,7 @@ export default function DragAndDropImages({ dni }) {
   return (
     <div className="w-full flex items-start justify-center p-2 gap-2">
       <Modal show={loading}>
-        <Loader width="200px" height="200px" />
+        <Loader width="200px" height="200px" text={"Subiendo imágenes, porfavor espere...!"}/>
       </Modal>
       <div
         onDrop={(e) => {
