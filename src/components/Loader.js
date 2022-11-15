@@ -17,7 +17,7 @@ export default function Loader({
         className={`${logo ? styles.loader : styles.loading} object-cover`}
       />
       {text&&<div className="py-2 px-3 rounded-xl mt-2">
-        <p className="text-[#2196F3] font-semibold text-xl">{text}</p>
+        <p className="text-[#2196F3] font-bold text-3xl">{text}</p>
       </div>}
     </div>
   );
