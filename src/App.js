@@ -10,7 +10,7 @@ import GlobalStateContext from "./contexts/globalStateContext";
 import { useGlobalStateModel } from "./hooks/useGlobalState";
 import Patients from "./pages/Patients";
 import GestionPatient from "./pages/GestionPatient";
-import swal from "sweetalert";
+// import swal from "sweetalert";
 import GestionUsers from "./pages/GestionUsers";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResqPassword from "./pages/ResqPassword";
@@ -18,11 +18,8 @@ import MyProfile from "./pages/MyProfile";
 import { BG_DARK, dateToday } from "./helpers/constants";
 
 function App() {
-
-
   const switchShowNavbar = () => {
     value.setShowNavbar(!value.showNavbar);
-
   };
 
   function inputLimit(e) {
@@ -48,6 +45,7 @@ function App() {
     const d = document,
       $container = d.getElementById("id-container"),
       $content = d.getElementById("id-content");
+    console.log($content);
     if ($content.clientHeight > window.screen.height) {
       $container.style.height = `${$content.clientHeight}px`;
     } else {
@@ -55,30 +53,29 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      heigthContainer();
-    }, 200);
-    if (value.isSessionActive()) {
-      if (!value.havePermision()) {
-        swal({
-          title: "Debe solicitar permiso para ingresar al sistema",
-          text: "Hasta no obtener el debido permiso usted no podrá acceder al sistema",
-          icon: "info",
-          timer: "6000",
-        }).then((res) => {
-          value.logout();
-        });
-      }
-    }
-  });
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     heigthContainer();
+  //   }, []);
+  //   if (value.isSessionActive()) {
+  //     if (!value.havePermision()) {
+  //       swal({
+  //         title: "Debe solicitar permiso para ingresar al sistema",
+  //         text: "Hasta no obtener el debido permiso usted no podrá acceder al sistema",
+  //         icon: "info",
+  //         timer: "6000",
+  //       }).then((res) => {
+  //         value.logout();
+  //       });
+  //     }
+  //   }
+  // });
 
   useEffect(() => {
     let textarea = document;
     textarea.addEventListener("keydown", autosize);
     textarea.addEventListener("click", autosize);
     textarea.addEventListener("click", inputLimit);
-
 
     return () => {
       textarea.removeEventListener("keydown", autosize);
@@ -95,8 +92,9 @@ function App() {
             <MyNavbar swichShowNavbar={switchShowNavbar} />
             <div
               id="id-container"
-              className={`flex ${value.themeColor.theme === "dark" && `${BG_DARK}`
-                }`}
+              className={`flex ${
+                value.themeColor.theme === "dark" && `${BG_DARK}`
+              }`}
             >
               <div
                 onClick={() => {
@@ -104,16 +102,23 @@ function App() {
                     heigthContainer();
                   }, [100]);
                 }}
-                className={`absolute duration-700 ease-in-out ${value.themeColor.theme === "dark" && `${BG_DARK}`
-                  } ${value.showNavbar ? "left-[0px]" : "left-[-260px]"}`}
+                className={`absolute duration-700 ease-in-out ${
+                  value.themeColor.theme === "dark" && `${BG_DARK}`
+                } ${value.showNavbar ? "left-[0px]" : "left-[-260px]"}`}
               >
                 <Links />
               </div>
               <div
                 id="id-content"
-                className={`${(value.smartphone & value.showNavbar) && "hidden"} absolute duration-700 ease-in-out ${value.showNavbar ? !value.smartphone && (styles.main) : "ml-5 w-[calc(100vw-57px)]"
-                  } bg-[#E3F2FD] rounded-xl p-5 ${value.showNavbar ? "ml-[260px]" : ""
-                  } left-[${value.showNavbar ? "260px" : "0px"}]`}
+                className={`${
+                  value.smartphone & value.showNavbar && "hidden"
+                } absolute duration-700 ease-in-out ${
+                  value.showNavbar
+                    ? !value.smartphone && styles.main
+                    : "ml-5 w-[calc(100vw-57px)]"
+                } bg-[#E3F2FD] rounded-xl p-5 ${
+                  value.showNavbar ? "ml-[260px]" : ""
+                } left-[${value.showNavbar ? "260px" : "0px"}]`}
               >
                 <Routes>
                   {/* <Route exact path="/" */}
