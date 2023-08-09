@@ -9,16 +9,18 @@ export const dateToday = () => {
   if (dayPresent.length === 1) {
     dayPresent = `0${dayPresent}`;
   }
-  return `${year}-${month + 1}-${dayPresent}`
-}
-export const BG_DARK = "bg-[#192345]"
-export const TEXT_DARK = "text-[#E2E8F0]"
-// https://ardental-backend.herokuapp.com/
-export const SERVER = "localhost:3001",
-  // export const SERVER = "ardental-backend.herokuapp.com",
-  URL = `http://${SERVER}`,
-  // URL = `https://${SERVER}`,
-  API = `${URL}/api`,
+  return `${year}-${month + 1}-${dayPresent}`;
+};
+export const BG_DARK = "bg-[#192345]";
+export const TEXT_DARK = "text-[#E2E8F0]";
+// export const URL = "https://ardental-backend.onrender.com";
+
+/**
+ * Reemplaza esta linea con la direccion ip local de la maquina en la que está levantado el backend
+ * es mejor q poner localhost
+ */
+export const URL = "http://192.168.1.109:3001"
+export const API = `${URL}/api`,
   PATIENTS = `${API}/patients`,
   USERS = `${API}/users`,
   ALL_PATIENTS = `${PATIENTS}/all-patients`,
@@ -48,8 +50,8 @@ export const SERVER = "localhost:3001",
   USER = `${USERS}/get-user/`,
   USER_PERMITIONS = `${USERS}/get-user-permitions/`,
   USER_UPLOAD_IMAGE = `${PATIENTS}/upload-image/`,
-  PATIENT_IMAGES=`${PATIENTS}/images-patient/`,
-  PATIENT_DELETE_IMAGE=`${PATIENTS}/delete-image`;
+  PATIENT_IMAGES = `${PATIENTS}/images-patient/`,
+  PATIENT_DELETE_IMAGE = `${PATIENTS}/delete-image`;
 
 export function yearsPatient(date) {
   const birth = new Date(date),
