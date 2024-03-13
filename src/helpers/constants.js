@@ -19,7 +19,9 @@ export const TEXT_DARK = "text-[#E2E8F0]";
  * Reemplaza esta linea con la direccion ip local de la maquina en la que está levantado el backend
  * es mejor q poner localhost
  */
-export const URL = "http://192.168.1.109:3001"
+export const URL = "http://127.0.0.1:3001"
+// export const URL = "http://l:3001"
+// export const URL = "http://192.168.43.37:3001"
 export const API = `${URL}/api`,
   PATIENTS = `${API}/patients`,
   USERS = `${API}/users`,
