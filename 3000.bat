@@ -2,6 +2,6 @@
 :home
 cls
 cd C:\server\ardental
-git pull origin main
+@git pull origin main
 @npm start
 goto End
