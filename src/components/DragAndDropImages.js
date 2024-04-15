@@ -17,7 +17,6 @@ export default function DragAndDropImages({ dni }) {
     formData.append("image", file);
     uploadImage(formData, dni, getAhutorization)
       .then((data) => {
-        console.log("Lo que tiene el data", data);
         if (data.status === "ok") {
           swal({
             title: "Imágenes subidas exitosamente",
@@ -56,9 +55,7 @@ export default function DragAndDropImages({ dni }) {
   };
 
   const showFiles = async (files) => {
-    console.log(files);
     if (files.length !== undefined) {
-      console.log("Files", files);
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         processFile(file);
@@ -134,8 +131,6 @@ export default function DragAndDropImages({ dni }) {
           </button>
           <input
             onChange={(e) => {
-              // console.log(e.target.files);
-
               drop(e.target.files);
             }}
             type="file"

@@ -1,4 +1,3 @@
-import { dateToday } from "../helpers/constants";
 import styles from "./styles/Input.module.css";
 export default function Input({
   id,
@@ -9,6 +8,9 @@ export default function Input({
   values = [],
   value,
   onChange = () => {},
+  reference,
+  isDisabled = false,
+  rows = "5",
 }) {
   const STYLES = `border border-[#9E9E9E] bg-transparent focus:border-2 focus:border-[#1E88E5] rounded-xl p-2.5`;
   return (
@@ -23,11 +25,11 @@ export default function Input({
             onChange={(e) => {
               onChange(e);
             }}
+            ref={reference}
+            disabled={isDisabled}
           >
             {values.map((el, index) => (
-              <option key={index} value={index + 1}>
-                {el}
-              </option>
+              <option key={index} value={el} selected={index === 0}>{el}</option>
             ))}
           </select>
         ) : type === "textArea" ? (
@@ -35,10 +37,12 @@ export default function Input({
             onChange={(e) => {
               onChange(e);
             }}
-            className={STYLES}
-            rows="5"
+            className={`${STYLES} overflow-y-auto`}
+            rows={rows}
             id={id}
             value={value}
+            ref={reference}
+            disabled={isDisabled}
           ></textarea>
         ) : (
           <input
@@ -46,12 +50,13 @@ export default function Input({
               onChange(e);
             }}
             id={id}
-            name = "inputComponent"
+            name="inputComponent"
             value={value}
-            defaultValue={type==="date"?dateToday():""}
             type={type}
             className={STYLES}
             placeholder={placeholder}
+            ref={reference}
+            disabled={isDisabled}
           />
         )}
       </div>

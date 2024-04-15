@@ -18,7 +18,7 @@ export default function ToogleTheme({ id, className = "" }) {
           type="checkbox"
           className={stylesLocal}
           id={id}
-          checked={themeColor.theme!=="white"}
+          defaultChecked={themeColor.theme!=="white"}
           value={themeColor.theme!=="white"}
         />
         <span></span>

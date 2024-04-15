@@ -45,7 +45,6 @@ function App() {
     const d = document,
       $container = d.getElementById("id-container"),
       $content = d.getElementById("id-content");
-    console.log($content);
     if ($content.clientHeight > window.screen.height) {
       $container.style.height = `${$content.clientHeight}px`;
     } else {

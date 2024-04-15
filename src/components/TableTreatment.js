@@ -10,8 +10,12 @@ import Main from "./Main";
 import Modal from "./Modal";
 import RowTableTreatment from "./RowTableTreatment";
 import scrollBarStyles from "./styles/ScrollBar.module.css";
+import useGlobalState from "../hooks/useGlobalState";
 
-export default function TableTreatment({ editMode = false,search }) {
+export default function TableTreatment({ editMode = false, search }) {
+
+  const { getAhutorization } = useGlobalState();
+
   const names = [
     "Fecha",
     "Pieza",
@@ -25,8 +29,12 @@ export default function TableTreatment({ editMode = false,search }) {
   const [showModal, setShowModal] = useState(false);
   const [editOneTreatment, setEditOneTreatment] = useState(false);
   const [indexEdit, setIndexEdit] = useState(-1);
+
   useEffect(() => {
-    if(editMode)treatmentsPatient(search).then((patientsData)=>setTreatments(patientsData))
+    if (editMode)
+      treatmentsPatient(search,getAhutorization).then((patientsData) =>
+        setTreatments(patientsData)
+      );
     setReady(true);
   }, []);
 
@@ -113,6 +121,10 @@ export default function TableTreatment({ editMode = false,search }) {
     setIndexEdit(index);
     setShowModal(true);
   };
+
+  if (!ready) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -214,26 +226,22 @@ export default function TableTreatment({ editMode = false,search }) {
         <table>
           <thead>
             <tr>
-              {names.map((el) => (
-                <th>{el}</th>
+              {names.map((el, i) => (
+                <th key={i}>{el}</th>
               ))}
             </tr>
           </thead>
-          {ready ? (
-            treatments.map((treatment, index) => (
-              <RowTableTreatment
-                key={`${index}-treatment`}
-                treatment={treatment}
-                edit={editTreatment}
-                deleted={deleteTreatment}
-                index={index}
-              />
-            ))
-          ) : (
-            <Loader />
-          )}
+          {treatments?.map((treatment, index) => (
+            <RowTableTreatment
+              key={index}
+              treatment={treatment}
+              edit={editTreatment}
+              deleted={deleteTreatment}
+              index={index}
+            />
+          ))}
         </table>
-        {treatments.length === 0 && (
+        {(treatments?.length||0) === 0 && (
           <div className="h-[50px] w-full flex justify-center items-center bg-[#b39ddb] font-semibold text-[#212121]">
             <div>No hay elementos</div>
           </div>

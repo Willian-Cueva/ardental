@@ -53,7 +53,10 @@ export const API = `${URL}/api`,
   USER_PERMITIONS = `${USERS}/get-user-permitions/`,
   USER_UPLOAD_IMAGE = `${PATIENTS}/upload-image/`,
   PATIENT_IMAGES = `${PATIENTS}/images-patient/`,
-  PATIENT_DELETE_IMAGE = `${PATIENTS}/delete-image`;
+  PATIENT_DELETE_IMAGE = `${PATIENTS}/delete-image`,
+  TREATMENT_AND_PAY = `${PATIENTS}/treatment-and-pay/`;
+
+export const WAY_PAYS_METHODS = ["EFECTIVO", "TRANSFERENCIA", "CHEQUE"];
 
 export function yearsPatient(date) {
   const birth = new Date(date),

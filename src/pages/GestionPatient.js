@@ -42,6 +42,7 @@ import swal from "sweetalert";
 import WayPay from "../components/WayPay";
 import useGlobalState from "../hooks/useGlobalState";
 import Galery from "../components/Galery";
+import TreatmentAndPay from "../components/TreatmentAndPay";
 
 export default function GestionPatient() {
   const [component, setComponent] = useState(-1);
@@ -51,12 +52,13 @@ export default function GestionPatient() {
   const [ready, setReady] = useState(false);
 
   const paramans = useParams();
+  const { getAhutorization } = useGlobalState();
 
   const loadPatient = () => {
-    onePatient(paramans.dni).then((data) => {
+    onePatient(paramans.dni, getAhutorization).then((data) => {
       setPatient(data.data);
+      setReady(true);
     });
-    setReady(true);
   };
 
   useEffect(() => {
@@ -67,7 +69,6 @@ export default function GestionPatient() {
     setComponent(num);
     setShowModal(true);
   };
-  const {getAhutorization} = useGlobalState()
 
   const saveChanges = () => {
     setShowModalUpdate(true);
@@ -89,7 +90,7 @@ export default function GestionPatient() {
 
         setShowModal(false);
 
-        updatePatient(PersonaData,getAhutorization)
+        updatePatient(PersonaData, getAhutorization)
           .then((data) => {
             if (data.status === "ok") {
               loadPatient();
@@ -133,7 +134,7 @@ export default function GestionPatient() {
           "id-inp-otherDiseases"
         ).value;
 
-        updatePersonalHystoryPatient(PersonalHistory,getAhutorization)
+        updatePersonalHystoryPatient(PersonalHistory, getAhutorization)
           .then((res) => {
             if (res.status === "ok") {
               swal({
@@ -192,7 +193,7 @@ export default function GestionPatient() {
           d.getElementById("id-rdb-hypersensitivity-4").value === "true";
         OralSymp.hypersensitivity.touch =
           d.getElementById("id-rdb-hypersensitivity-5").value === "true";
-        updateOralSympPatient(OralSymp,getAhutorization)
+        updateOralSympPatient(OralSymp, getAhutorization)
           .then((res) => {
             if (res.status === "ok") {
               swal({
@@ -226,7 +227,7 @@ export default function GestionPatient() {
         Odontogram.data = JSON.parse(
           d.getElementById("id-div-odontogram-data").textContent
         );
-        updateOdontogramPatient(Odontogram,getAhutorization)
+        updateOdontogramPatient(Odontogram, getAhutorization)
           .then((res) => {
             if (res.status === "ok") {
               swal({
@@ -314,7 +315,7 @@ export default function GestionPatient() {
           "id-txta-salivaryGlands-obs"
         ).value;
 
-        updateClinicalSygnsPatient(ClinicalSygns,getAhutorization)
+        updateClinicalSygnsPatient(ClinicalSygns, getAhutorization)
           .then((res) => {
             if (res.status === "ok") {
               swal({
@@ -344,70 +345,70 @@ export default function GestionPatient() {
 
         break;
       case 6:
-        let Treatments = {}
-        Treatments._id=patient._id
+        let Treatments = {};
+        Treatments._id = patient._id;
         Treatments.data = JSON.parse(
           d.getElementById("id-div-treatments").textContent
         );
-        updateTreatmentsPatient(Treatments,getAhutorization).then((res) => {
-          if (res.status === "ok") {
-            swal({
-              title: "Actualización Exitosa",
-              text: "Se ha actualizado el plan y seguimiento de tratamiento del paciente satisfactoriamente",
-              icon: "success",
-              timer: "6000",
-            });
-          } else {
+        updateTreatmentsPatient(Treatments, getAhutorization)
+          .then((res) => {
+            if (res.status === "ok") {
+              swal({
+                title: "Actualización Exitosa",
+                text: "Se ha actualizado el plan y seguimiento de tratamiento del paciente satisfactoriamente",
+                icon: "success",
+                timer: "6000",
+              });
+            } else {
+              swal({
+                title: "Error",
+                text: res.status,
+                icon: "error",
+                timer: "6000",
+              });
+            }
+          })
+          .catch((err) => {
+            console.error(err);
             swal({
               title: "Error",
-              text: res.status,
+              text: "Ha ocurrido un inconveniente, notifica a tu servicio técnico",
               icon: "error",
               timer: "6000",
             });
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          swal({
-            title: "Error",
-            text: "Ha ocurrido un inconveniente, notifica a tu servicio técnico",
-            icon: "error",
-            timer: "6000",
           });
-        });
         break;
       case 7:
-        let WayPay = {}
-        WayPay._id=patient._id;
-        WayPay.data = JSON.parse(
-          d.getElementById("id-div-pays").textContent
-        );
-        updateWayPayPatient(WayPay,getAhutorization).then((res) => {
-          if (res.status === "ok") {
-            swal({
-              title: "Actualización Exitosa",
-              text: "Se ha actualizado la forma de pago del paciente satisfactoriamente",
-              icon: "success",
-              timer: "6000",
-            });
-          } else {
+        let WayPay = {};
+        WayPay._id = patient._id;
+        WayPay.data = JSON.parse(d.getElementById("id-div-pays").textContent);
+        updateWayPayPatient(WayPay, getAhutorization)
+          .then((res) => {
+            if (res.status === "ok") {
+              swal({
+                title: "Actualización Exitosa",
+                text: "Se ha actualizado la forma de pago del paciente satisfactoriamente",
+                icon: "success",
+                timer: "6000",
+              });
+            } else {
+              swal({
+                title: "Error",
+                text: res.status,
+                icon: "error",
+                timer: "6000",
+              });
+            }
+          })
+          .catch((err) => {
+            console.error(err);
             swal({
               title: "Error",
-              text: res.status,
+              text: "Ha ocurrido un inconveniente, notifica a tu servicio técnico",
               icon: "error",
               timer: "6000",
             });
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          swal({
-            title: "Error",
-            text: "Ha ocurrido un inconveniente, notifica a tu servicio técnico",
-            icon: "error",
-            timer: "6000",
           });
-        });
         break;
 
       default:
@@ -418,8 +419,14 @@ export default function GestionPatient() {
   };
 
   const value = useOdontogramModel();
+
+  if (!ready) {
+    return <Loader logo={false} />;
+  }
+
   const years = yearsPatient(patient.dateBorn);
-  return ready ? (
+
+  return (
     <div id="page_gestion_patient" className={`${styles.mainTotal}`}>
       <Modal show={showModalUpdate}>
         <div>
@@ -435,14 +442,12 @@ export default function GestionPatient() {
               className="w-[125px] h-[125px] object-cover rounded-full"
             />
             <div className={`${styles.general}`}>
-              <p className={`${styles.name}`}>
-                {patient.names}
-              </p>
-              <p className={`${styles.title}`}>{patient.profession}</p>
-              <p className={`${styles.info}`}>
-                {patient.phone} - {patient.dni}
-              <p>{years} años de edad</p>
-              </p>
+              <p className={`${styles.name}`}>{patient?.names}</p>
+              <p className={`${styles.title}`}>{patient?.profession}</p>
+              <div className={`${styles.info}`}>
+                {patient?.phone} - {patient?.dni}
+                <p>{years} años de edad</p>
+              </div>
             </div>
           </div>
           <div className="w-[220px]">
@@ -471,7 +476,7 @@ export default function GestionPatient() {
             className="col-span-5"
             color="bg-[#B39DDB] hover:bg-[#4527A0]"
             icon={<FaTeethOpen size={"27px"} />}
-            />
+          />
           <ButtonIcon
             text="Odontograma"
             num={4}
@@ -492,16 +497,16 @@ export default function GestionPatient() {
             text="Plan y Seguimiento de Tratamiento"
             num={6}
             onclick={selectComponentForShow}
-            className="col-span-5"
-            color="bg-[#B39DDB] hover:bg-[#673AB7]"
+            className="col-span-5 line-through"
+            color="bg-slate-200"
             icon={<FaTeeth size={"27px"} />}
           />
           <ButtonIcon
             text="Forma de Pago"
             num={7}
             onclick={selectComponentForShow}
-            className="col-span-5"
-            color="bg-[#69F0AE] hover:bg-[#00C853]"
+            className="col-span-5 line-through "
+            color="bg-slate-200"
             icon={<FaHandHoldingUsd size={"27px"} />}
           />
           <ButtonIcon
@@ -511,6 +516,14 @@ export default function GestionPatient() {
             className="col-span-5"
             color="bg-[#FFAB91] hover:bg-[#D84315]"
             icon={<FaImages size={"27px"} />}
+          />
+          <ButtonIcon
+            text="Tratamientos y Pagos"
+            num={9}
+            onclick={selectComponentForShow}
+            className="col-span-5"
+            color="bg-green-300 hover:bg-green-500"
+            icon={<><FaTeeth size={"27px"} /><FaHandHoldingUsd size={"27px"} /></>}
           />
         </section>
       </Main>
@@ -547,20 +560,30 @@ export default function GestionPatient() {
                 </OdontogramContext.Provider>
               </Main>
             ) : component === 5 ? (
-              <ClinicalSigns editMode={true} search={patient._id}/>
+              <ClinicalSigns editMode={true} search={patient._id} />
             ) : component === 6 ? (
               <Main title="Plan y Seguimiento de tratamiento" subtitle={true}>
-                <TableTreatment editMode={true} search={patient._id}/>
+                <TableTreatment editMode={true} search={patient._id} />
               </Main>
             ) : component === 7 ? (
               <Main title="Forma de Pago" subtitle={true}>
-                <WayPay editMode={true} search={patient._id}/>
+                <WayPay editMode={true} search={patient._id} />
               </Main>
-            ) : component === 8 ?
-            <Galery dni={paramans.dni}/> : "" 
-          }
+            ) : component === 8 ? (
+              <Galery dni={paramans.dni} />
+            ) : component === 9 ? (
+              <Main title="Tratamientos y Pagos" subtitle={true}>
+                <TreatmentAndPay dniPatient={paramans.dni}/>
+              </Main>
+            ) : (
+              ""
+            )}
           </div>
-          <div className={`w-full flex justify-between mt-4 ${component===8 && "hidden"}`}>
+          <div
+            className={`w-full flex justify-between mt-4 ${
+              component >= 8 && "hidden"
+            }`}
+          >
             <button
               onClick={() => {
                 setShowModal(false);
@@ -582,7 +605,5 @@ export default function GestionPatient() {
         </Main>
       </Modal>
     </div>
-  ) : (
-    <Loader />
   );
 }

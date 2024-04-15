@@ -106,12 +106,13 @@ export function updateTreatmentsPatient(data,autorization){
   });
 }
 
-export function treatmentsPatient(_id){
+export function treatmentsPatient(_id,autorization){
   return new Promise((resolve) => {
     try {
       fetch(`${TREATMENTS}${_id}`, {
         method: "GET",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -316,12 +317,13 @@ export function updatePatient(patient,autorization){
   });
 }
 
-export function onePatient(dni){
+export function onePatient(dni, autorization) {
   return new Promise((resolve) => {
     try {
       fetch(`${ONE_PATIENT}${dni}`, {
         method: "GET",
         headers: {
+          Authorization: autorization(),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
