@@ -54,7 +54,8 @@ export const API = `${URL}/api`,
   USER_UPLOAD_IMAGE = `${PATIENTS}/upload-image/`,
   PATIENT_IMAGES = `${PATIENTS}/images-patient/`,
   PATIENT_DELETE_IMAGE = `${PATIENTS}/delete-image`,
-  TREATMENT_AND_PAY = `${PATIENTS}/treatment-and-pay/`;
+  TREATMENT_AND_PAY = `${PATIENTS}/treatment-and-pay/`,
+  MEDICAL_APPOINMENT = `${PATIENTS}/medical-appointment/`;
 
 export const WAY_PAYS_METHODS = ["EFECTIVO", "TRANSFERENCIA", "CHEQUE"];
 
@@ -92,9 +93,9 @@ export const PATIENT_MODEL = {
     phone: "",
     direction: "",
     //en el caso del estado civil va del 1-5 soltero,casado,divorciado,viudo
-    maritalStatus: 1,
+    maritalStatus: "",
     //en el caso del sexo va del 1-3 masculino,femenino,otro
-    sex: 1,
+    sex: "",
     dateBorn: "",
     reason: "",
   },

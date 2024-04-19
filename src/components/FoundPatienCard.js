@@ -15,9 +15,9 @@ export default function FoundPatienCard({ patient, index }) {
         <td>{years}</td>
         <td>{phone}</td>
         <td>
-          {sex === 1 ? (
+          {sex === "Masculino" ? (
             <FaMars size={"27px"} color="#1E88E5" />
-          ) : sex === 2 ? (
+          ) : sex === "Femenino" ? (
             <FaVenus size={"27px"} color="#5E35B1" />
           ) : (
             <FaQuestion size={"24px"} color="#616161" />

@@ -1,14 +1,46 @@
 import globalStateContext from "../contexts/globalStateContext";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
-import { SESSION_STORAGE, THEME_STORAGE } from "../helpers/constants";
+import { MEDICAL_APPOINMENT, SESSION_STORAGE, THEME_STORAGE } from "../helpers/constants";
 
 export const useGlobalStateModel = () => {
   const [session, setSession] = useState(sessionStorage());
   const [themeColor, setThemeColor] = useState(themeMode());
   const [showNavbar, setShowNavbar] = useState(true);
   const [smartphone] = useState(window.screen.width <= 640);
+
+  
+  const [listDaysMonth, setListDaysMonth] = useState([]);
+  const [monthSelected, setMonthSelected] = useState(new Date().getMonth());
+  const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
+  const [daySelected, setDaySelected] = useState(new Date().getDate());
+  const [firstDayMonth, setFirstDayMonth] = useState(
+    new Date(yearSelected, monthSelected, 1).getDay()
+  );
+
+  const [searchedPatientDNI, setSearchedPatientDNI] = useState("");
+  const [searchedPatientNames, setSearchedPatientNames] = useState("");
+
+  useEffect(() => {
+    
+    fetch(MEDICAL_APPOINMENT + yearSelected + "/" + monthSelected, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "ok") {
+          // console.log(months[monthSelected], data.data.firstDayMonth, data.listDaysMonth.length);
+          setListDaysMonth(data.data.listDaysMonth);
+          setFirstDayMonth(data.data.firstDayMonth);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [monthSelected, yearSelected]);
 
   const getGreetingUser = () => {
     switch (session.sex) {
@@ -91,6 +123,20 @@ export const useGlobalStateModel = () => {
     isSessionActive,
     logout,
     login,
+    listDaysMonth,
+    monthSelected,
+    yearSelected,
+    daySelected,
+    firstDayMonth,
+    searchedPatientDNI,
+    setSearchedPatientDNI,
+    searchedPatientNames,
+    setSearchedPatientNames,
+    setMonthSelected,
+    setYearSelected,
+    setDaySelected,
+    setFirstDayMonth,
+    setListDaysMonth,
     getAhutorization,
     havePermision,
     isSuperAdministrer,

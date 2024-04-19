@@ -11,6 +11,9 @@ export default function Input({
   reference,
   isDisabled = false,
   rows = "5",
+  onFocus = () => {},
+  onBlur = () => {},
+  autoComplete = "on",
 }) {
   const STYLES = `border border-[#9E9E9E] bg-transparent focus:border-2 focus:border-[#1E88E5] rounded-xl p-2.5`;
   return (
@@ -29,7 +32,7 @@ export default function Input({
             disabled={isDisabled}
           >
             {values.map((el, index) => (
-              <option key={index} value={el} selected={index === 0}>{el}</option>
+              <option key={index} value={el} selected={index === 0} >{el}</option>
             ))}
           </select>
         ) : type === "textArea" ? (
@@ -49,6 +52,12 @@ export default function Input({
             onChange={(e) => {
               onChange(e);
             }}
+            onFocus={(e) => {
+              onFocus(e);
+            }}
+            onBlur={(e) => {
+              onBlur(e);
+            }}
             id={id}
             name="inputComponent"
             value={value}
@@ -57,6 +66,7 @@ export default function Input({
             placeholder={placeholder}
             ref={reference}
             disabled={isDisabled}
+            autoComplete={autoComplete}
           />
         )}
       </div>

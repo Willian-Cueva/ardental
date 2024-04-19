@@ -16,6 +16,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResqPassword from "./pages/ResqPassword";
 import MyProfile from "./pages/MyProfile";
 import { BG_DARK, dateToday } from "./helpers/constants";
+import MedicalAppointment from "./pages/MedicalAppointment";
+import MedicalAppointments from "./pages/MedicalAppointments";
 
 function App() {
   const switchShowNavbar = () => {
@@ -134,6 +136,22 @@ function App() {
                   <Route path="/register" element={<Register />} />
                   <Route path="/my-profile" element={<MyProfile />} />
                   <Route path="/login" element={<Login />} />
+                  <Route
+                    path="/citas-medicas"
+                    element={<MedicalAppointment />}
+                  />
+                  <Route
+                    path="/citas-medicas/pendings"
+                    element={<MedicalAppointments type="pendings" />}
+                  />
+                  <Route
+                    path="/citas-medicas/unpresented"
+                    element={<MedicalAppointments type="unpresented" />}
+                  />
+                  <Route
+                    path="/citas-medicas/presented"
+                    element={<MedicalAppointments type="presented" />}
+                  />
                   <Route
                     path="/gestion-patient/:dni"
                     element={<GestionPatient />}

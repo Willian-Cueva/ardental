@@ -199,6 +199,7 @@ export default function EditTreatmentAndPay({
     treatmentFollowUpRef.current.value = followUp[index].treatment;
     paymentFollowUpRef.current.value = followUp[index].payment;
     waypayFollowUpRef.current.value = followUp[index].wayPay;
+
     setShowModalFollowUp(true);
   };
 
