@@ -254,7 +254,14 @@ export default function CardAppointments({ apponitment }) {
       <div className="flex-1 flex flex-col gap-1">
         <span className="font-bold">{apponitment.namesPatient}</span>
         <div>
-          Hora <span>{apponitment.timeStart}</span>
+          Hora: <span>{apponitment.timeStart}</span>
+        </div>
+        <div>
+          Fecha:{" "}
+          <span>
+            {apponitment.date.day}/{apponitment.date.month}/
+            {apponitment.date.year}
+          </span>
         </div>
         <div>
           <span className="font-semibold">Observaciones: </span>{" "}

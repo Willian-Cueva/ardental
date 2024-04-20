@@ -34,7 +34,7 @@ export default function MyNavbar({ swichShowNavbar }) {
           </ButtonLogo>
         </div>
         <div className="flex justify-center items-center">
-          <div className="ml-2"><ToogleTheme/></div>
+          <div className="ml-2 hidden"><ToogleTheme/></div>
           <div className="hidden md:inline-block">{getGreetingUser()} {session.fullname}</div>
           <ButtonLogo
             className="ml-4"

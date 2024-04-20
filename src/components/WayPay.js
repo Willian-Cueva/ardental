@@ -170,7 +170,7 @@ export default function WayPay({editMode=false,search}) {
           </div>
         </Main>
       </Modal>
-      <div className="w-full flex justify-end">
+      <div className="w-full justify-end hidden">
         <button
           onClick={() => {setShowModal(true)}}
           className={`bg-[#2196F3] hover:bg-[#008bfd] min-h-[46px] rounded-xl text-white flex flex-wrap justify-center items-center gap-2 py-1 px-3 mb-2`}

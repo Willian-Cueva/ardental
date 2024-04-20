@@ -208,7 +208,7 @@ export default function TableTreatment({ editMode = false, search }) {
           </div>
         </Main>
       </Modal>
-      <div className="w-full flex justify-end">
+      <div className="w-full hidden justify-end">
         <div id="id-div-treatments" className="hidden">
           {JSON.stringify(treatments)}
         </div>

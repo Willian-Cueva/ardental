@@ -20,28 +20,28 @@ import useGlobalState from "../hooks/useGlobalState";
 export default function RegisterPatients() {
   const [patient] = useState(PATIENT_MODEL);
   const [showModal, setShowModal] = useState(false);
-  const {getAhutorization} = useGlobalState();
+  const { getAhutorization } = useGlobalState();
   const newPatientInputs = async () => {
     setShowModal(true);
     const getPatient = JSON.parse(JSON.stringify(patient)),
       d = document;
     getPatient.PersonaData.names = d.getElementById("id-inp-name").value;
-    getPatient.PersonaData.direction = d.getElementById("id-inp-direction").value;
+    getPatient.PersonaData.direction =
+      d.getElementById("id-inp-direction").value;
     getPatient.PersonaData.profession =
       d.getElementById("id-inp-profession").value;
     getPatient.PersonaData.dni = d.getElementById("id-inp-dni").value;
     getPatient.PersonaData.phone = d.getElementById("id-inp-phone").value;
     getPatient.PersonaData.maritalStatus =
-      d.getElementById("id-inp-maritalState").value * 1;
-    getPatient.PersonaData.sex = d.getElementById("id-inp-sex").value * 1;
+      d.getElementById("id-inp-maritalState").value;
+    getPatient.PersonaData.sex = d.getElementById("id-inp-sex").value;
     getPatient.PersonaData.dateBorn = d.getElementById("id-inp-dateBorn").value;
-    getPatient.PersonaData.reason =
-      d.getElementById("id-inp-reason").value;
+    getPatient.PersonaData.reason = d.getElementById("id-inp-reason").value;
 
     getPatient.PersonalHistory.disorders =
       d.getElementById("id-inp-disorders").value;
     getPatient.PersonalHistory.bloodPressure =
-      d.getElementById("id-inp-bloodPressure").value * 1;
+      d.getElementById("id-inp-bloodPressure").value;
     getPatient.PersonalHistory.heartDiseases =
       d.getElementById("id-swt-heartDiseases").value === "true";
     getPatient.PersonalHistory.medication =
@@ -128,7 +128,7 @@ export default function RegisterPatients() {
       d.getElementById("id-div-pays").textContent
     );
 
-    await newPatient(getPatient,getAhutorization)
+    await newPatient(getPatient, getAhutorization)
       .then((res) => {
         if (res.status === "ok") {
           swal({
@@ -148,6 +148,7 @@ export default function RegisterPatients() {
         }
       })
       .catch((err) => {
+        console.log(err);
         swal({
           title: "Upps",
           text: "Ha ocurrido un error, contactate con tu servicio técnico",
@@ -156,7 +157,6 @@ export default function RegisterPatients() {
         });
       });
     setShowModal(false);
-    
   };
 
   const value = useOdontogramModel();
@@ -179,37 +179,40 @@ export default function RegisterPatients() {
       <div className="mb-4" />
       <Main title="Odontograma" subtitle={true}>
         <OdontogramContext.Provider value={value}>
-          <Odontogram/>
+          <Odontogram />
         </OdontogramContext.Provider>
       </Main>
-      <div className="mb-4" />
-      <Main title="Plan y Seguimiento de tratamiento" subtitle={true}>
-        <TableTreatment />
-      </Main>
-      <div className="mb-4" />
-      <Main title="Forma de Pago" subtitle={true}>
-        <WayPay />
-      </Main>
+      <div className="mb-4 hidden">
+        <Main title="Plan y Seguimiento de tratamiento" subtitle={true}>
+          <TableTreatment />
+        </Main>
+        <div className="mb-4" />
+        <Main title="Forma de Pago" subtitle={true}>
+          <WayPay />
+        </Main>
+      </div>
       <div className="mt-8 w-full gap-4 flex flex-col-reverse justify-center items-center">
         <div className="w-[400px] flex flex-col-reverse gap-2">
-        <button
-          onClick={() => {
-            window.location.replace("");
-          }}
-          className={`bg-[#F44336] hover:bg-[#C62828] min-h-[46px] rounded-xl text-white flex flex-wrap justify-center items-center gap-2 py-1 px-3`}
-        >
-          <div className="font-semibold text-lg">Borrar Todo</div>
-          <FaTrashAlt size={"22px"} />
-        </button>
-        <button
-          onClick={() => {
-            newPatientInputs();
-          }}
-          className={`bg-[#00C853] hover:bg-[#69F0AE] min-h-[46px] rounded-xl text-white flex flex-wrap justify-center items-center gap-2 py-1 px-3`}
-        >
-          <div className="font-semibold text-lg">Guardar informacion  del paciente</div>
-          <FaSave size={"22px"} />
-        </button>
+          <button
+            onClick={() => {
+              window.location.replace("");
+            }}
+            className={`bg-[#F44336] hover:bg-[#C62828] min-h-[46px] rounded-xl text-white flex flex-wrap justify-center items-center gap-2 py-1 px-3`}
+          >
+            <div className="font-semibold text-lg">Borrar Todo</div>
+            <FaTrashAlt size={"22px"} />
+          </button>
+          <button
+            onClick={() => {
+              newPatientInputs();
+            }}
+            className={`bg-[#00C853] hover:bg-[#69F0AE] min-h-[46px] rounded-xl text-white flex flex-wrap justify-center items-center gap-2 py-1 px-3`}
+          >
+            <div className="font-semibold text-lg">
+              Guardar informacion del paciente
+            </div>
+            <FaSave size={"22px"} />
+          </button>
         </div>
       </div>
     </Main>

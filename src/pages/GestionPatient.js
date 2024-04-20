@@ -43,6 +43,7 @@ import WayPay from "../components/WayPay";
 import useGlobalState from "../hooks/useGlobalState";
 import Galery from "../components/Galery";
 import TreatmentAndPay from "../components/TreatmentAndPay";
+import cx from "clsx";
 
 export default function GestionPatient() {
   const [component, setComponent] = useState(-1);
@@ -497,7 +498,7 @@ export default function GestionPatient() {
             text="Plan y Seguimiento de Tratamiento"
             num={6}
             onclick={selectComponentForShow}
-            className="col-span-5 line-through"
+            className={cx("col-span-5 line-through",{"hidden":patient.version>1})}
             color="bg-slate-200"
             icon={<FaTeeth size={"27px"} />}
           />
@@ -505,7 +506,7 @@ export default function GestionPatient() {
             text="Forma de Pago"
             num={7}
             onclick={selectComponentForShow}
-            className="col-span-5 line-through "
+            className={cx("col-span-5 line-through",{"hidden":patient.version>1})}
             color="bg-slate-200"
             icon={<FaHandHoldingUsd size={"27px"} />}
           />
