@@ -5,9 +5,10 @@ import Modal from "../Modal";
 import Main from "../Main";
 import Input from "../Input";
 import SearchPatient from "./SearchPatient";
-import { FaEdit, FaSave, FaTrash } from "react-icons/fa";
+import { FaEdit, FaSave, FaTeethOpen, FaTrash } from "react-icons/fa";
 import useGlobalState from "../../hooks/useGlobalState";
 import swal from "sweetalert";
+import { Link } from "react-router-dom";
 
 export default function CardAppointments({ apponitment }) {
   const [isPending, setIsPending] = useState(false);
@@ -28,8 +29,8 @@ export default function CardAppointments({ apponitment }) {
   const observationsRef = useRef();
 
   useEffect(() => {
-    setSearchedPatientDNI(apponitment.dniPatient);
-    setSearchedPatientNames(apponitment.namesPatient);
+    // setSearchedPatientDNI(apponitment.dniPatient);
+    // setSearchedPatientNames(apponitment.namesPatient);
     if (apponitment.state === "PENDIENTE") {
       setIsPending(true);
     } else if (apponitment.state === "SE PRESENTO") {
@@ -116,7 +117,7 @@ export default function CardAppointments({ apponitment }) {
       namesPatient: searchedPatientNames,
       date: {
         year: dateRef.current.value.slice(0, 4),
-        month: dateRef.current.value.slice(5, 7) * 1 - 1,
+        month: dateRef.current.value.slice(5, 7) * 1,
         day: dateRef.current.value.slice(8, 10),
       },
       timeStart: timeRef.current.value,
@@ -304,9 +305,15 @@ export default function CardAppointments({ apponitment }) {
         </div>
       </div>
       <div className="flex-none w-[175px] flex justify-end items-center gap-4">
+        <Link
+          to={`/gestion-patient/${apponitment.dniPatient}`}
+          className="bg-[#00C853] p-3 rounded-xl  hover:bg-[#69F0AE]"
+        >
+          <FaTeethOpen size={"24px"} color="white" />
+        </Link>
         <button
           onClick={editAppointment}
-          className="p-3 rounded-xl bg-blue-500 hover:bg-blue-400"
+          className="p-3 rounded-xl bg-blue-500 hover:bg-blue-400 hidden"
         >
           <FaEdit size={"24px"} color={"white"} />
         </button>

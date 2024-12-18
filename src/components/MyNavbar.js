@@ -10,7 +10,7 @@ import ToogleTheme from "./ToogleTheme";
 
 export default function MyNavbar({ swichShowNavbar }) {
   const navigate = useNavigate();
-  const { session, logout,themeColor,getGreetingUser } = useGlobalState();
+  const { session, logout, themeColor, getGreetingUser } = useGlobalState();
   const closeSession = () => {
     swal({
       title: "Salir",
@@ -25,7 +25,11 @@ export default function MyNavbar({ swichShowNavbar }) {
     });
   };
   return (
-    <header className={`p-6 font-semibold ${themeColor.theme==="dark"&&`${BG_DARK} ${TEXT_DARK}`}`}>
+    <header
+      className={`p-6 font-semibold ${
+        themeColor.theme === "dark" && `${BG_DARK} ${TEXT_DARK}`
+      }`}
+    >
       <div className="flex h-[34px] justify-between">
         <div className="flex">
           <Logo className={`mr-[70px]`} />
@@ -34,8 +38,12 @@ export default function MyNavbar({ swichShowNavbar }) {
           </ButtonLogo>
         </div>
         <div className="flex justify-center items-center">
-          <div className="ml-2 hidden"><ToogleTheme/></div>
-          <div className="hidden md:inline-block">{getGreetingUser()} {session.fullname}</div>
+          <div className="ml-2 hidden">
+            <ToogleTheme />
+          </div>
+          <div className="hidden md:inline-block">
+            {getGreetingUser()} {session.fullname}
+          </div>
           <ButtonLogo
             className="ml-4"
             onClick={closeSession}

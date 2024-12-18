@@ -2,7 +2,12 @@ import globalStateContext from "../contexts/globalStateContext";
 
 import { useContext, useEffect } from "react";
 import { useState } from "react";
-import { MEDICAL_APPOINMENT, SESSION_STORAGE, THEME_STORAGE } from "../helpers/constants";
+import {
+  MEDICAL_APPOINMENT,
+  SESSION_STORAGE,
+  THEME_STORAGE,
+} from "../helpers/constants";
+import swal from "sweetalert";
 
 export const useGlobalStateModel = () => {
   const [session, setSession] = useState(sessionStorage());
@@ -10,7 +15,6 @@ export const useGlobalStateModel = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [smartphone] = useState(window.screen.width <= 640);
 
-  
   const [listDaysMonth, setListDaysMonth] = useState([]);
   const [monthSelected, setMonthSelected] = useState(new Date().getMonth());
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
@@ -23,7 +27,7 @@ export const useGlobalStateModel = () => {
   const [searchedPatientNames, setSearchedPatientNames] = useState("");
 
   useEffect(() => {
-    
+
     fetch(MEDICAL_APPOINMENT + yearSelected + "/" + monthSelected, {
       method: "GET",
       headers: {
@@ -44,14 +48,14 @@ export const useGlobalStateModel = () => {
 
   const getGreetingUser = () => {
     switch (session.sex) {
-      case 1:
-        return "Bienvenido,"
-      case 2:
-        return "Bienvenida,"
+      case "Masculino":
+        return "Bienvenido,";
+      case "Femenino":
+        return "Bienvenida,";
       default:
-        return ""
+        return "";
     }
-  }
+  };
 
   const changeTheme = () => {
     const theme = JSON.parse(localStorage.getItem(THEME_STORAGE));
@@ -61,23 +65,24 @@ export const useGlobalStateModel = () => {
       localStorage.setItem(THEME_STORAGE, JSON.stringify({ theme: "white" }));
     }
     setThemeColor(JSON.parse(localStorage.getItem(THEME_STORAGE)));
-  }
+  };
 
   const havePermision = () => {
-    return session.rol !== "not-authorized"
-  }
+    return session.rol !== "not-authorized";
+  };
 
   const isSessionActive = () => {
     if (session === undefined || session === null) return false;
-    let chis = session.rol !== "" &&
+    let chis =
+      session.rol !== "" &&
       session.fullname !== "" &&
       session.token !== "" &&
-      session.email !== ""
-    return chis
+      session.email !== "";
+    return chis;
   };
 
   const isSuperAdministrer = () => {
-    return session.rol === "super-administrer"
+    return session.rol === "super-administrer";
   };
 
   const getAhutorization = () => {
@@ -129,8 +134,8 @@ export const useGlobalStateModel = () => {
     daySelected,
     firstDayMonth,
     searchedPatientDNI,
-    setSearchedPatientDNI,
     searchedPatientNames,
+    setSearchedPatientDNI,
     setSearchedPatientNames,
     setMonthSelected,
     setYearSelected,
@@ -142,7 +147,7 @@ export const useGlobalStateModel = () => {
     isSuperAdministrer,
     changeTheme,
     setShowNavbar,
-    getGreetingUser
+    getGreetingUser,
   };
 };
 

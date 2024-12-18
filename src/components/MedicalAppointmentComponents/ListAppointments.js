@@ -51,6 +51,7 @@ export default function ListAppointments({ type = "days" }) {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-cache"
     })
       .then((response) => response.json())
       .then((data) => {
@@ -120,6 +121,8 @@ export default function ListAppointments({ type = "days" }) {
 
   const openModal = () => {
     setShowModal(true);
+    setSearchedPatientDNI("");
+    setSearchedPatientNames("");
     function formatSingleDigit(number) {
       return number < 10 ? `0${number}` : number.toString();
     }
@@ -135,12 +138,12 @@ export default function ListAppointments({ type = "days" }) {
   };
 
   const closeModal = () => {
-    setShowModal(false);
     setSearchedPatientDNI("");
     setSearchedPatientNames("");
     timeRef.current.value = "";
     dateRef.current.value = "";
     observationsRef.current.value = "";
+    setShowModal(false);
   };
   return (
     <div className="w-full">
@@ -207,7 +210,11 @@ export default function ListAppointments({ type = "days" }) {
 
       <div className="w-full flex flex-col gap-4 mt-4">
         {appointments.map((appointment, index) => (
-          <CardAppointments key={index+Math.random()} apponitment={appointment} type={type}/>
+          <CardAppointments
+            key={index + Math.random()}
+            apponitment={appointment}
+            type={type}
+          />
         ))}
         {appointments.length === 0 && (
           <div className="w-full flex justify-center items-center">

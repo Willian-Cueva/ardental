@@ -84,8 +84,8 @@ export default function GestionPatient() {
         PersonaData.dni = d.getElementById("id-inp-dni").value;
         PersonaData.phone = d.getElementById("id-inp-phone").value;
         PersonaData.maritalStatus =
-          d.getElementById("id-inp-maritalState").value * 1;
-        PersonaData.sex = d.getElementById("id-inp-sex").value * 1;
+          d.getElementById("id-inp-maritalState").value;
+        PersonaData.sex = d.getElementById("id-inp-sex").value;
         PersonaData.dateBorn = d.getElementById("id-inp-dateBorn").value;
         PersonaData.reason = d.getElementById("id-inp-reason").value;
 
@@ -126,7 +126,7 @@ export default function GestionPatient() {
         PersonalHistory._id = patient._id;
         PersonalHistory.disorders = d.getElementById("id-inp-disorders").value;
         PersonalHistory.bloodPressure =
-          d.getElementById("id-inp-bloodPressure").value * 1;
+          d.getElementById("id-inp-bloodPressure").value;
         PersonalHistory.heartDiseases =
           d.getElementById("id-swt-heartDiseases").value === "true";
         PersonalHistory.medication =

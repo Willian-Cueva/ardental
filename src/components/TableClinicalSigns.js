@@ -36,17 +36,17 @@ export default function TableClinicalSigns() {
           <td><TextArea id="id-txta-tongue-obs"/></td>
         </tr>
         <tr>
-          <td>Encias</td>
+          <td>Encías</td>
           <td><TextArea id="id-txta-gums-cli"/></td>
           <td><TextArea id="id-txta-gums-obs"/></td>
         </tr>
         <tr>
-          <td>Saliba</td>
+          <td>Saliva</td>
           <td><TextArea id="id-txta-saliva-cli"/></td>
           <td><TextArea id="id-txta-saliva-obs"/></td>
         </tr>
         <tr>
-          <td>Amigdalas</td>
+          <td>Amígdalas</td>
           <td><TextArea id="id-txta-tonsils-cli"/></td>
           <td><TextArea id="id-txta-tonsils-obs"/></td>
         </tr>
@@ -61,7 +61,7 @@ export default function TableClinicalSigns() {
           <td><TextArea id="id-txta-nodes-obs"/></td>
         </tr>
         <tr>
-          <td>Glandulas salivales</td>
+          <td>Glándulas salivales</td>
           <td><TextArea id="id-txta-salivaryGlands-cli"/></td>
           <td><TextArea id="id-txta-salivaryGlands-obs"/></td>
         </tr>
