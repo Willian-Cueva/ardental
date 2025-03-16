@@ -28,7 +28,9 @@ export const useGlobalStateModel = () => {
 
   useEffect(() => {
 
-    fetch(MEDICAL_APPOINMENT + yearSelected + "/" + monthSelected, {
+    const url = `${MEDICAL_APPOINMENT}with-first-day-month/${yearSelected}/${monthSelected}`  
+
+    fetch(url, {
       method: "GET",
       headers: {
         Accept: "application/json",

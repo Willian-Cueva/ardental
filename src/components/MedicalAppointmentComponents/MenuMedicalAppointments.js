@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import cx from "clsx";
+import { URL } from "../../helpers/constants";
 
 export default function MenuMedicalAppointments() {
   return (
@@ -10,7 +11,7 @@ export default function MenuMedicalAppointments() {
         <Link
           className={cx("p-2 rounded-xl border hover:bg-purple-500 hover:border-purple-500 hover:text-white", {
             "bg-purple-500 border-purple-500 text-white":
-              window.location.href === "http://localhost:3000/ardental#/citas-medicas",
+              window.location.href === `${URL}/ardental#/citas-medicas`,
           })}
           to="/citas-medicas"
         >
